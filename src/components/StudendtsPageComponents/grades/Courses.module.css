@@ -1,0 +1,134 @@
+.groupChild {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--color-lightsteelblue-200);
+  width: 266.17px;
+  height: 44.17px;
+}
+.egAdvancedCalculus {
+  position: absolute;
+  top: 11.19px;
+  left: 22.81px;
+  font-weight: 300;
+  display: inline-block;
+  width: 219.02px;
+  height: 21.45px;
+}
+.rectangleParent {
+  position: relative;
+  width: 266.17px;
+  height: 44.17px;
+  flex-shrink: 0;
+}
+.a,
+.groupItem {
+  position: absolute;
+}
+.groupItem {
+  top: 0;
+  left: 0;
+  background-color: var(--color-lightsteelblue-200);
+  width: 147.53px;
+  height: 44.17px;
+}
+.a {
+  top: 9.81px;
+  left: 65.69px;
+  font-weight: 300;
+  display: inline-block;
+  width: 15.21px;
+  height: 21.45px;
+}
+.rectangleGroup {
+  position: relative;
+  width: 147.53px;
+  height: 44.17px;
+  flex-shrink: 0;
+}
+.eg20 {
+  position: absolute;
+  top: 11.19px;
+  left: 22.81px;
+  font-weight: 300;
+  display: inline-block;
+  width: 60.84px;
+  height: 21.45px;
+}
+.rectangleContainer {
+  position: relative;
+  width: 147.53px;
+  height: 44.17px;
+  flex-shrink: 0;
+  text-align: left;
+}
+.cells {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-3xl);
+}
+.egAdvancedCalculus1 {
+  position: absolute;
+  top: 11.36px;
+  left: 22.81px;
+  font-weight: 300;
+  display: inline-block;
+  width: 219.02px;
+  height: 21.45px;
+}
+.a1 {
+  position: absolute;
+  top: 10.12px;
+  left: 65.38px;
+  width: 15.21px;
+}
+.a1,
+.a2,
+.eg201 {
+  font-weight: 300;
+  display: inline-block;
+  height: 21.45px;
+}
+.eg201 {
+  position: absolute;
+  top: 11.36px;
+  left: 22.81px;
+  width: 60.84px;
+}
+.a2 {
+  top: 10.14px;
+  left: 65.69px;
+  width: 15.21px;
+}
+.a2,
+.a3,
+.pages {
+  position: absolute;
+}
+.a3 {
+  top: 9.31px;
+  left: 65.69px;
+  font-weight: 300;
+  display: inline-block;
+  width: 15.21px;
+  height: 21.45px;
+}
+.pages {
+  height: 76.48%;
+  width: 76.69%;
+  top: 18.81%;
+  right: 11.59%;
+  bottom: 4.71%;
+  left: 11.71%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-2xs);
+  text-align: center;
+  font-size: var(--font-size-2xs);
+  color: var(--color-steelblue-100);
+  font-family: var(--font-poppins);
+}

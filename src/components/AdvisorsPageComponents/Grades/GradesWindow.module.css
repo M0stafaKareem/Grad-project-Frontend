@@ -1,0 +1,67 @@
+.gradeswindowChild {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+.fallSemester,
+.submitted,
+.uploadACsv {
+  position: absolute;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+.uploadACsv {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  height: 4.86%;
+  width: 8.05%;
+  top: 84.17%;
+  left: 71.61%;
+  font-size: 13px;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+  font-family: "Work Sans";
+  color: #6b4b3e;
+  align-items: flex-end;
+}
+.fallSemester,
+.submitted {
+  margin: 0;
+  height: 5.54%;
+  width: 22.9%;
+  top: 6.58%;
+  left: 38.51%;
+  font-size: 24px;
+  font-weight: 700;
+  font-family: Poppins;
+  color: #aa7bc3;
+  align-items: center;
+}
+.submitted {
+  height: 2.35%;
+  width: 8.05%;
+  top: 85.89%;
+  left: 51.61%;
+  font-size: 13px;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+  font-family: "Work Sans";
+  color: #6b4b3e;
+  align-items: flex-end;
+}
+.gradeswindow {
+  position: absolute;
+  top: 97px;
+  left: 354px;
+  width: 870px;
+  height: 638px;
+}

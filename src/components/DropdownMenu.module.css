@@ -1,0 +1,125 @@
+@keyframes slide-in-top {
+  0% {
+    transform: translateY(-500px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.polygonIcon {
+  position: relative;
+  width: 18px;
+  height: 11.33px;
+  flex-shrink: 0;
+}
+.selena {
+  font-weight: 600;
+}
+.aug10,
+.jonathanWilliamCre {
+  margin: 0;
+  position: absolute;
+  letter-spacing: 0.3px;
+  font-family: inherit;
+  display: inline-block;
+}
+.jonathanWilliamCre {
+  width: 83.77%;
+  top: calc(50% - 28px);
+  left: 16.23%;
+  font-size: inherit;
+  line-height: 18px;
+}
+.aug10 {
+  width: 39.65%;
+  top: calc(50% + 16px);
+  left: 16.18%;
+  font-size: var(--font-size-4xs);
+  line-height: 12px;
+  font-weight: 400;
+  opacity: 0.5;
+  mix-blend-mode: normal;
+}
+.groupIcon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+}
+.notification {
+  position: relative;
+  width: 265px;
+  height: 56px;
+  flex-shrink: 0;
+  text-align: left;
+  font-size: var(--font-size-5xs);
+  color: var(--color-gray-800);
+  font-family: var(--font-poppins);
+}
+.aug101,
+.aug102,
+.jonathanWilliamCre1 {
+  margin: 0;
+  position: absolute;
+  letter-spacing: 0.3px;
+  font-family: inherit;
+  display: inline-block;
+}
+.jonathanWilliamCre1 {
+  width: 84.15%;
+  top: calc(50% - 28px);
+  left: 15.85%;
+  font-size: inherit;
+  line-height: 18px;
+}
+.aug101,
+.aug102 {
+  width: 31.29%;
+  top: calc(50% + 16px);
+  left: 15.84%;
+  font-size: var(--font-size-4xs);
+  line-height: 12px;
+  font-weight: 400;
+  opacity: 0.5;
+  mix-blend-mode: normal;
+}
+.aug102 {
+  width: 31.56%;
+  left: 16.18%;
+}
+.plusCircleFillIcon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+}
+.frameDiv,
+.groupMain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.frameDiv {
+  background-color: var(--color-white);
+  padding: var(--padding-6xs) var(--padding-8xs);
+  box-sizing: border-box;
+  justify-content: flex-start;
+  gap: var(--gap-xs);
+}
+.groupMain {
+  position: absolute;
+  z-index: 20;
+  top: 70px;
+  left: 605px;
+  justify-content: center;
+  gap: var(--gap-0);
+  opacity: 0;
+}
+.groupMain.animate {
+  animation: 1s ease 0s 1 normal forwards slide-in-top;
+}

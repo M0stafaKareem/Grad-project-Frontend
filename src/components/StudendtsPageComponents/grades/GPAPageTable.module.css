@@ -1,0 +1,30 @@
+.gpaPageTableChild {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: var(--br-sm);
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.semesterIi {
+  position: absolute;
+  color: #00467a;
+  top: 7.86%;
+  left: 8.22%;
+  font-weight: 700;
+  font-size: 24px;
+  display: inline-block;
+}
+.gpaPageTable {
+  position: absolute;
+  top: 109px;
+  left: 353px;
+  width: 870px;
+  height: 530px;
+  text-align: left;
+  background-color: white;
+  border-radius: var(--br-sm);
+  font-size: var(--font-size-2xl);
+  font-family: var(--font-poppins);
+}

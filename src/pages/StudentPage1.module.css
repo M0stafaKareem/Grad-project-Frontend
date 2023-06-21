@@ -1,0 +1,14 @@
+.studentPage1 {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  max-width: 1500px;
+  max-height: 832px;
+  overflow: scroll;
+  font-size: var(--body-size);
+  background-color: #e9f2fa;
+  font-family: var(--body);
+}
+.studentPage1::-webkit-scrollbar {
+  display: none;
+}

@@ -1,0 +1,30 @@
+.main {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 70px;
+}
+
+.title {
+  text-align: center;
+  font-size: 18px;
+  color: #aa7bc3;
+  font-family: Poppins;
+  width: 150px;
+  white-space: nowrap;
+  position: relative;
+  font-weight: 700;
+}
+
+.input {
+  position: relative;
+  outline: none;
+  font-weight: 400;
+  font-family: Poppins;
+  font-size: 14px;
+  background-color: #f4f4f4;
+  width: 266.17px;
+  height: 44.17px;
+  color: #aa7bc3;
+  text-align: center;
+}

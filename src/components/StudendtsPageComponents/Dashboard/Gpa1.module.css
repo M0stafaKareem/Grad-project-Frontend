@@ -1,0 +1,45 @@
+.homepageDesign {
+  margin: 0;
+  position: absolute;
+  top: calc(50% + 13.5px);
+  left: 22.22%;
+  font-size: inherit;
+  letter-spacing: 0.3px;
+  line-height: 12px;
+  font-weight: 400;
+  font-family: inherit;
+  color: inherit;
+  display: inline-block;
+  opacity: 0.5;
+}
+.groupDiv {
+  position: absolute;
+  top: calc(50% - 25.5px);
+}
+.strong {
+  font-size: var(--font-size-xl);
+  white-space: nowrap;
+  line-height: 32px;
+  font-weight: 600;
+  color: var(--color-turquoise);
+}
+.groupDiv {
+  width: 37.28%;
+  right: 31.36%;
+  left: 31.36%;
+  height: 51px;
+}
+.groupProgress {
+  position: absolute;
+  left: 0;
+}
+.stats {
+  position: relative;
+  width: 169px;
+  height: 169px;
+  flex-shrink: 0;
+  text-align: center;
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-1200);
+  font-family: var(--font-poppins);
+}

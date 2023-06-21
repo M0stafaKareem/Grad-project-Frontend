@@ -1,0 +1,34 @@
+.stats {
+  position: sticky;
+  top: 0;
+  padding: 25px 0 0px 25px;
+}
+
+.courseoverview {
+  position: relative;
+  display: flex;
+  overflow: scroll;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 30px;
+  left: 0;
+  padding: 20px;
+  max-height: 580px;
+}
+.courseoverviewParent {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 100px;
+  left: 360px;
+  width: 420px;
+  border-radius: 20px;
+  background-color: #f5f7fd;
+  font-size: 14px;
+  font-family: Poppins;
+}
+
+.courseoverview::-webkit-scrollbar {
+  display: none;
+}

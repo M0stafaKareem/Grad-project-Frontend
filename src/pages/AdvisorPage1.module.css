@@ -1,0 +1,10 @@
+.advisorpage1 {
+  font-size: var(--body-size);
+  font-family: var(--body);
+  position: relative;
+  background-color: #e9f2fa;
+  max-width: 1500px;
+  max-height: 832px;
+  width: 100vw;
+  height: 100vh;
+}

@@ -1,0 +1,32 @@
+.cgpa,
+.label {
+  position: relative;
+  top: 20px;
+  height: 26px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+  color: #f2f7f7;
+}
+.label {
+  left: 85px;
+  width: 203.81px;
+}
+.cgpa {
+  width: 82.13px;
+  left: 500px;
+}
+
+.gpaPageOverall {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  border-radius: var(--br-md);
+  top: 682px;
+  left: 353px;
+  width: 870px;
+  height: 65px;
+  font-size: var(--font-size-2xl);
+  background: #00467a;
+  font-family: var(--font-rubik);
+}

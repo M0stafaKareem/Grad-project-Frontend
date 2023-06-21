@@ -1,0 +1,22 @@
+.login {
+  cursor: pointer;
+  position: relative;
+  font-size: var(--font-size-base);
+  line-height: 23.16px;
+  font-family: var(--font-poppins);
+  color: var(--white1);
+  text-align: center;
+}
+.loginb {
+  cursor: pointer;
+  border: 0;
+  padding: var(--padding-10xs) 0 var(--padding-10xs) var(--padding-10xs);
+  background-color: var(--color-orange);
+  border-radius: var(--br-md);
+  width: 387px;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+}

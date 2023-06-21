@@ -1,0 +1,18 @@
+.text {
+  padding: 0 var(--padding-5xs);
+  font-weight: 500;
+}
+.frameParent {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  padding: var(--padding-10xs) 0;
+  gap: var(--gap-5xl);
+  font-size: var(--font-size-3xs);
+  background-color: #cfe7ff;
+  font-family: var(--font-poppins);
+}
+
+.advisors {
+  background-color: #eee5f3;
+}

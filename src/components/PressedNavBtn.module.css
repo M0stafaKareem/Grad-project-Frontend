@@ -1,0 +1,48 @@
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-200px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.vectorIcon {
+  position: relative;
+  width: 21.88px;
+  height: 21.88px;
+  flex-shrink: 0;
+}
+.dashboard1 {
+  margin: 0;
+  position: relative;
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  font-family: var(--font-poppins);
+  color: var(--color-white);
+  text-align: left;
+  display: inline-block;
+}
+.dashboard {
+  cursor: pointer;
+  border: 0;
+  padding: var(--padding-8xs) var(--padding-xl) var(--padding-8xs)
+    var(--padding-6xs);
+  background-color: var(--color-gray-1000);
+  border-radius: var(--br-md);
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-lg);
+  opacity: 1;
+}
+.dashboard.animate {
+  animation: 0.6s ease 0s 1 normal both slide-in-left;
+}
+.dashboard:active {
+  animation: 2s ease 0s 1 alternate-reverse none slide-in-left;
+  opacity: 1;
+}

@@ -1,0 +1,46 @@
+.maskGroupIcon {
+  position: relative;
+  max-width: 120px;
+  max-height: 120px;
+  border-radius: 50%;
+}
+.asterSeawalker,
+.level31 {
+  white-space: nowrap;
+  position: relative;
+}
+.asterSeawalker {
+  font-weight: 500;
+}
+.level31 {
+  font-size: var(--font-size-sm);
+  font-weight: 300;
+  color: var(--color-gray-1400);
+}
+.user {
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--padding-3xs);
+  align-items: center;
+  gap: var(--gap-3xs);
+  font-size: var(--font-size-base);
+  font-family: var(--font-poppins);
+}
+
+@media screen and (max-width: 600px) {
+  .maskGroupIcon {
+    width: 60px;
+    height: 60px;
+    align-self: flex-start;
+  }
+  .user {
+    padding: 0;
+    place-items: center;
+  }
+  .asterSeawalker {
+    white-space: normal;
+    line-height: 25px;
+    height: 25px;
+    overflow: hidden;
+  }
+}

@@ -1,0 +1,73 @@
+.h2 {
+  font-weight: 500;
+}
+.h2,
+.h21 {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.level0 {
+  font-weight: 500;
+}
+.level0,
+.registeredHours {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.level0 {
+  font-family: var(--font-poppins);
+  color: var(--color-orange);
+  width: 177px;
+  height: 20px;
+}
+.h2 {
+  width: 70px;
+}
+.h2,
+.h21,
+.registeredHours {
+  font-family: inherit;
+  height: 15px;
+}
+.registeredHours {
+  font-weight: 400;
+  width: 105px;
+}
+.h21 {
+  font-weight: 500;
+  width: 52px;
+}
+.level0Parent {
+  position: absolute;
+  top: 15px;
+  left: 19px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-4xl);
+}
+.subjectsbar {
+  position: relative;
+  border-radius: var(--br-md);
+  background-color: #ffffff;
+  width: 876px;
+  height: 55px;
+  overflow: hidden;
+  text-align: center;
+  font-size: var(--body1-size);
+  color: var(--gray1);
+  font-family: var(--body1);
+}

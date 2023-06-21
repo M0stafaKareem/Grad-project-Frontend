@@ -1,0 +1,30 @@
+.frameNav {
+  position: absolute;
+  display: flex;
+  gap: var(--gap-sm);
+  height: 100%;
+  width: 100%;
+  background-color: var(--color-white);
+  flex-direction: column;
+  padding: var(--padding-2xl) var(--padding-md);
+  align-items: flex-start;
+  justify-content: center;
+}
+.navBar {
+  position: fixed;
+  top: 1.5px;
+  left: 2px;
+  width: 334px;
+  height: 830px;
+  z-index: 5;
+}
+
+@media screen and (max-width: 600px) {
+  .navBar,
+  .frameNav {
+    width: 105px;
+  }
+  .frameNav {
+    padding-left: 25%;
+  }
+}

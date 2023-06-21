@@ -1,0 +1,134 @@
+.homepageDesign,
+.homepageDesign1 {
+  position: relative;
+  letter-spacing: 0.3px;
+  line-height: 23px;
+  font-family: inherit;
+  display: flex;
+  color: white;
+  align-items: center;
+  flex-shrink: 0;
+}
+.homepageDesign {
+  margin: 0;
+  font-size: inherit;
+  font-weight: 600;
+  width: 216px;
+}
+.homepageDesign1 {
+  font-size: 10px;
+  font-weight: 300;
+  width: 46px;
+  height: 23px;
+  margin: 0 0 0-10px;
+}
+.homepageDesignParent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.homepageDesign2 {
+  color: white;
+  font-size: 12px;
+  position: relative;
+  letter-spacing: 0.3px;
+  line-height: 23px;
+  font-weight: 300;
+}
+.frameGroup {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 0;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 5px;
+}
+.frameChild {
+  position: relative;
+  width: 30.5px;
+  height: 7.36px;
+}
+.frameParent,
+.homepageDesignGroup {
+  display: flex;
+  justify-content: flex-start;
+}
+.homepageDesignGroup {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+}
+.frameParent {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 41px;
+}
+.div {
+  position: relative;
+  letter-spacing: 0.3px;
+  line-height: 12px;
+  font-weight: 600;
+}
+.enrolled,
+.enrolled1,
+.numberofreg {
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.numberofreg {
+  border-radius: 10px;
+  background-color: #ffffff;
+  height: 50px;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+.enrolled,
+.enrolled1 {
+  height: 15px;
+}
+.enrolled1 {
+  position: relative;
+  font-weight: 300;
+  flex-shrink: 0;
+}
+.enrolled {
+  cursor: pointer;
+  flex-direction: row;
+  box-sizing: border-box;
+  font-size: 10px;
+  color: #ffffff;
+}
+
+.numberofregParent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 5px;
+  text-align: center;
+  font-size: 18px;
+  color: #0c1755;
+}
+.courseoverview {
+  display: flex;
+  border-radius: 20px;
+  height: 150px;
+  background-color: #c8b0d4;
+  box-shadow: 0 4px 15px rgba(34, 0, 52, 0.5);
+  flex-direction: row;
+  padding: 12px 20px;
+  gap: 40px;
+  font-size: 14px;
+  font-family: Poppins;
+  transition: padding 0.2s ease-in-out, height 0.2s ease-in-out,
+    background-color 0.25s ease-in-out;
+}
+.courseoverview:hover {
+  background-color: #aa7bc3;
+  height: 200px;
+  padding-top: 20px;
+}

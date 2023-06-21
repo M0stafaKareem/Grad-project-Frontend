@@ -1,0 +1,11 @@
+.levelsDiv {
+  position: absolute;
+  overflow-y: scroll;
+  height: 80vh;
+  top: 108px;
+  left: 350px;
+  width: 70%;
+}
+.levelsDiv::-webkit-scrollbar {
+  display: none;
+}

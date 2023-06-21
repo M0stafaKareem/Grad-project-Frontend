@@ -1,0 +1,46 @@
+.aug10,
+.jonathanWilliamCre {
+  margin: 0;
+  position: absolute;
+  letter-spacing: 0.3px;
+  font-weight: 400;
+  font-family: inherit;
+  display: inline-block;
+}
+.jonathanWilliamCre {
+  top: calc(50% - 28px);
+  overflow: hidden;
+
+  max-height: 3.6em;
+  width: 83.77%;
+  left: 16.23%;
+  font-size: inherit;
+  line-height: 18px;
+}
+.aug10 {
+  width: 25.49%;
+  top: calc(50% + 16px);
+  left: 16.18%;
+  font-size: var(--font-size-4xs);
+  line-height: 12px;
+  opacity: 0.5;
+  mix-blend-mode: normal;
+}
+.checkCircleFillIcon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+}
+.notification {
+  position: relative;
+  width: 265px;
+  height: 56px;
+  flex-shrink: 0;
+  text-align: left;
+  font-size: var(--font-size-5xs);
+  color: var(--color-gray-800);
+  font-family: var(--font-poppins);
+}

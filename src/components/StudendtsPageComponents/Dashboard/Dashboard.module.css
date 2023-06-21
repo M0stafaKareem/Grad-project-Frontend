@@ -1,0 +1,78 @@
+.statistics2,
+.statsPeriod {
+  position: absolute;
+  top: calc(50% - 21.5px);
+  left: 0;
+  letter-spacing: 0.3px;
+  line-height: 23px;
+  font-weight: 600;
+  display: inline-block;
+}
+.statsPeriod {
+  margin: 0;
+  top: calc(50% + 10.5px);
+  font-size: var(--font-size-4xs);
+  line-height: 11px;
+  font-weight: 400;
+  font-family: inherit;
+  opacity: 0.5;
+}
+.statistics1 {
+  position: relative;
+  width: 123px;
+  height: 43px;
+  flex-shrink: 0;
+}
+.frameDiv,
+.frameSection {
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+  align-items: flex-start;
+}
+.frameDiv {
+  justify-content: left;
+  gap: var(--gap-xl);
+}
+.frameSection {
+  justify-content: flex-start;
+  gap: 35px;
+  text-align: left;
+  font-size: var(--font-size-lg);
+  color: var(--color-gray-1200);
+  font-family: var(--font-poppins);
+}
+
+.statistics {
+  position: absolute;
+  background-color: var(--color-white);
+}
+.statistics {
+  display: flex;
+  flex-direction: row;
+  top: 99px;
+  left: 350px;
+  max-width: 874px;
+  border-radius: 25px;
+  box-shadow: 0 11px 25px rgba(0, 0, 0, 0.25);
+  padding: var(--padding-xs) var(--padding-xs) var(--padding-xs) 25px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-3xl);
+}
+.studentPage1 {
+  position: relative;
+  width: 100%;
+  height: 832px;
+  text-align: center;
+  font-size: var(--font-size-2xs);
+  background-color: #e9f2fa;
+  font-family: var(--font-poppins);
+}
+@media screen and (max-width: 600px) {
+  .statistics {
+    left: 120px;
+    width: 300px;
+  }
+}
