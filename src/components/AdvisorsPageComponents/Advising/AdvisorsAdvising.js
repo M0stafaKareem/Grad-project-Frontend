@@ -16,7 +16,7 @@ function AdvisorsAdvising(props) {
 
   return (
     <div className={styles.levelsDiv}>
-      <RegisterationHeader />
+      <RegisterationHeader leftTitle="Opened subjects to register:" />
       <LevelBar
         subjects={leveledSubjects[0]}
         userMode="advisors"

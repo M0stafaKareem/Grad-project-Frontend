@@ -5,6 +5,7 @@ export class FetchDataService {
   private privID: number | null = null;
 
   private studentData: {
+    Id?: number;
     Name?: string;
     Photo?: Blob;
     Level?: string;
@@ -15,6 +16,7 @@ export class FetchDataService {
   };
 
   private advisorData: {
+    Id?: number;
     Name?: string;
     Photo?: Blob;
     Level?: string;
@@ -38,7 +40,7 @@ export class FetchDataService {
 
           //student case
           if (this.privID == 1) {
-            this.userID = jsonData[0].student_id;
+            this.studentData.Id = jsonData[0].student_id;
             this.studentData.Name = jsonData[0].user_name;
             this.studentData.Level = "Level ".concat(jsonData[0].student_level);
             this.studentData.GPA = jsonData[0].student_gpa;
@@ -46,7 +48,7 @@ export class FetchDataService {
 
           //advisor case
           if (this.privID == 2) {
-            this.userID = jsonData[0].advisor_id;
+            this.advisorData.Id = jsonData[0].advisor_id;
             this.advisorData.Name = jsonData[0].user_name;
             this.advisorData.Level = "Advisor";
           }
@@ -74,7 +76,7 @@ export class FetchDataService {
   }; */
 
   private getStudentImage = async () => {
-    let url = "http://127.0.0.1:8000/api/studentImage/" + this.userID;
+    let url = "http://127.0.0.1:8000/api/studentImage/" + this.studentData.Id;
     await fetch(url)
       .then((response) => response.blob())
       .then((jsonData) => {
@@ -86,7 +88,7 @@ export class FetchDataService {
   };
 
   private getAdvisorImage = async () => {
-    let url = "http://127.0.0.1:8000/api/advisorImage/" + this.userID;
+    let url = "http://127.0.0.1:8000/api/advisorImage/" + this.advisorData.Id;
     await fetch(url)
       .then((response) => response.blob())
       .then((jsonData) => {
@@ -111,19 +113,20 @@ export class FetchDataService {
     return this.advisorData;
   };
 
-  private getStuSubjects = async () => {
-    let url = "http://127.0.0.1:8000/api/stuSubject/" + this.userID;
+  public getStuSubjects = async () => {
+    let url = "http://127.0.0.1:8000/api/stuSubject/" + this.studentData.Id;
     await fetch(url)
       .then((response) => response.json())
       .then((jsonData) => {
         this.studentData.subjecs = jsonData;
+        return jsonData;
       })
       .catch((error) => {
         console.error(error);
       });
   };
 
-  private getAdvSubjects = async () => {
+  public getAdvSubjects = async () => {
     let url = "http://127.0.0.1:8000/api/advSubject/subjectStatus";
     await fetch(url)
       .then((response) => response.json())

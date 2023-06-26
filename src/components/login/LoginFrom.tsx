@@ -5,7 +5,7 @@ import { FetchDataService } from "../../service/fetchData";
 import { useNavigate } from "react-router-dom";
 
 type loginFormType = {
-  setLoadingScreen: (data: any) => void;
+  setLoadingScreen: (state: any) => void;
 };
 const LoginFrom: FunctionComponent<loginFormType> = ({ setLoadingScreen }) => {
   const navigate = useNavigate();

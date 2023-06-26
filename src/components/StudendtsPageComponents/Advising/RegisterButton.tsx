@@ -13,6 +13,7 @@ const RegisterButton: FunctionComponent<RegBtnType> = ({
     userMode === "advisors"
       ? `${styles.registerb} + ${styles.advisors}`
       : styles.registerb;
+
   return (
     <button className={styling} onClick={RegBtnOnClick}>
       {userMode === "" && (

@@ -1,6 +1,7 @@
 import RegisterationHeader from "./RegisterationHeader";
 import LevelBar from "./LevelBar";
 import styles from "./Advising.module.css";
+import { FetchDataService } from "../../../service/fetchData";
 
 function Advising(props) {
   const leveledSubjects = {};
@@ -19,32 +20,37 @@ function Advising(props) {
       <RegisterationHeader />
       <LevelBar
         level="Level 0"
+        Id={props.studentData.Id}
         subjects={leveledSubjects[0]}
-        endDate={"5/5"}
+        endDate={"5/11"}
         levelGPA={"2"}
       />
       <LevelBar
         level="Level 1"
+        Id={props.studentData.Id}
         subjects={leveledSubjects[1]}
-        endDate={"5/6"}
+        endDate={"5/11"}
         levelGPA={"2.6"}
       />
       <LevelBar
         level="Level 2"
+        Id={props.studentData.Id}
         subjects={leveledSubjects[2]}
-        endDate={"5/5"}
+        endDate={"5/10"}
         levelGPA={"2.4"}
       />
       <LevelBar
         level="Level 3"
+        Id={props.studentData.Id}
         subjects={leveledSubjects[3]}
-        endDate={"3/4"}
+        endDate={"3/10"}
         levelGPA={"3.3"}
       />
       <LevelBar
         level="Level 4"
+        Id={props.studentData.Id}
         subjects={leveledSubjects[4]}
-        endDate={"0/5"}
+        endDate={"0/12"}
         levelGPA={""}
       />
     </div>

@@ -1,5 +1,4 @@
 import { FunctionComponent, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import LoadingScreen from "../components/loadingScreen/LoadingScreen";
 import LoginFrom from "../components/login/LoginFrom";
 import styles from "./Loginpage.module.css";

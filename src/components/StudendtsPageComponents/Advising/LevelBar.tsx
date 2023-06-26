@@ -11,6 +11,7 @@ type LevelBarType = {
   endDate?: string;
   GPA?: string;
   levelGPA?: string;
+  Id?: number;
   subjects?: advSubject[] | stuSubject[];
 };
 
@@ -20,6 +21,7 @@ const LevelBar: FunctionComponent<LevelBarType> = ({
   startDate = "Registered",
   endDate = "5/5",
   GPA = "GPA",
+  Id,
   levelGPA = 2.7,
   subjects,
 }) => {
@@ -28,24 +30,24 @@ const LevelBar: FunctionComponent<LevelBarType> = ({
     changeDropdown(true);
   }
 
-  function regBtnHandler() {
-    changeDropdown(false);
-  }
-
   const modifiedSubjects = subjects?.map((item) => {
-    return {
-      subject_code: item.subject_code,
-      subject_name: item.subject_name,
-      subject_hours: item.subject_hours,
-      status:
-        userMode === ""
-          ? item.grade! >= 60
+    if (userMode === "" && item.status !== "Open") return {};
+    else
+      return {
+        subject_code: item.subject_code,
+        subject_name: item.subject_name,
+        subject_hours: item.subject_hours,
+        checkboxChecked:
+          userMode === ""
+            ? item.grade! >= 60
+              ? true
+              : false
+            : item.status === "Open"
             ? true
-            : false
-          : item.status === "Open"
-          ? true
-          : false,
-    };
+            : false,
+        checkboxIsDisabled:
+          userMode === "" ? (item.grade! >= 60 ? true : false) : false,
+      };
   });
 
   return (
@@ -67,12 +69,19 @@ const LevelBar: FunctionComponent<LevelBarType> = ({
       </button>
       {DropdownIsOpen && (
         <Menu
-          RegBtnOnClick={regBtnHandler}
-          subjects={subjects}
+          closeDropdown={changeDropdown}
+          subjects={modifiedSubjects}
           userMode={userMode}
+          Id={Id}
         />
       )}
-      {DropdownIsOpen && <Backdrop onClick={regBtnHandler} />}
+      {DropdownIsOpen && (
+        <Backdrop
+          onClick={() => {
+            changeDropdown(false);
+          }}
+        />
+      )}
     </div>
   );
 };

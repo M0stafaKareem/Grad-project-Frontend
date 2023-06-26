@@ -3,16 +3,19 @@ import SubjectsHeader from "./SubjectsHeader";
 import RegisterButton from "./RegisterButton";
 import styles from "./Menu.module.css";
 import SubjectDetails from "./SubjectDetails";
+import { PushDataService } from "../../../service/pushData";
 
 type MenuType = {
-  RegBtnOnClick?: MouseEventHandler;
+  closeDropdown: Function;
   userMode?: string;
+  Id?: number;
   subjects?: any;
 };
 
 const Menu: FunctionComponent<MenuType> = ({
-  RegBtnOnClick,
+  closeDropdown,
   subjects,
+  Id,
   userMode,
 }) => {
   useEffect(() => {
@@ -45,25 +48,54 @@ const Menu: FunctionComponent<MenuType> = ({
     };
   }, []);
 
-  function rederComponents(count: number) {
-    const components = [];
-    for (let i = 0; i < count; i++)
-      components.push(
-        <SubjectDetails
-          key={i}
-          subject_code={subjects![i].subject_code}
-          subject_name={subjects![i].subject_name}
-          subject_hours={subjects![i].subject_hours}
-          status={subjects![i].status}
-        />
-      );
-    return components;
+  const data: any = [];
+  const getCourseState = (courseState: {
+    student_id?: number;
+    subject_code: string;
+    status?: boolean | string;
+  }) => {
+    if (userMode === "advisors") {
+      courseState = {
+        subject_code: courseState.subject_code,
+        status: courseState.status ? "Open" : "Close",
+      };
+      data.push(courseState);
+    } else {
+      courseState = {
+        student_id: Id,
+        subject_code: courseState.subject_code,
+      };
+      data.push(courseState);
+    }
+  };
+
+  async function regBtnHandler() {
+    console.log(JSON.stringify({ data }));
+    const p1 = new PushDataService();
+    userMode === "advisors"
+      ? await p1.changeCourseState({ data })
+      : await p1.registerSubjects({ data });
+    closeDropdown(false);
   }
   return (
     <div className={styles.menu} data-animate-on-scroll>
       <SubjectsHeader userMode={userMode} />
-      {rederComponents(subjects!.length)}
-      <RegisterButton userMode={userMode} RegBtnOnClick={RegBtnOnClick} />
+      {subjects.map((item: any) => {
+        if (!item.subject_code) return;
+        else
+          return (
+            <SubjectDetails
+              key={item.subject_code}
+              subject_code={item.subject_code}
+              subject_name={item.subject_name}
+              subject_hours={item.subject_hours}
+              checkboxChecked={item.checkboxChecked}
+              checkboxIsDisabled={item.checkboxIsDisabled}
+              liftUpcourseState={getCourseState}
+            />
+          );
+      })}
+      <RegisterButton userMode={userMode} RegBtnOnClick={regBtnHandler} />
     </div>
   );
 };
