@@ -2,11 +2,29 @@ import RegisterationHeader from "./RegisterationHeader";
 import LevelBar from "./LevelBar";
 import styles from "./Advising.module.css";
 import { FetchDataService } from "../../../service/fetchData";
+import { useEffect, useState } from "react";
 
 function Advising(props) {
+  const [subjecs, setSubjecs] = useState([]);
+
+  const getStuSubjects = async (studentId) => {
+    const stuSubjectsService = new FetchDataService();
+    try {
+      const jsonData = await stuSubjectsService.getStuSubjects(studentId);
+      setSubjecs(jsonData);
+      return jsonData;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getStuSubjects(props.studentData.Id);
+  }, []);
+
   const leveledSubjects = {};
 
-  props.studentData.subjecs.map((item) => {
+  subjecs.map((item) => {
     const { subject_level } = item;
     if (!leveledSubjects[subject_level]) {
       leveledSubjects[subject_level] = [];

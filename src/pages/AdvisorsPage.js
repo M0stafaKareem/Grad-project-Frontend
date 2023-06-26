@@ -22,9 +22,7 @@ const AdvisorPage = () => {
         userData={advisorData}
       />
       {currentPage === "Dashboard" && <FrameComponent />}
-      {currentPage === "Advising" && (
-        <AdvisorsAdvising advisorData={advisorData} />
-      )}
+      {currentPage === "Advising" && <AdvisorsAdvising />}
       {currentPage === "Grades" && <GradesWindow />}
     </main>
   );

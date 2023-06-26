@@ -1,11 +1,30 @@
 import LevelBar from "../../StudendtsPageComponents/Advising/LevelBar";
 import RegisterationHeader from "../../StudendtsPageComponents/Advising/RegisterationHeader";
 import styles from "./AdvisorsAdvising.module.css";
+import { FetchDataService } from "../../../service/fetchData";
+import { useEffect, useState } from "react";
 
-function AdvisorsAdvising(props) {
+function AdvisorsAdvising() {
+  const [subjecs, setSubjecs] = useState([]);
+
+  const getSubjects = async () => {
+    const SubjectsService = new FetchDataService();
+    try {
+      const jsonData = await SubjectsService.getAdvSubjects();
+      setSubjecs(jsonData);
+      return jsonData;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getSubjects();
+  }, []);
+
   const leveledSubjects = {};
 
-  props.advisorData.subjecs.map((item) => {
+  subjecs.map((item) => {
     const { subject_level } = item;
     if (!leveledSubjects[subject_level]) {
       leveledSubjects[subject_level] = [];

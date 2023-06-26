@@ -1,7 +1,6 @@
 import { advSubject, stuSubject } from "./datatype";
 
 export class FetchDataService {
-  private userID: number | null = null;
   private privID: number | null = null;
 
   private studentData: {
@@ -101,7 +100,7 @@ export class FetchDataService {
 
   public getStudentData = async () => {
     await this.getStudentImage();
-    await this.getStuSubjects();
+    await this.getStuSubjects(this.studentData.Id);
 
     return this.studentData;
   };
@@ -113,9 +112,9 @@ export class FetchDataService {
     return this.advisorData;
   };
 
-  public getStuSubjects = async () => {
-    let url = "http://127.0.0.1:8000/api/stuSubject/" + this.studentData.Id;
-    await fetch(url)
+  public getStuSubjects = async (studentId?: number) => {
+    let url = "http://127.0.0.1:8000/api/stuSubject/" + studentId;
+    return fetch(url)
       .then((response) => response.json())
       .then((jsonData) => {
         this.studentData.subjecs = jsonData;
@@ -128,10 +127,11 @@ export class FetchDataService {
 
   public getAdvSubjects = async () => {
     let url = "http://127.0.0.1:8000/api/advSubject/subjectStatus";
-    await fetch(url)
+    return fetch(url)
       .then((response) => response.json())
       .then((jsonData) => {
         this.advisorData.subjecs = jsonData;
+        return jsonData;
       })
       .catch((error) => {
         console.error(error);
