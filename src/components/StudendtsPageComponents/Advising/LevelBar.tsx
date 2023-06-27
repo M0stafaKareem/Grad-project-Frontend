@@ -7,10 +7,10 @@ import Menu from "./Menu";
 type LevelBarType = {
   userMode?: string;
   level?: string;
-  startDate?: string;
-  endDate?: string;
-  GPA?: string;
-  levelGPA?: string;
+  leftTitle?: string;
+  leftTitleVal?: string;
+  rightTitle?: string;
+  rightTitleVal?: string;
   Id?: number;
   subjects?: advSubject[] | stuSubject[];
 };
@@ -18,11 +18,11 @@ type LevelBarType = {
 const LevelBar: FunctionComponent<LevelBarType> = ({
   userMode = "",
   level = "Level 1",
-  startDate = "Registered",
-  endDate = "5/5",
-  GPA = "GPA",
+  leftTitle = "Registered",
+  leftTitleVal = "5/5",
+  rightTitle = "GPA",
+  rightTitleVal = 2.7,
   Id,
-  levelGPA = 2.7,
   subjects,
 }) => {
   const [DropdownIsOpen, changeDropdown] = useState(false);
@@ -30,7 +30,17 @@ const LevelBar: FunctionComponent<LevelBarType> = ({
     changeDropdown(true);
   }
 
+  let Opened = 0;
+  let registered = 0;
+
   const modifiedSubjects = subjects?.map((item) => {
+    userMode === ""
+      ? item.enrolment_state === "Requested"
+        ? registered++
+        : null
+      : item.status === "Open"
+      ? Opened++
+      : null;
     if (userMode === "" && item.status !== "Open") return {};
     else
       return {
@@ -39,14 +49,18 @@ const LevelBar: FunctionComponent<LevelBarType> = ({
         subject_hours: item.subject_hours,
         checkboxChecked:
           userMode === ""
-            ? item.grade! >= 60
+            ? item.grade! >= 60 || item.enrolment_state
               ? true
               : false
             : item.status === "Open"
             ? true
             : false,
         checkboxIsDisabled:
-          userMode === "" ? (item.grade! >= 60 ? true : false) : false,
+          userMode === ""
+            ? item.grade! >= 60 || item.enrolment_state
+              ? true
+              : false
+            : false,
       };
   });
 
@@ -59,10 +73,14 @@ const LevelBar: FunctionComponent<LevelBarType> = ({
       >
         <div className={styles.level0Parent}>
           <h2 className={styles.level0}>{level}</h2>
-          <h3 className={styles.registered}>{startDate}</h3>
-          <h3 className={styles.h3}>{endDate}</h3>
-          <h3 className={styles.gpa}>{GPA}</h3>
-          <h3 className={styles.h31}>{levelGPA}</h3>
+          <h3 className={styles.registered}>{leftTitle}</h3>
+          <h3 className={styles.h3}>
+            {userMode === ""
+              ? registered.toString().concat("/11")
+              : Opened.toString().concat("/11")}
+          </h3>
+          <h3 className={styles.gpa}>{rightTitle}</h3>
+          <h3 className={styles.h31}>{rightTitleVal}</h3>
           <img className={styles.optionsIcon} src="../options.svg" />
           <img className={styles.optionsIcon1} src="../options1.svg" />
         </div>

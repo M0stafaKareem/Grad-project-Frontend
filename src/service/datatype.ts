@@ -8,9 +8,11 @@ interface Subject {
 }
 
 export interface stuSubject extends Subject {
+  enrolment_state: string;
   grade: number;
 }
 
 export interface advSubject extends Subject {
+  enrolment_state: null;
   grade: null;
 }

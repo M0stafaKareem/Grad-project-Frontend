@@ -33,52 +33,66 @@ function AdvisorsAdvising() {
     leveledSubjects[subject_level].push(item);
   });
 
+  let openedCourses = 0;
+  let openedHours = 0;
+  subjecs.map((item) => {
+    const { status } = item;
+    if (status === "Open") {
+      openedCourses++;
+      openedHours += item.subject_hours;
+    }
+  });
+
   return (
     <div className={styles.levelsDiv}>
-      <RegisterationHeader leftTitle="Opened subjects to register:" />
+      <RegisterationHeader
+        leftTitle="Opened subjects to register:"
+        registerationMax={openedCourses}
+        component={openedHours}
+      />
       <LevelBar
         subjects={leveledSubjects[0]}
         userMode="advisors"
         level="level 0"
-        startDate="Opened"
-        endDate="5/11"
-        GPA="remaining"
+        leftTitle="Opened"
+        leftTitleVal="5/11"
+        rightTitle="remaining"
         levelGPA="6"
       />
       <LevelBar
         subjects={leveledSubjects[1]}
         userMode="advisors"
         level="level 1"
-        startDate="Opened"
-        endDate="5/11"
-        GPA="remaining"
+        leftTitle="Opened"
+        leftTitleVal="5/11"
+        rightTitle="remaining"
         levelGPA="6"
       />
       <LevelBar
         subjects={leveledSubjects[2]}
         userMode="advisors"
         level="level 2"
-        startDate="Opened"
-        endDate="5/11"
-        GPA="remaining"
+        leftTitle="Opened"
+        leftTitleVal="5/11"
+        rightTitle="remaining"
         levelGPA="6"
       />
       <LevelBar
         subjects={leveledSubjects[3]}
         userMode="advisors"
         level="level 3"
-        startDate="Opened"
-        endDate="5/11"
-        GPA="remaining"
+        leftTitle="Opened"
+        leftTitleVal="5/11"
+        rightTitle="remaining"
         levelGPA="6"
       />
       <LevelBar
         subjects={leveledSubjects[4]}
         userMode="advisors"
         level="level 4"
-        startDate="Opened"
-        endDate="5/11"
-        GPA="remaining"
+        leftTitle="Opened"
+        leftTitleVal="5/11"
+        rightTitle="remaining"
         levelGPA="6"
       />
     </div>

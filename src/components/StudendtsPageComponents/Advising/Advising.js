@@ -33,43 +33,61 @@ function Advising(props) {
     leveledSubjects[subject_level].push(item);
   });
 
+  let registeredHours = 0;
+  subjecs.map((item) => {
+    const { enrolment_state } = item;
+    if (enrolment_state === "Requested") {
+      registeredHours += item.subject_hours;
+    }
+  });
+
+  const maxRegHours =
+    props.studentData.GPA >= 3
+      ? "21"
+      : props.studentData.GPA >= 2
+      ? "18"
+      : "14";
+
   return (
     <div className={styles.levelsDiv}>
-      <RegisterationHeader />
+      <RegisterationHeader
+        registerationMax={maxRegHours}
+        component={registeredHours}
+      />
       <LevelBar
         level="Level 0"
         Id={props.studentData.Id}
         subjects={leveledSubjects[0]}
-        endDate={"5/11"}
-        levelGPA={"2"}
+        leftTitleVal={"5/11"}
+        rightTitleVal={"2"}
       />
       <LevelBar
         level="Level 1"
         Id={props.studentData.Id}
         subjects={leveledSubjects[1]}
-        endDate={"5/11"}
-        levelGPA={"2.6"}
+        leftTitleVal={"5/11"}
+        rightTitleVal={"2.6"}
       />
       <LevelBar
         level="Level 2"
         Id={props.studentData.Id}
         subjects={leveledSubjects[2]}
-        endDate={"5/10"}
-        levelGPA={"2.4"}
+        leftTitleVal={"5/10"}
+        rightTitleVal={"2.4"}
       />
       <LevelBar
         level="Level 3"
         Id={props.studentData.Id}
         subjects={leveledSubjects[3]}
-        endDate={"3/10"}
-        levelGPA={"3.3"}
+        leftTitleVal={"3/10"}
+        rightTitleVal={"3.3"}
       />
       <LevelBar
         level="Level 4"
         Id={props.studentData.Id}
         subjects={leveledSubjects[4]}
-        endDate={"0/12"}
-        levelGPA={""}
+        leftTitleVal={"0/12"}
+        rightTitleVal={""}
       />
     </div>
   );

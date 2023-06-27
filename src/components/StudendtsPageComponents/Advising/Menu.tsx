@@ -77,6 +77,7 @@ const Menu: FunctionComponent<MenuType> = ({
       : await p1.registerSubjects({ data });
     closeDropdown(false);
   }
+
   return (
     <div className={styles.menu} data-animate-on-scroll>
       <SubjectsHeader userMode={userMode} />
