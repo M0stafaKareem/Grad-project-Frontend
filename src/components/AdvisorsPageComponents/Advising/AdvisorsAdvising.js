@@ -55,45 +55,35 @@ function AdvisorsAdvising() {
         userMode="advisors"
         level="level 0"
         leftTitle="Opened"
-        leftTitleVal="5/11"
         rightTitle="remaining"
-        levelGPA="6"
       />
       <LevelBar
         subjects={leveledSubjects[1]}
         userMode="advisors"
         level="level 1"
         leftTitle="Opened"
-        leftTitleVal="5/11"
         rightTitle="remaining"
-        levelGPA="6"
       />
       <LevelBar
         subjects={leveledSubjects[2]}
         userMode="advisors"
         level="level 2"
         leftTitle="Opened"
-        leftTitleVal="5/11"
         rightTitle="remaining"
-        levelGPA="6"
       />
       <LevelBar
         subjects={leveledSubjects[3]}
         userMode="advisors"
         level="level 3"
         leftTitle="Opened"
-        leftTitleVal="5/11"
         rightTitle="remaining"
-        levelGPA="6"
       />
       <LevelBar
         subjects={leveledSubjects[4]}
         userMode="advisors"
         level="level 4"
         leftTitle="Opened"
-        leftTitleVal="5/11"
         rightTitle="remaining"
-        levelGPA="6"
       />
     </div>
   );

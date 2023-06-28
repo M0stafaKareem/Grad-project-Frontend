@@ -1,14 +1,3 @@
-.gradeswindowChild {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  border-radius: 10px;
-  background-color: #ffffff;
-}
 .fallSemester,
 .submitted,
 .uploadACsv {
@@ -64,4 +53,6 @@
   left: 354px;
   width: 870px;
   height: 638px;
+  border-radius: 10px;
+  background-color: #ffffff;
 }

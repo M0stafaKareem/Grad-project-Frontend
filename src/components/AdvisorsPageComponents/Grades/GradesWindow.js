@@ -1,15 +1,15 @@
 import RegisterB from "./RegisterB";
 import Cells from "./Cells";
 import styles from "./GradesWindow.module.css";
-const GradesWindow = () => {
+
+const GradesWindow = (props) => {
   return (
     <form className={styles.gradeswindow}>
-      <div className={styles.gradeswindowChild} />
-      <button className={styles.uploadACsv}>Upload a csv File</button>
       <RegisterB />
       <p className={styles.fallSemester}>Fall Semester</p>
-      <Cells />
+      <Cells subjects={props.subjects} />
       <h2 className={styles.submitted}>Submitted</h2>
+      <button className={styles.uploadACsv}>Upload a csv File</button>
     </form>
   );
 };

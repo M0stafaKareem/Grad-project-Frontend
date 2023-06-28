@@ -8,7 +8,6 @@ type LevelBarType = {
   userMode?: string;
   level?: string;
   leftTitle?: string;
-  leftTitleVal?: string;
   rightTitle?: string;
   rightTitleVal?: string;
   Id?: number;
@@ -19,7 +18,6 @@ const LevelBar: FunctionComponent<LevelBarType> = ({
   userMode = "",
   level = "Level 1",
   leftTitle = "Registered",
-  leftTitleVal = "5/5",
   rightTitle = "GPA",
   rightTitleVal = 2.7,
   Id,
@@ -35,7 +33,8 @@ const LevelBar: FunctionComponent<LevelBarType> = ({
 
   const modifiedSubjects = subjects?.map((item) => {
     userMode === ""
-      ? item.enrolment_state === "Requested"
+      ? item.enrolment_state === "Requested" ||
+        item.enrolment_state === "Finished"
         ? registered++
         : null
       : item.status === "Open"
@@ -76,8 +75,8 @@ const LevelBar: FunctionComponent<LevelBarType> = ({
           <h3 className={styles.registered}>{leftTitle}</h3>
           <h3 className={styles.h3}>
             {userMode === ""
-              ? registered.toString().concat("/11")
-              : Opened.toString().concat("/11")}
+              ? registered.toString().concat("/" + subjects?.length)
+              : Opened.toString().concat("/" + subjects?.length)}
           </h3>
           <h3 className={styles.gpa}>{rightTitle}</h3>
           <h3 className={styles.h31}>{rightTitleVal}</h3>

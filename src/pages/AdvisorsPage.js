@@ -14,16 +14,18 @@ const AdvisorPage = () => {
 
   return (
     <main className={styles.advisorpage1}>
-      <SearchBar1 />
       <NavBar1
         userMode="advisor"
         btnState={currentPage}
         setCurrentState={setCurrentPage}
         userData={advisorData}
       />
+      <SearchBar1 />
       {currentPage === "Dashboard" && <FrameComponent />}
       {currentPage === "Advising" && <AdvisorsAdvising />}
-      {currentPage === "Grades" && <GradesWindow />}
+      {currentPage === "Grades" && (
+        <GradesWindow subjects={advisorData.subjecs} />
+      )}
     </main>
   );
 };
