@@ -5,7 +5,7 @@ function GradesComp(props) {
   return (
     <>
       <GPAPageTable />
-      <OverallGPA cGPS={props.studentData.studentGPA} />
+      <OverallGPA cGPA={props.studentData.GPA} />
     </>
   );
 }

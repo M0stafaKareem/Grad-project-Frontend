@@ -1,0 +1,107 @@
+.tableComponents,
+.tableComponents1,
+.tableComponents2,
+.tableComponents3,
+.tableComponents4 {
+  font-family: Inter;
+  text-align: center;
+  font-size: 12px;
+  background-color: transparent;
+  width: 80px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  padding: 8px 16px 8px 0;
+  box-sizing: border-box;
+}
+.tableComponents1,
+.tableComponents2,
+.tableComponents3,
+.tableComponents4 {
+  width: 196px;
+  padding: 8px 16px;
+}
+.tableComponents2,
+.tableComponents3,
+.tableComponents4 {
+  width: 199px;
+}
+.tableComponents3,
+.tableComponents4 {
+  width: 97px;
+}
+.tableComponents4 {
+  width: 63px;
+}
+.arrowsdownSIcon,
+.funnelsimpleRIcon {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  display: none;
+}
+.arrowsdownSIcon {
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.title {
+  margin: 0;
+  flex: 1;
+  position: relative;
+  font-size: inherit;
+  line-height: 18px;
+  font-weight: 400;
+  font-family: inherit;
+}
+.tableComponents5,
+.tableComponents6 {
+  width: 68px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  padding: 8px 16px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+}
+.tableComponents6 {
+  width: 69px;
+}
+.dot2Icon {
+  position: relative;
+  width: 16px;
+  height: 16px;
+}
+.approved {
+  position: relative;
+  line-height: 18px;
+}
+.pass,
+.tableRow {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.pass {
+  flex: 1;
+  height: 39px;
+  padding: 8px 16px;
+  width: 80px;
+  gap: 4px;
+}
+
+.tableRow {
+  position: relative;
+  height: 40px;
+  width: 100%;
+  border-bottom: 1px solid black;
+  padding: 0 0 0 10px;
+  text-align: left;
+  font-size: 12px;
+  color: #999999;
+  font-family: Inter;
+}

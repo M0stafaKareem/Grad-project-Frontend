@@ -4,10 +4,14 @@ import styles from "./RegisterButton.module.css";
 type RegBtnType = {
   RegBtnOnClick?: MouseEventHandler;
   userMode?: string;
+  btnLabel?: string;
+  modifiedStyle?: {};
 };
 const RegisterButton: FunctionComponent<RegBtnType> = ({
   userMode = "",
   RegBtnOnClick,
+  btnLabel = "Register",
+  modifiedStyle,
 }) => {
   const styling =
     userMode === "advisors"
@@ -15,14 +19,14 @@ const RegisterButton: FunctionComponent<RegBtnType> = ({
       : styles.registerb;
 
   return (
-    <button className={styling} onClick={RegBtnOnClick}>
+    <button className={styling} onClick={RegBtnOnClick} style={modifiedStyle}>
       {userMode === "" && (
         <img className={styles.bookIcon} alt="" src="../book.svg" />
       )}
       {userMode === "advisors" && (
         <img className={styles.bookIcon} alt="" src="../advBook.svg" />
       )}
-      <label className={styles.register}>Register</label>
+      {btnLabel}
       <img className={styles.bookIcon1} alt="" src="../book1.svg" />
     </button>
   );

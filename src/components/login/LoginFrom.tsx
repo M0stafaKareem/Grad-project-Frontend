@@ -47,7 +47,7 @@ const LoginFrom: FunctionComponent<loginFormType> = ({ setLoadingScreen }) => {
           onFocusCapture={() => setError(false)}
           type="text"
         />
-        <label className={styles.user_label}>Student Email</label>
+        <label className={styles.user_label}>Email</label>
       </div>
 
       <div className={styles.input_group}>

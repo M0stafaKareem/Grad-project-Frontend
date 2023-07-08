@@ -6,6 +6,7 @@ import SearchBar1 from "../components/SearchBar1";
 import styles from "./AdvisorPage1.module.css";
 import AdvisorsAdvising from "../components/AdvisorsPageComponents/Advising/AdvisorsAdvising";
 import { useLocation } from "react-router-dom";
+import RegisterB from "../components/AdvisorsPageComponents/Grades/RegisterB";
 
 const AdvisorPage = () => {
   const [currentPage, setCurrentPage] = useState("Dashboard");

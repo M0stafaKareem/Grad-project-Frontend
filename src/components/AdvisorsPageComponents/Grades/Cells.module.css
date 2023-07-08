@@ -2,9 +2,29 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  row-gap: 50px;
+  row-gap: 20px;
   height: 60.82%;
   width: 53.24%;
   top: 16.3%;
   left: 23.33%;
+}
+
+.box {
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.box .button {
+  border: 0px none;
+  height: 27px;
+  width: 31px;
+}
+
+.box .button {
+  position: relative;
+  height: 27px;
+  width: 31px;
 }

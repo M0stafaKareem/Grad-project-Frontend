@@ -5,39 +5,33 @@
   flex-shrink: 0;
   z-index: 0;
 }
-.register {
-  position: relative;
-  font-size: var(--body1-size);
-  letter-spacing: -0.02em;
-  font-family: var(--font-poppins);
-  color: var(--color-gray-1600);
-  text-align: center;
-  z-index: 1;
-}
+
 .bookIcon1 {
   position: absolute;
-  margin: 0 !important;
   top: 11.25px;
   left: 10px;
   width: 15px;
   height: 17.5px;
-  flex-shrink: 0;
   display: none;
   z-index: 2;
 }
 .registerb {
   position: relative;
-  width: 96px;
+  display: flex;
   white-space: nowrap;
   top: 10px;
   left: 756px;
-  cursor: pointer;
   margin-bottom: 25px;
   padding: var(--padding-10xs);
   background-color: #a1c6ea;
   border-radius: var(--br-xs);
   align-items: center;
   gap: var(--gap-3xs);
+  font-size: var(--body1-size);
+  letter-spacing: -0.02em;
+  font-family: var(--font-poppins);
+  color: var(--color-gray-1600);
+  text-align: center;
 }
 
 .advisors {
@@ -47,14 +41,12 @@
 
 .registerb:hover {
   background-color: #00467a;
+  color: #ffffff;
 }
 .advisors:hover {
   background-color: #aa7bc3;
 }
-.registerb:hover .register {
-  color: #ffffff;
-}
-.registerb,
+
 .registerb:hover .bookIcon1 {
   display: flex;
 }

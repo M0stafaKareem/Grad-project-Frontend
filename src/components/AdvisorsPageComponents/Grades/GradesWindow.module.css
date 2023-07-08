@@ -22,19 +22,19 @@
   color: #6b4b3e;
   align-items: flex-end;
 }
-.fallSemester,
-.submitted {
-  margin: 0;
+.fallSemester {
   height: 5.54%;
-  width: 22.9%;
+  letter-spacing: 0.5px;
+  width: 30%;
   top: 6.58%;
-  left: 38.51%;
+  left: 32%;
   font-size: 24px;
   font-weight: 700;
   font-family: Poppins;
   color: #aa7bc3;
   align-items: center;
 }
+
 .submitted {
   height: 2.35%;
   width: 8.05%;

@@ -17,10 +17,31 @@ function InputRow(props) {
   return (
     <div className={styles.main}>
       <h2 className={styles.title}>{props.title}</h2>
-      {!props.isCourse && <input className={styles.input} type="text" />}
-      {props.isCourse && (
+      {props.type === "" && (
+        <input
+          onChange={(e) => props.passInputVal(e.target.value)}
+          className={styles.input}
+          type="text"
+        />
+      )}
+      {props.type === "splitted" && (
+        <>
+          <input
+            onChange={(e) => props.passInputVal(e.target.value)}
+            className={styles.smallInput}
+            type="number"
+          />
+          <input
+            onChange={(e) => props.passInputVal(e.target.value)}
+            className={styles.smallInput}
+            type="number"
+          />
+        </>
+      )}
+      {props.type === "dropdown" && (
         <Select
           className={styles.input}
+          onChange={(e) => props.passInputVal(e.value)}
           styles={customStyles}
           placeholder={""}
           options={props.subjectsNames}

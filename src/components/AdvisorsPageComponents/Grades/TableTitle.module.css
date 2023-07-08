@@ -1,0 +1,91 @@
+.tableComponents {
+  width: 60px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  padding: 8px 16px 8px 0;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+}
+.title1 {
+  flex: 1;
+  position: relative;
+  line-height: 18px;
+}
+.tableComponents1 {
+  width: 196px;
+  text-align: center;
+  height: 40px;
+  padding: 8px 16px;
+  gap: 4px;
+}
+.tableComponents1,
+.tableComponents2,
+.tableComponents3 {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: flex-start;
+}
+.tableComponents2 {
+  width: 199px;
+  height: 40px;
+  padding: 8px 16px;
+  gap: 4px;
+}
+.tableComponents3 {
+  width: 97px;
+}
+.tableComponents3,
+.tableComponents4,
+.tableComponents5 {
+  height: 40px;
+  padding: 8px 16px;
+  gap: 4px;
+}
+.tableComponents4 {
+  width: 63px;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: flex-start;
+}
+.tableComponents5 {
+  width: 68px;
+}
+.tableComponents5,
+.tableComponents7,
+.tableTitle {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.tableComponents7 {
+  flex: 1;
+  height: 40px;
+  padding: 8px 16px;
+  gap: 4px;
+}
+.tableTitle {
+  position: sticky;
+  z-index: 2;
+  height: 40px;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 83.33%;
+  left: 0;
+  border-radius: 10px 10px 0 0;
+  background-color: #aa7bc3;
+  border-bottom: 1px solid black;
+  padding: 0 0 0 20px;
+  font-size: 12px;
+  color: #ffffff;
+  font-family: Inter;
+}

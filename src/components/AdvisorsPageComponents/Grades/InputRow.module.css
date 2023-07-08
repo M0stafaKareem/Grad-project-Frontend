@@ -26,3 +26,14 @@
   color: #aa7bc3;
   text-align: center;
 }
+
+.smallInput {
+  position: relative;
+  font-weight: 400;
+  font-size: 14px;
+  background-color: #f4f4f4;
+  width: 90px;
+  height: 44.17px;
+  color: #aa7bc3;
+  text-align: center;
+}

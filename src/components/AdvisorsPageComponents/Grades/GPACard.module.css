@@ -1,0 +1,94 @@
+.text {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  font-weight: 500;
+  font-family: inherit;
+}
+.colorIcon {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.colorIcon,
+.div,
+.ovalIcon {
+  position: absolute;
+}
+.ovalIcon {
+  height: 53.34%;
+  width: 53.56%;
+  top: 0;
+  right: 0.07%;
+  bottom: 46.66%;
+  left: 46.37%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.div {
+  top: calc(50% - 26px);
+  left: 32.65%;
+  font-weight: 500;
+}
+.colorParent {
+  position: relative;
+  width: 196px;
+  height: 196px;
+  overflow: hidden;
+  flex-shrink: 0;
+  text-align: center;
+  font-size: 40px;
+  color: #34b53a;
+}
+.posts {
+  margin: 0;
+  position: relative;
+  line-height: 20px;
+  opacity: 0.4;
+  mix-blend-mode: normal;
+}
+.gpaCard,
+.level,
+.posts1 {
+  display: flex;
+  align-items: center;
+}
+.posts1 {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  line-height: 20px;
+  font-weight: 500;
+  font-family: inherit;
+  color: #4339f2;
+  text-align: center;
+  justify-content: center;
+  width: 35px;
+  flex-shrink: 0;
+  mix-blend-mode: normal;
+}
+.gpaCard,
+.level {
+  flex-direction: row;
+  justify-content: flex-start;
+  font-size: 14px;
+}
+.gpaCard {
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 0 11px 25px rgba(0, 0, 0, 0.25);
+  flex-direction: column;
+  padding: 10px 35px;
+  gap: 16px;
+  text-align: left;
+  font-size: 22px;
+  color: black;
+  font-family: Poppings;
+}

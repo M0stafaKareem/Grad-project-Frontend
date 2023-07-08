@@ -44,6 +44,7 @@
 }
 .gpa {
   font-weight: 500;
+  white-space: nowrap;
   width: 28px;
   z-index: 3;
 }

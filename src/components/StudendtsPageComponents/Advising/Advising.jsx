@@ -3,9 +3,12 @@ import LevelBar from "./LevelBar";
 import styles from "./Advising.module.css";
 import { FetchDataService } from "../../../service/fetchData";
 import { useEffect, useState } from "react";
+import Done from "../../General/Done";
+import RegisterButton from "./RegisterButton";
 
 function Advising(props) {
   const [subjecs, setSubjecs] = useState([]);
+  const [doneIsOpen, setDoneIsOpen] = useState(false);
 
   const getStuSubjects = async (studentId) => {
     const stuSubjectsService = new FetchDataService();
@@ -20,7 +23,7 @@ function Advising(props) {
 
   useEffect(() => {
     getStuSubjects(props.studentData.Id);
-  }, []);
+  }, [doneIsOpen]);
 
   const leveledSubjects = {};
 
@@ -50,11 +53,21 @@ function Advising(props) {
 
   return (
     <div className={styles.levelsDiv}>
+      {doneIsOpen && (
+        <Done
+          onBtnClick={() => {
+            setDoneIsOpen(false);
+          }}
+          btnLabel="Done"
+          cardDiscription="Courses Updated successfully"
+        />
+      )}
       <RegisterationHeader
         registerationMax={maxRegHours}
         component={registeredHours}
       />
       <LevelBar
+        onSubmitFeedback={setDoneIsOpen}
         level="Level 0"
         Id={props.studentData.Id}
         subjects={leveledSubjects[0]}
@@ -62,6 +75,7 @@ function Advising(props) {
         rightTitleVal={"2"}
       />
       <LevelBar
+        onSubmitFeedback={setDoneIsOpen}
         level="Level 1"
         Id={props.studentData.Id}
         subjects={leveledSubjects[1]}
@@ -70,12 +84,14 @@ function Advising(props) {
       />
       <LevelBar
         level="Level 2"
+        onSubmitFeedback={setDoneIsOpen}
         Id={props.studentData.Id}
         subjects={leveledSubjects[2]}
         leftTitleVal={"5/10"}
         rightTitleVal={"2.4"}
       />
       <LevelBar
+        onSubmitFeedback={setDoneIsOpen}
         level="Level 3"
         Id={props.studentData.Id}
         subjects={leveledSubjects[3]}
@@ -83,12 +99,14 @@ function Advising(props) {
         rightTitleVal={"3.3"}
       />
       <LevelBar
+        onSubmitFeedback={setDoneIsOpen}
         level="Level 4"
         Id={props.studentData.Id}
         subjects={leveledSubjects[4]}
         leftTitleVal={"0/12"}
         rightTitleVal={""}
       />
+      <RegisterButton btnLabel="Withdrawal" onBtnClick={() => {}} />
     </div>
   );
 }

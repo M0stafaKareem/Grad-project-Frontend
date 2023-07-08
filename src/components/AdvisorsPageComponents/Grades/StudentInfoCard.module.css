@@ -1,0 +1,133 @@
+.photoIcon {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+}
+.countries,
+.name {
+  margin: 0;
+  position: relative;
+  font-family: inherit;
+}
+.name {
+  font-size: inherit;
+  font-weight: 500;
+}
+.countries {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  opacity: 0.4;
+  mix-blend-mode: normal;
+}
+.photoParent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 5px;
+}
+.followers {
+  margin: 0;
+  position: relative;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  font-family: inherit;
+  color: black;
+  opacity: 0.4;
+  mix-blend-mode: normal;
+}
+.ah {
+  flex-direction: column;
+  align-items: center;
+}
+.ah,
+.ahParent,
+.ps {
+  display: flex;
+  justify-content: flex-start;
+}
+.ps {
+  flex-direction: column;
+  align-items: center;
+  color: #4339f2;
+}
+.ahParent {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 19px;
+}
+.posts1 {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  line-height: 20px;
+  font-weight: 400;
+  font-family: inherit;
+  opacity: 0.4;
+  mix-blend-mode: normal;
+}
+.level,
+.posts2 {
+  display: flex;
+  align-items: center;
+}
+.posts2 {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  line-height: 20px;
+  font-weight: 500;
+  font-family: inherit;
+  color: #4339f2;
+  text-align: center;
+  justify-content: center;
+  width: 35px;
+  flex-shrink: 0;
+  mix-blend-mode: normal;
+}
+.level {
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.posts4 {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  line-height: 20px;
+  font-weight: 500;
+  font-family: inherit;
+  color: #4339f2;
+  text-align: center;
+  mix-blend-mode: normal;
+}
+.levelParent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 23px;
+  font-size: 14px;
+  color: black;
+}
+.frameParent,
+.studentCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 42px;
+  color: #ff3a29;
+}
+.studentCard {
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 0 11px 25px rgba(0, 0, 0, 0.25);
+  padding: 20px;
+  text-align: left;
+  font-size: 22px;
+  font-family: Poppins;
+}

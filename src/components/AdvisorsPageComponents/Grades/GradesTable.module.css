@@ -1,0 +1,22 @@
+.studentstable {
+  position: absolute;
+  overflow: scroll;
+  top: 96px;
+  left: 349px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  width: 884px;
+  max-height: 640px;
+  text-align: left;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.4);
+  font-family: Inter;
+  &.studentMode {
+    top: 503px;
+    max-height: 240px;
+  }
+}
+
+.studentstable::-webkit-scrollbar {
+  display: none;
+}

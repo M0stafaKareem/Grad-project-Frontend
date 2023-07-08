@@ -1,0 +1,19 @@
+.box {
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.box .component-wrapper {
+  border: 0px none;
+  height: 47px;
+  width: 871px;
+}
+
+.box .component-1 {
+  left: 354px !important;
+  position: fixed !important;
+  top: 757px !important;
+}

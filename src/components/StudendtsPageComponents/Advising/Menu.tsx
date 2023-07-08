@@ -7,12 +7,14 @@ import { PushDataService } from "../../../service/pushData";
 
 type MenuType = {
   closeDropdown: Function;
+  onSubmitFeedback: Function;
   userMode?: string;
   Id?: number;
   subjects?: any;
 };
 
 const Menu: FunctionComponent<MenuType> = ({
+  onSubmitFeedback,
   closeDropdown,
   subjects,
   Id,
@@ -70,12 +72,12 @@ const Menu: FunctionComponent<MenuType> = ({
   };
 
   async function regBtnHandler() {
-    console.log(JSON.stringify({ data }));
     const p1 = new PushDataService();
     userMode === "advisors"
       ? await p1.changeCourseState({ data })
       : await p1.registerSubjects({ data });
     closeDropdown(false);
+    onSubmitFeedback(true);
   }
 
   return (

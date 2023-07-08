@@ -5,6 +5,7 @@ import styles from "./LevelBar.module.css";
 import Menu from "./Menu";
 
 type LevelBarType = {
+  onSubmitFeedback: () => {};
   userMode?: string;
   level?: string;
   leftTitle?: string;
@@ -16,29 +17,26 @@ type LevelBarType = {
 
 const LevelBar: FunctionComponent<LevelBarType> = ({
   userMode = "",
+  onSubmitFeedback,
   level = "Level 1",
   leftTitle = "Registered",
-  rightTitle = "GPA",
+  rightTitle = "Opened",
   rightTitleVal = 2.7,
   Id,
   subjects,
 }) => {
   const [DropdownIsOpen, changeDropdown] = useState(false);
-  function menuBtnHandler() {
-    changeDropdown(true);
-  }
 
   let Opened = 0;
   let registered = 0;
 
   const modifiedSubjects = subjects?.map((item) => {
+    item.status === "Open" ? Opened++ : null;
     userMode === ""
       ? item.enrolment_state === "Requested" ||
         item.enrolment_state === "Finished"
         ? registered++
         : null
-      : item.status === "Open"
-      ? Opened++
       : null;
     if (userMode === "" && item.status !== "Open") return {};
     else
@@ -67,7 +65,9 @@ const LevelBar: FunctionComponent<LevelBarType> = ({
     <div>
       <button
         className={styles.subjectsbar}
-        onClick={menuBtnHandler}
+        onClick={() => {
+          changeDropdown(true);
+        }}
         tabIndex={-1}
       >
         <div className={styles.level0Parent}>
@@ -79,7 +79,9 @@ const LevelBar: FunctionComponent<LevelBarType> = ({
               : Opened.toString().concat("/" + subjects?.length)}
           </h3>
           <h3 className={styles.gpa}>{rightTitle}</h3>
-          <h3 className={styles.h31}>{rightTitleVal}</h3>
+          <h3 className={styles.h31}>
+            {userMode === "" ? Opened : subjects?.length! - Opened}
+          </h3>
           <img className={styles.optionsIcon} src="../options.svg" />
           <img className={styles.optionsIcon1} src="../options1.svg" />
         </div>
@@ -87,6 +89,7 @@ const LevelBar: FunctionComponent<LevelBarType> = ({
       {DropdownIsOpen && (
         <Menu
           closeDropdown={changeDropdown}
+          onSubmitFeedback={onSubmitFeedback}
           subjects={modifiedSubjects}
           userMode={userMode}
           Id={Id}

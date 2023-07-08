@@ -3,9 +3,13 @@ import RegisterationHeader from "../../StudendtsPageComponents/Advising/Register
 import styles from "./AdvisorsAdvising.module.css";
 import { FetchDataService } from "../../../service/fetchData";
 import { useEffect, useState } from "react";
+import Done from "../../General/Done";
+import RegisterB from "../Grades/RegisterB";
+import RegisterButton from "../../StudendtsPageComponents/Advising/RegisterButton";
 
 function AdvisorsAdvising() {
   const [subjecs, setSubjecs] = useState([]);
+  const [doneIsOpen, setDoneIsOpen] = useState(false);
 
   const getSubjects = async () => {
     const SubjectsService = new FetchDataService();
@@ -20,7 +24,7 @@ function AdvisorsAdvising() {
 
   useEffect(() => {
     getSubjects();
-  }, []);
+  }, [doneIsOpen]);
 
   const leveledSubjects = {};
 
@@ -45,12 +49,22 @@ function AdvisorsAdvising() {
 
   return (
     <div className={styles.levelsDiv}>
+      {doneIsOpen && (
+        <Done
+          onBtnClick={() => {
+            setDoneIsOpen(false);
+          }}
+          btnLabel="Done"
+          cardDiscription="Courses Updated successfully"
+        />
+      )}
       <RegisterationHeader
         leftTitle="Opened subjects to register:"
         registerationMax={openedCourses}
         component={openedHours}
       />
       <LevelBar
+        onSubmitFeedback={setDoneIsOpen}
         subjects={leveledSubjects[0]}
         userMode="advisors"
         level="level 0"
@@ -58,6 +72,7 @@ function AdvisorsAdvising() {
         rightTitle="remaining"
       />
       <LevelBar
+        onSubmitFeedback={setDoneIsOpen}
         subjects={leveledSubjects[1]}
         userMode="advisors"
         level="level 1"
@@ -65,6 +80,7 @@ function AdvisorsAdvising() {
         rightTitle="remaining"
       />
       <LevelBar
+        onSubmitFeedback={setDoneIsOpen}
         subjects={leveledSubjects[2]}
         userMode="advisors"
         level="level 2"
@@ -73,17 +89,24 @@ function AdvisorsAdvising() {
       />
       <LevelBar
         subjects={leveledSubjects[3]}
+        onSubmitFeedback={setDoneIsOpen}
         userMode="advisors"
         level="level 3"
         leftTitle="Opened"
         rightTitle="remaining"
       />
       <LevelBar
+        onSubmitFeedback={setDoneIsOpen}
         subjects={leveledSubjects[4]}
         userMode="advisors"
         level="level 4"
         leftTitle="Opened"
         rightTitle="remaining"
+      />
+      <RegisterButton
+        userMode="advisors"
+        btnLabel="Settings"
+        modifiedStyle={{ top: "30px", left: "777px" }}
       />
     </div>
   );

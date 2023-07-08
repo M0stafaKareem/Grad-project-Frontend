@@ -2,13 +2,9 @@ import { FunctionComponent, MouseEventHandler } from "react";
 import Backdrop from "../Backdrop";
 import styles from "./LoadingScreen.module.css";
 
-type LoadingScreenType = {
-  loadingTime?: number;
-};
+type LoadingScreenType = {};
 
-const LoadingScreen: FunctionComponent<LoadingScreenType> = ({
-  loadingTime,
-}) => {
+const LoadingScreen: FunctionComponent<LoadingScreenType> = ({}) => {
   return (
     <div>
       <Backdrop />

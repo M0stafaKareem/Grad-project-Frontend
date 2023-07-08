@@ -1,0 +1,64 @@
+.component {
+  align-items: flex-start;
+  border-radius: 20px;
+  display: flex;
+  gap: 40px;
+  justify-content: flex-end;
+  position: relative;
+  width: fit-content;
+}
+
+.component .frame {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 41px;
+  position: relative;
+  width: fit-content;
+}
+
+.component .div {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  position: relative;
+  width: fit-content;
+}
+
+.component .homepage-design {
+  color: #ffffff;
+  font-family: "Poppins", Helvetica;
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 0.3px;
+  line-height: 23px;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.component .arrow {
+  height: 7.36px;
+  margin-right: -0.5px;
+  object-fit: cover;
+  position: relative;
+}
+
+.component.default {
+  background-color: #c8b0d4;
+  padding: 12px 771px 12px 20px;
+}
+
+.component.variant-2 {
+  background-color: #aa7bc3;
+  padding: 12px 678px 12px 20px;
+}
+
+.component.default .arrow {
+  min-width: 30.5px;
+}
+
+.component.variant-2 .arrow {
+  min-width: 123.5px;
+}
