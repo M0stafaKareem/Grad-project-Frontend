@@ -25,8 +25,15 @@ const StudentInfoCard: FunctionComponent<StudentInfoCardType> = ({
       <div className={styles.photoParent}>
         <img className={styles.photoIcon} alt="" src={studentPhoto} />
         <h2 className={styles.name}>{studentName}</h2>
-        <h3 className={styles.countries}>{studentID}</h3>
+        <h3 className={styles.followers}>{studentID}</h3>
       </div>
+
+      <div className={styles.fullData}>
+        <Info label="National ID" value="300021458746" />
+        <Info label="Phone Number" value="01120450302" />
+        <Info label="Parent P.N" value="01000503301" />
+      </div>
+
       <div className={styles.frameParent}>
         <div className={styles.ahParent}>
           <div className={styles.ah}>
@@ -40,11 +47,11 @@ const StudentInfoCard: FunctionComponent<StudentInfoCardType> = ({
         </div>
         <div className={styles.levelParent}>
           <div className={styles.level}>
-            <h3 className={styles.posts1}>Level</h3>
+            <h3 className={styles.followers}>Level</h3>
             <h3 className={styles.posts2}>{studentLevel}</h3>
           </div>
           <div className={styles.level}>
-            <h3 className={styles.posts1}>Status</h3>
+            <h3 className={styles.followers}>Status</h3>
             <h3 className={styles.posts4}>{studentStatus}</h3>
           </div>
         </div>
@@ -53,4 +60,16 @@ const StudentInfoCard: FunctionComponent<StudentInfoCardType> = ({
   );
 };
 
+type infoType = {
+  label: string;
+  value: string;
+};
+const Info: FunctionComponent<infoType> = ({ label, value }) => {
+  return (
+    <div className={styles.info}>
+      <div className={styles.followers}>{label}</div>
+      <div className={styles.followers}>{value}</div>
+    </div>
+  );
+};
 export default StudentInfoCard;

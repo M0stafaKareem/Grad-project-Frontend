@@ -21,7 +21,6 @@ const LevelBar: FunctionComponent<LevelBarType> = ({
   level = "Level 1",
   leftTitle = "Registered",
   rightTitle = "Opened",
-  rightTitleVal = 2.7,
   Id,
   subjects,
 }) => {

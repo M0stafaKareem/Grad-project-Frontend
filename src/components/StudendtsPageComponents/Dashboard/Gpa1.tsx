@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import "antd/dist/antd.min.css";
+import "antd/dist/reset.css";
 import { Progress } from "antd";
 import styles from "./Gpa1.module.css";
 

@@ -4,12 +4,13 @@ import styles from "./AdvisorsAdvising.module.css";
 import { FetchDataService } from "../../../service/fetchData";
 import { useEffect, useState } from "react";
 import Done from "../../General/Done";
-import RegisterB from "../Grades/RegisterB";
 import RegisterButton from "../../StudendtsPageComponents/Advising/RegisterButton";
+import SettingMenu from "./SettingMenu";
 
 function AdvisorsAdvising() {
   const [subjecs, setSubjecs] = useState([]);
   const [doneIsOpen, setDoneIsOpen] = useState(false);
+  const [settingsMenuIsOpen, setSettingMenuIsOpen] = useState(false);
 
   const getSubjects = async () => {
     const SubjectsService = new FetchDataService();
@@ -49,6 +50,13 @@ function AdvisorsAdvising() {
 
   return (
     <div className={styles.levelsDiv}>
+      {settingsMenuIsOpen && (
+        <SettingMenu
+          doneBtnOnClick={() => {
+            setSettingMenuIsOpen(false);
+          }}
+        />
+      )}
       {doneIsOpen && (
         <Done
           onBtnClick={() => {
@@ -103,11 +111,18 @@ function AdvisorsAdvising() {
         leftTitle="Opened"
         rightTitle="remaining"
       />
-      <RegisterButton
-        userMode="advisors"
-        btnLabel="Settings"
-        modifiedStyle={{ top: "30px", left: "777px" }}
-      />
+
+      <div className={styles.deadlineCheckbox}>
+        <p className={styles.label}>Registration is Opened for Students</p>
+        <RegisterButton
+          RegBtnOnClick={() => {
+            setSettingMenuIsOpen(true);
+          }}
+          userMode="advisors"
+          btnLabel="Settings"
+          modifiedStyle={{ top: "0", left: "515px", height: "45px" }}
+        />
+      </div>
     </div>
   );
 }

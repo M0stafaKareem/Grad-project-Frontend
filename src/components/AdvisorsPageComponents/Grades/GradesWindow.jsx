@@ -10,6 +10,7 @@ import GradesTable from "./GradesTable";
 const GradesWindow = (props) => {
   const [doneIsOpen, setDoneIsOpen] = useState(false);
   const [gradesWindowIsOpen, setgradesWindowIsOpen] = useState(false);
+  const [focusedInput, setFocusedInput] = useState(null);
   let inputData = [];
   const onFormSubmit = (e) => {
     e.preventDefault();
@@ -33,7 +34,12 @@ const GradesWindow = (props) => {
     p1.uploadXlsGradeFile(formData);
     setDoneIsOpen(true);
   };
-
+  const isStudent =
+    focusedInput === "Student ID"
+      ? true
+      : focusedInput === "Course Name"
+      ? false
+      : undefined;
   return (
     <>
       {!gradesWindowIsOpen && (
@@ -55,6 +61,7 @@ const GradesWindow = (props) => {
               />
             )}
             <Cells
+              setFocusedInput={setFocusedInput}
               subjects={props.subjects}
               passInputArray={(inputArray) => {
                 inputData = inputArray;
@@ -79,7 +86,7 @@ const GradesWindow = (props) => {
           />
         </>
       )}
-      {gradesWindowIsOpen && <GradesTable />}
+      {gradesWindowIsOpen && <GradesTable isStudentMode={isStudent} />}
     </>
   );
 };

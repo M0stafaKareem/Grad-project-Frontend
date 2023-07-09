@@ -4,24 +4,29 @@ import TableRow from "./TableRow";
 import styles from "./GradesTable.module.css";
 import StudentCard from "./StudentCard";
 
-const GradesTable: FunctionComponent = () => {
-  const [studentMode, setStudentMode] = useState(true);
-  const tableStyle = studentMode
-    ? ` ${styles.studentstable} + ${styles.studentMode}   `
+type GradesTableType = {
+  isStudentMode: boolean;
+};
+
+const GradesTable: FunctionComponent<GradesTableType> = ({
+  isStudentMode = false,
+}) => {
+  const tableStyle = isStudentMode
+    ? ` ${styles.studentstable} + ${styles.studentMode}`
     : ` ${styles.studentstable}`;
   return (
     <>
-      {studentMode && <StudentCard />}
+      {isStudentMode && <StudentCard />}
       <fieldset className={tableStyle}>
-        <TableTitle isStudent={studentMode} />
-        <TableRow isStudent={studentMode} />
-        <TableRow isStudent={studentMode} />
-        <TableRow isStudent={studentMode} />
-        <TableRow isStudent={studentMode} />
-        <TableRow isStudent={studentMode} />
-        <TableRow isStudent={studentMode} />
-        <TableRow isStudent={studentMode} />
-        <TableRow isStudent={studentMode} />
+        <TableTitle isStudent={isStudentMode} />
+        <TableRow isStudent={isStudentMode} />
+        <TableRow isStudent={isStudentMode} />
+        <TableRow isStudent={isStudentMode} />
+        <TableRow isStudent={isStudentMode} />
+        <TableRow isStudent={isStudentMode} />
+        <TableRow isStudent={isStudentMode} />
+        <TableRow isStudent={isStudentMode} />
+        <TableRow isStudent={isStudentMode} />
       </fieldset>
     </>
   );

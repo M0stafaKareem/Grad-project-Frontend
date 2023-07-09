@@ -9,6 +9,7 @@ import {
   createTheme,
   StyledEngineProvider,
 } from "@mui/material";
+import "antd/dist/reset.css";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import createCache from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";

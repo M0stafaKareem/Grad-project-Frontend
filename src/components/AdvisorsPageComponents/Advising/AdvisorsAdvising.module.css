@@ -10,3 +10,24 @@
 .levelsDiv::-webkit-scrollbar {
   display: none;
 }
+
+.deadlineCheckbox {
+  top: 40px;
+  position: relative;
+  display: flex;
+  padding: 10px;
+}
+
+.label {
+  position: relative;
+  background-color: #aa7bc3;
+  font-family: "Jost-Regular";
+  height: 45px;
+  text-align: center;
+  padding-inline: 12px;
+  padding-top: 12px;
+  border-radius: 7px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+}

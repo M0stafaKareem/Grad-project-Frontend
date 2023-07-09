@@ -4,18 +4,24 @@ import InputRow from "./InputRow";
 
 const Cells = (props) => {
   const [fullFormIsOpen, setFullFormIsOpen] = useState(false);
-
+  let inputArray = [];
   const subjectsNames = [];
   props.subjects.map((item) => {
     subjectsNames.push({ value: item.subject_code, label: item.subject_name });
   });
-  let inputArray = [];
+
+  const onInputRowFocused = (inputRow) => {
+    props.setFocusedInput(inputRow);
+    console.log(inputRow);
+  };
+
   return (
     <div className={styles.cells}>
       <InputRow
         title="Course Name"
         type="dropdown"
         subjectsNames={subjectsNames}
+        onFocus={onInputRowFocused}
         passInputVal={(inputVal) => {
           inputArray[0] = inputVal;
           props.passInputArray(inputArray);
@@ -24,6 +30,7 @@ const Cells = (props) => {
       <InputRow
         type=""
         title="Student ID"
+        onFocus={onInputRowFocused}
         passInputVal={(inputVal) => {
           inputArray[1] = inputVal;
           props.passInputArray(inputArray);

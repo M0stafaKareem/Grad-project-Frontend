@@ -120,7 +120,6 @@
   align-items: flex-start;
   justify-content: flex-start;
   gap: 42px;
-  color: #ff3a29;
 }
 .studentCard {
   border-radius: 20px;
@@ -130,4 +129,25 @@
   text-align: left;
   font-size: 22px;
   font-family: Poppins;
+  transition: all 0.5s;
+}
+
+.studentCard:hover {
+  gap: 10px;
+  .fullData {
+    display: flex;
+  }
+}
+
+.fullData {
+  display: none;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
 }
