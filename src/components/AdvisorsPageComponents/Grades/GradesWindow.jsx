@@ -6,6 +6,7 @@ import Done from "../../General/Done";
 import { useState } from "react";
 import { Box } from "./screens/Box";
 import GradesTable from "./GradesTable";
+import { FetchDataService } from "../../../service/fetchData";
 
 const GradesWindow = (props) => {
   const [doneIsOpen, setDoneIsOpen] = useState(false);
@@ -40,15 +41,25 @@ const GradesWindow = (props) => {
       : focusedInput === "Course Name"
       ? false
       : undefined;
+
+  const [gradesPageData, setGradesPageData] = useState();
   return (
     <>
       {!gradesWindowIsOpen && (
         <>
           <form className={styles.gradeswindow} onSubmit={onFormSubmit}>
-            <select className={styles.fallSemester}>
-              <option value="0"> Fall Semester</option>
-              <option value="1"> Spring Semester</option>
-              <option value="2"> Summer Semester</option>
+            <select
+              className={styles.fallSemester}
+              onChange={(e) => {
+                inputData["semester"] = e.target.value;
+              }}
+            >
+              <option value="" selected disabled hidden>
+                Select Semester
+              </option>
+              <option value="Fall"> Fall Semester</option>
+              <option value="Spring"> Spring Semester</option>
+              <option value="Summer"> Summer Semester</option>
             </select>
 
             {doneIsOpen && (
@@ -80,13 +91,29 @@ const GradesWindow = (props) => {
             />
           </form>
           <Box
-            onClick={() => {
-              setgradesWindowIsOpen(true);
+            onClick={async () => {
+              const f1 = new FetchDataService();
+              isStudent
+                ? setGradesPageData(await f1.getStudentGradesPageData(21044))
+                : setGradesPageData(
+                    await f1.getSubjectGradesPageData(
+                      "GEN0801",
+                      "Spring",
+                      "2022-2023"
+                    )
+                  );
+              isStudent != undefined ? setgradesWindowIsOpen(true) : null;
             }}
           />
         </>
       )}
-      {gradesWindowIsOpen && <GradesTable isStudentMode={isStudent} />}
+      {gradesWindowIsOpen && (
+        <GradesTable
+          isStudentMode={isStudent}
+          tableData={isStudent ? gradesPageData.subjectsData : gradesPageData}
+          studentData={isStudent ? gradesPageData.personalData : null}
+        />
+      )}
     </>
   );
 };

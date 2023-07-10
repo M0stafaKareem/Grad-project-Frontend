@@ -12,7 +12,6 @@ const Cells = (props) => {
 
   const onInputRowFocused = (inputRow) => {
     props.setFocusedInput(inputRow);
-    console.log(inputRow);
   };
 
   return (
@@ -23,7 +22,7 @@ const Cells = (props) => {
         subjectsNames={subjectsNames}
         onFocus={onInputRowFocused}
         passInputVal={(inputVal) => {
-          inputArray[0] = inputVal;
+          inputArray["Course Name"] = inputVal;
           props.passInputArray(inputArray);
         }}
       />
@@ -32,7 +31,7 @@ const Cells = (props) => {
         title="Student ID"
         onFocus={onInputRowFocused}
         passInputVal={(inputVal) => {
-          inputArray[1] = inputVal;
+          inputArray["Student ID"] = inputVal;
           props.passInputArray(inputArray);
         }}
       />
@@ -59,7 +58,7 @@ const Cells = (props) => {
             type="splitted"
             title="Class Work"
             passInputVal={(inputVal) => {
-              inputArray[2] = inputVal;
+              inputArray["Class Work"] = inputVal;
               props.passInputArray(inputArray);
             }}
           />
@@ -67,7 +66,7 @@ const Cells = (props) => {
             type=""
             title="Final"
             passInputVal={(inputVal) => {
-              inputArray[3] = inputVal;
+              inputArray["Final"] = inputVal;
               props.passInputArray(inputArray);
             }}
           />
@@ -75,7 +74,7 @@ const Cells = (props) => {
             type=""
             title="State"
             passInputVal={(inputVal) => {
-              inputArray[3] = inputVal;
+              inputArray["State"] = inputVal;
               props.passInputArray(inputArray);
             }}
           />
@@ -83,7 +82,7 @@ const Cells = (props) => {
             type=""
             title="Date"
             passInputVal={(inputVal) => {
-              inputArray[3] = inputVal;
+              inputArray["Date"] = inputVal;
               props.passInputArray(inputArray);
             }}
           />

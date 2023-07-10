@@ -1,6 +1,6 @@
 export class PushDataService {
   public registerSubjects = async (udpatingData: {}) => {
-    const url = "http://127.0.0.1:8000/api/studentRequest";
+    const url = "http://127.0.0.1:8000/api/student/enrolmentState";
     await fetch(url, {
       method: "POST",
       body: JSON.stringify(udpatingData),

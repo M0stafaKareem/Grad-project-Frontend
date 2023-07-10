@@ -75,7 +75,7 @@ export class FetchDataService {
   }; */
 
   private getStudentImage = async () => {
-    let url = "http://127.0.0.1:8000/api/studentImage/" + this.studentData.Id;
+    let url = "http://127.0.0.1:8000/api/student/Image/" + this.studentData.Id;
     await fetch(url)
       .then((response) => response.blob())
       .then((jsonData) => {
@@ -87,7 +87,7 @@ export class FetchDataService {
   };
 
   private getAdvisorImage = async () => {
-    let url = "http://127.0.0.1:8000/api/advisorImage/" + this.advisorData.Id;
+    let url = "http://127.0.0.1:8000/api/advisor/Image/" + this.advisorData.Id;
     await fetch(url)
       .then((response) => response.blob())
       .then((jsonData) => {
@@ -113,7 +113,7 @@ export class FetchDataService {
   };
 
   public getStuSubjects = async (studentId?: number) => {
-    let url = "http://127.0.0.1:8000/api/stuSubject/" + studentId;
+    let url = "http://127.0.0.1:8000/api/student/subject/" + studentId;
     return fetch(url)
       .then((response) => response.json())
       .then((jsonData) => {
@@ -131,6 +131,40 @@ export class FetchDataService {
       .then((response) => response.json())
       .then((jsonData) => {
         this.advisorData.subjecs = jsonData;
+        return jsonData;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  public getStudentGradesPageData = async (studentID: number) => {
+    let url = "http://127.0.0.1:8000/api/advisor/studentData/" + studentID;
+    return fetch(url)
+      .then((response) => response.json())
+      .then((jsonData) => {
+        return jsonData;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  public getSubjectGradesPageData = async (
+    subjectCode: string,
+    semester: string,
+    year: string
+  ) => {
+    let url =
+      "http://127.0.0.1:8000/api/advisor/subjectGrades/getGrades/" +
+      subjectCode +
+      "/" +
+      semester +
+      "/" +
+      year;
+    return fetch(url)
+      .then((response) => response.json())
+      .then((jsonData) => {
         return jsonData;
       })
       .catch((error) => {
