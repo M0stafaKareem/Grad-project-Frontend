@@ -6,10 +6,15 @@
 }
 .asterSeawalker,
 .level31 {
-  white-space: nowrap;
   position: relative;
 }
 .asterSeawalker {
+  width: 170px;
+  max-height: 50px;
+  /* left: 10px;
+  overflow-wrap: break-word;
+  */
+  overflow: hidden;
   font-weight: 500;
 }
 .level31 {
@@ -20,7 +25,7 @@
 .user {
   display: flex;
   flex-direction: column;
-  padding: 0 var(--padding-3xs);
+  padding: 0 20px;
   align-items: center;
   gap: var(--gap-3xs);
   font-size: var(--font-size-base);

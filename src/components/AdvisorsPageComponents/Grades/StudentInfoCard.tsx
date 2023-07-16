@@ -9,12 +9,18 @@ type StudentInfoCardType = {
   passedSubjects?: string;
   studentStatus?: string;
   studentLevel?: string;
+  nationalID?: number;
+  phoneNumber?: number;
+  parentPhoneNumber?: number;
 };
 
 const StudentInfoCard: FunctionComponent<StudentInfoCardType> = ({
-  studentName = "Abdelaziz Shaheen",
+  studentName = "Abdelaziz karam Abdelaziz Shaheen",
   studentPhoto,
-  studentID = "21042",
+  studentID = "21044",
+  nationalID = "30001568791402",
+  phoneNumber = "01120450302",
+  parentPhoneNumber = "01000503301",
   acceptedHours = "153",
   passedSubjects = "45",
   studentStatus = "Undergrade",
@@ -29,9 +35,9 @@ const StudentInfoCard: FunctionComponent<StudentInfoCardType> = ({
       </div>
 
       <div className={styles.fullData}>
-        <Info label="National ID" value="300021458746" />
-        <Info label="Phone Number" value="01120450302" />
-        <Info label="Parent P.N" value="01000503301" />
+        <Info label="National ID" value={nationalID} />
+        <Info label="Phone Number" value={phoneNumber} />
+        <Info label="Parent P.N" value={parentPhoneNumber} />
       </div>
 
       <div className={styles.frameParent}>
@@ -61,10 +67,13 @@ const StudentInfoCard: FunctionComponent<StudentInfoCardType> = ({
 };
 
 type infoType = {
-  label: string;
-  value: string;
+  label?: string;
+  value?: string | number;
 };
-const Info: FunctionComponent<infoType> = ({ label, value }) => {
+const Info: FunctionComponent<infoType> = ({
+  label = "Enter Label",
+  value = "Enter Value",
+}) => {
   return (
     <div className={styles.info}>
       <div className={styles.followers}>{label}</div>

@@ -74,16 +74,16 @@ export class FetchDataService {
       });
   }; */
 
-  private getStudentImage = async () => {
-    let url = "http://127.0.0.1:8000/api/student/Image/" + this.studentData.Id;
-    await fetch(url)
-      .then((response) => response.blob())
-      .then((jsonData) => {
-        this.studentData.Photo = jsonData;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  public getStudentImage = async (studentID: number) => {
+    let url = "http://127.0.0.1:8000/api/student/Image/" + studentID;
+    try {
+      const response = await fetch(url);
+      const blobData = await response.blob();
+      this.studentData.Photo = blobData;
+      return blobData;
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   private getAdvisorImage = async () => {
@@ -99,7 +99,7 @@ export class FetchDataService {
   };
 
   public getStudentData = async () => {
-    await this.getStudentImage();
+    await this.getStudentImage(this.studentData.Id!);
     await this.getStuSubjects(this.studentData.Id);
 
     return this.studentData;
@@ -126,7 +126,7 @@ export class FetchDataService {
   };
 
   public getAdvSubjects = async () => {
-    let url = "http://127.0.0.1:8000/api/advSubject/subjectStatus";
+    let url = "http://127.0.0.1:8000/api/advisor/subject/subjectStatus";
     return fetch(url)
       .then((response) => response.json())
       .then((jsonData) => {
@@ -162,6 +162,36 @@ export class FetchDataService {
       semester +
       "/" +
       year;
+    return fetch(url)
+      .then((response) => response.json())
+      .then((jsonData) => {
+        return jsonData;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  public getStudentRequestedSubjects = async (studentID: number) => {
+    let url =
+      "http://127.0.0.1:8000/api/student/enrolment/getRequests/" + studentID;
+    return fetch(url)
+      .then((response) => response.json())
+      .then((jsonData) => {
+        return jsonData;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  public getStudentGrades = async (
+    studentID: number,
+    Level: number | string = ""
+  ) => {
+    let url = Level
+      ? "http://127.0.0.1:8000/api/student/grades/" + studentID + "/" + Level
+      : "http://127.0.0.1:8000/api/student/grades/" + studentID;
     return fetch(url)
       .then((response) => response.json())
       .then((jsonData) => {

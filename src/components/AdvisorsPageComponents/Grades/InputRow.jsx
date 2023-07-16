@@ -20,7 +20,6 @@ function InputRow(props) {
       {props.type === "" && (
         <input
           onChange={(e) => props.passInputVal(e.target.value)}
-          onFocus={() => props.onFocus(props.title)}
           className={styles.input}
           type="text"
         />
@@ -43,7 +42,6 @@ function InputRow(props) {
         <Select
           className={styles.input}
           isDisabled={props.isDisabled}
-          onFocus={() => props.onFocus(props.title)}
           onChange={(e) => props.passInputVal(e.value)}
           styles={customStyles}
           placeholder={""}

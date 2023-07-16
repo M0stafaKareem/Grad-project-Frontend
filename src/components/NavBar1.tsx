@@ -27,6 +27,9 @@ const NavBar1: FunctionComponent<NavBarType> = ({
   function gradesHandler() {
     setCurrentState("Grades");
   }
+  function scheduleHandler() {
+    setCurrentState("Schedule");
+  }
   function logOutHandler() {
     navigate("/");
   }
@@ -64,7 +67,7 @@ const NavBar1: FunctionComponent<NavBarType> = ({
           btnIcon={
             userMode === "advisor" ? "../advClasses.svg" : "../classes.svg"
           }
-          btnLabel="Classes"
+          btnLabel={userMode === "advisor" ? "Applications" : "Classes"}
         />
         <UnPressedNavBtn
           pressedBtnIcon="../gradesPressed.svg"
@@ -78,9 +81,12 @@ const NavBar1: FunctionComponent<NavBarType> = ({
         />
         <UnPressedNavBtn
           userMode={userMode}
+          pressedBtnIcon="../schedulePressed.svg"
           btnIcon={
             userMode === "advisor" ? "../advSchedule.svg" : "../schedule.svg"
           }
+          btnState={btnState}
+          onClick={scheduleHandler}
           btnLabel="Schedule"
         />
         <UnPressedNavBtn
@@ -88,7 +94,7 @@ const NavBar1: FunctionComponent<NavBarType> = ({
           btnIcon={
             userMode === "advisor" ? "../advSettings.svg" : "../settings.svg"
           }
-          btnLabel="Settings"
+          btnLabel={userMode === "advisor" ? "Statistics" : "Mailings"}
         />
         <UnPressedNavBtn
           btnIcon={

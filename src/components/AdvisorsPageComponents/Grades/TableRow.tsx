@@ -1,13 +1,20 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import styles from "./TableRow.module.css";
+import { gradesCalculator } from "../../../service/gradesCalculator";
 
 type TableRowType = {
+  rowIndex: number;
+  updatingFunction: Function;
   isStudent?: boolean;
   studentID?: number;
   studentName?: string;
+  semester?: string;
+  semesterDate?: string;
+
   grade: number;
   score: string;
   subjectName: string;
+  subjectCode: string;
   classWork: number;
   final: number;
   examState: string;
@@ -15,21 +22,63 @@ type TableRowType = {
 
 const TableRow: FunctionComponent<TableRowType> = ({
   isStudent,
+  rowIndex,
+  updatingFunction,
+  semester,
+  semesterDate,
   studentID,
   studentName,
   subjectName,
+  subjectCode,
   classWork,
   final,
   examState,
   grade,
   score,
 }) => {
+  const [updatingData, setUpdatingDAta] = useState({
+    semester: semester,
+    semesterDate: semesterDate,
+    studentID: studentID,
+    studentName: studentName,
+    courseName: subjectName,
+    courseCode: subjectCode,
+    classWork: classWork,
+    final: final,
+    examState: examState,
+    grade: grade,
+    score: score,
+  });
+  const helper = new gradesCalculator();
+
+  useEffect(() => {
+    updatingFunction((prev: any) => {
+      prev[rowIndex] = updatingData;
+      prev[rowIndex].grade = +updatingData.classWork + +updatingData.final;
+      prev[rowIndex].score = helper.getLetteredScore(
+        prev[rowIndex].grade
+      ).letter;
+      return prev;
+    });
+  }, [updatingData]);
+
   return (
     <div className={styles.tableRow}>
       {isStudent ? (
-        <select className={styles.tableComponents} defaultValue={""}>
+        <select
+          className={styles.tableComponents}
+          defaultValue={""}
+          onChange={(e) => {
+            setUpdatingDAta((prev: any) => {
+              return {
+                ...prev,
+                semester: e.target.value,
+              };
+            });
+          }}
+        >
           <option value="" disabled hidden>
-            {studentID}
+            {semester}
           </option>
           <option value="Fall"> Fall</option>
           <option value="Spring"> Spring </option>
@@ -40,35 +89,92 @@ const TableRow: FunctionComponent<TableRowType> = ({
           className={styles.tableComponents}
           type="number"
           defaultValue={studentID}
+          onChange={(e) => {
+            setUpdatingDAta((prev: any) => {
+              return {
+                ...prev,
+                studentID: e.target.value,
+              };
+            });
+          }}
         />
       )}
       <input
         className={styles.tableComponents1}
         type="text"
-        defaultValue={studentName}
+        defaultValue={isStudent ? semesterDate : studentName}
+        onChange={(e) => {
+          setUpdatingDAta((prev: any) => {
+            return {
+              ...prev,
+              studentName: e.target.value,
+            };
+          });
+        }}
       />
       <input
         className={styles.tableComponents2}
+        onChange={(e) => {
+          setUpdatingDAta((prev: any) => {
+            return {
+              ...prev,
+              subjectName: e.target.value,
+            };
+          });
+        }}
         type="text"
         defaultValue={subjectName}
       />
       <input
         className={styles.tableComponents3}
         type="number"
+        max={50}
+        min={0}
         defaultValue={classWork}
+        onChange={(e) => {
+          setUpdatingDAta((prev: any) => {
+            return {
+              ...prev,
+              classWork: e.target.value,
+            };
+          });
+        }}
       />
       <input
         className={styles.tableComponents4}
         type="number"
+        max={50}
+        min={0}
         defaultValue={final}
+        onChange={(e) => {
+          setUpdatingDAta((prev: any) => {
+            return {
+              ...prev,
+              final: e.target.value,
+            };
+          });
+        }}
       />
       <div className={styles.tableComponents5}>
-        <h2 className={styles.title}>{grade}</h2>
+        <h2 className={styles.title}>
+          {+updatingData.classWork + +updatingData.final}
+        </h2>
       </div>
       <div className={styles.tableComponents6}>
         <h2 className={styles.title}>{score}</h2>
       </div>
-      <select className={styles.pass} defaultValue={""}>
+      <select
+        className={styles.pass}
+        defaultValue={""}
+        onChange={(e) => {
+          setUpdatingDAta((prev: any) => {
+            return {
+              ...prev,
+              examState: e.target.value,
+            };
+          });
+        }}
+      >
         <option value="" disabled hidden>
           {examState}
         </option>

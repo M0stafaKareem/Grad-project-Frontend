@@ -2,9 +2,10 @@ import GPAPageTable from "./GPAPageTable";
 import OverallGPA from "./OverallGPA";
 
 function GradesComp(props) {
+  console.log(props.studentData.subjecs);
   return (
     <>
-      <GPAPageTable />
+      <GPAPageTable studentID={props.studentData.Id} />
       <OverallGPA cGPA={props.studentData.GPA} />
     </>
   );

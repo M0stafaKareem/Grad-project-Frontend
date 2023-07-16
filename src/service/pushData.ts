@@ -9,7 +9,7 @@ export class PushDataService {
   };
 
   public changeCourseState = async (coursesData: {}) => {
-    const url = "http://127.0.0.1:8000/api/subject/updateStatus";
+    const url = "http://127.0.0.1:8000/api/subject/update/SubjectStatus";
     await fetch(url, {
       method: "POST",
       body: JSON.stringify(coursesData),
@@ -17,26 +17,12 @@ export class PushDataService {
     });
   };
 
-  public assignCourseGrades = async (
-    subjectCode: string,
-    studentId: number,
-    grade: number,
-    score: string,
-    courseState: string
-  ) => {
-    const url =
-      "http://127.0.0.1:8000/api/enrolment/insertGrades/" +
-      studentId +
-      "/" +
-      subjectCode +
-      "/" +
-      grade +
-      "/" +
-      score +
-      "/" +
-      courseState;
+  public assignCourseGrades = async (inputData: {}) => {
+    const url = "http://127.0.0.1:8000/api/advisor/studentGrades/insertGrade";
     await fetch(url, {
       method: "PUT",
+      body: JSON.stringify({ data: inputData }),
+      headers: { "Content-Type": "application/json" },
     });
   };
 
@@ -60,5 +46,19 @@ export class PushDataService {
       .catch((error) => {
         console.error(error);
       });
+  }
+
+  public async updateRegistrationStatus(
+    submition: boolean,
+    dropablitiy: boolean
+  ) {
+    const url =
+      "http://127.0.0.1:8000/api/subject/updateRegestrationStatus/" +
+      submition +
+      "/" +
+      dropablitiy;
+    await fetch(url, {
+      method: "POST",
+    });
   }
 }

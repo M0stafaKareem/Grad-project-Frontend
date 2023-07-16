@@ -1,16 +1,15 @@
 .registerb {
   background-color: rgba(170, 123, 195, 0.2);
   padding: 10px 10px 10px 45px;
-  position: absolute;
+  position: relative;
   font-size: 13px;
   letter-spacing: -0.02em;
   font-weight: 400;
   font-family: Poppins;
   color: #aa7bc3;
-  height: 6.27%;
-  width: 18.16%;
-  top: 84.64%;
-  right: 60.34%;
+  height: 40px;
+  width: 160px;
+  top: 45px;
   border-radius: 7px;
   display: flex;
   flex-direction: row;

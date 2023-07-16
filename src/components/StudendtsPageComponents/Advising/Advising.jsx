@@ -5,13 +5,16 @@ import { FetchDataService } from "../../../service/fetchData";
 import { useEffect, useState } from "react";
 import Done from "../../General/Done";
 import RegisterButton from "./RegisterButton";
+import Menu from "./Menu";
 
 function Advising(props) {
   const [subjecs, setSubjecs] = useState([]);
   const [doneIsOpen, setDoneIsOpen] = useState(false);
+  const [editRegMenuIsOpen, setEditRegMenuIsOpen] = useState(false);
+  const [data, setData] = useState([]);
+  const stuSubjectsService = new FetchDataService();
 
   const getStuSubjects = async (studentId) => {
-    const stuSubjectsService = new FetchDataService();
     try {
       const jsonData = await stuSubjectsService.getStuSubjects(studentId);
       setSubjecs(jsonData);
@@ -71,42 +74,57 @@ function Advising(props) {
         level="Level 0"
         Id={props.studentData.Id}
         subjects={leveledSubjects[0]}
-        leftTitleVal={"5/11"}
-        rightTitleVal={"2"}
       />
       <LevelBar
         onSubmitFeedback={setDoneIsOpen}
         level="Level 1"
         Id={props.studentData.Id}
         subjects={leveledSubjects[1]}
-        leftTitleVal={"5/11"}
-        rightTitleVal={"2.6"}
       />
       <LevelBar
         level="Level 2"
         onSubmitFeedback={setDoneIsOpen}
         Id={props.studentData.Id}
         subjects={leveledSubjects[2]}
-        leftTitleVal={"5/10"}
-        rightTitleVal={"2.4"}
       />
       <LevelBar
         onSubmitFeedback={setDoneIsOpen}
         level="Level 3"
         Id={props.studentData.Id}
         subjects={leveledSubjects[3]}
-        leftTitleVal={"3/10"}
-        rightTitleVal={"3.3"}
       />
       <LevelBar
         onSubmitFeedback={setDoneIsOpen}
         level="Level 4"
         Id={props.studentData.Id}
         subjects={leveledSubjects[4]}
-        leftTitleVal={"0/12"}
-        rightTitleVal={""}
       />
-      <RegisterButton btnLabel="Withdrawal" onBtnClick={() => {}} />
+      {editRegMenuIsOpen && (
+        <Menu
+          closeDropdown={setEditRegMenuIsOpen}
+          onSubmitFeedback={setDoneIsOpen}
+          subjects={data}
+          Id={props.studentData.Id}
+          modifiedStyles={{ top: "50px" }}
+          studentRequest="Drop"
+        />
+      )}
+      <RegisterButton
+        btnLabel="Withdrawal"
+        modifiedStyle={{ top: "37px", marginBottom: "0" }}
+        RegBtnOnClick={async () => {
+          setData(
+            await stuSubjectsService.getStudentRequestedSubjects(
+              props.studentData.Id
+            )
+          );
+          setEditRegMenuIsOpen(true);
+        }}
+      />
+      <RegisterButton
+        btnLabel="Recommendations"
+        modifiedStyle={{ top: "0", left: "0" }}
+      />
     </div>
   );
 }

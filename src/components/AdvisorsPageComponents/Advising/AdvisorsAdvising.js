@@ -11,13 +11,26 @@ function AdvisorsAdvising() {
   const [subjecs, setSubjecs] = useState([]);
   const [doneIsOpen, setDoneIsOpen] = useState(false);
   const [settingsMenuIsOpen, setSettingMenuIsOpen] = useState(false);
+  const [regestiration, setRegestiration] = useState(false);
+  const SubjectsService = new FetchDataService();
+  const leveledSubjects = {};
+  let openedCourses = 0;
+  let openedHours = 0;
+
+  const paragraph =
+    regestiration.submition === "true" && regestiration.dropablitiy === "true"
+      ? "Registration and Drop are Opened "
+      : regestiration.dropablitiy === "true"
+      ? "Drop is Opened for Students"
+      : regestiration.submition === "true"
+      ? "Registration is Opened for Students"
+      : "Only Withdrawal is available ";
 
   const getSubjects = async () => {
-    const SubjectsService = new FetchDataService();
     try {
       const jsonData = await SubjectsService.getAdvSubjects();
-      setSubjecs(jsonData);
-      return jsonData;
+      setSubjecs(jsonData.subjectStatus);
+      setRegestiration(jsonData.regestirationStatus[0]);
     } catch (error) {
       console.error(error);
     }
@@ -25,9 +38,7 @@ function AdvisorsAdvising() {
 
   useEffect(() => {
     getSubjects();
-  }, [doneIsOpen]);
-
-  const leveledSubjects = {};
+  }, [doneIsOpen, settingsMenuIsOpen]);
 
   subjecs.map((item) => {
     const { subject_level } = item;
@@ -38,8 +49,6 @@ function AdvisorsAdvising() {
     leveledSubjects[subject_level].push(item);
   });
 
-  let openedCourses = 0;
-  let openedHours = 0;
   subjecs.map((item) => {
     const { status } = item;
     if (status === "Open") {
@@ -52,9 +61,8 @@ function AdvisorsAdvising() {
     <div className={styles.levelsDiv}>
       {settingsMenuIsOpen && (
         <SettingMenu
-          doneBtnOnClick={() => {
-            setSettingMenuIsOpen(false);
-          }}
+          regestirationStatus={regestiration}
+          closeMenuHandler={setSettingMenuIsOpen}
         />
       )}
       {doneIsOpen && (
@@ -113,7 +121,7 @@ function AdvisorsAdvising() {
       />
 
       <div className={styles.deadlineCheckbox}>
-        <p className={styles.label}>Registration is Opened for Students</p>
+        <p className={styles.label}>{paragraph}</p>
         <RegisterButton
           RegBtnOnClick={() => {
             setSettingMenuIsOpen(true);

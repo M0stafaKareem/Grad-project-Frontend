@@ -18,6 +18,7 @@
 .registerb {
   position: relative;
   display: flex;
+  width: fit-content;
   white-space: nowrap;
   top: 10px;
   left: 756px;

@@ -7,22 +7,34 @@ import { useState } from "react";
 import { Box } from "./screens/Box";
 import GradesTable from "./GradesTable";
 import { FetchDataService } from "../../../service/fetchData";
+import { gradesCalculator } from "../../../service/gradesCalculator";
 
 const GradesWindow = (props) => {
   const [doneIsOpen, setDoneIsOpen] = useState(false);
   const [gradesWindowIsOpen, setgradesWindowIsOpen] = useState(false);
-  const [focusedInput, setFocusedInput] = useState(null);
-  let inputData = [];
+  const [gradesPageData, setGradesPageData] = useState();
+  const [inputData, setInputData] = useState({
+    semester: "",
+    courseName: "",
+    courseCode: "",
+    studentID: 0,
+    studentName: "",
+    classWork: 0,
+    final: 0,
+    examState: "",
+    semesterDate: "",
+    grade: 0,
+    score: "",
+    isStudent: undefined,
+  });
+
   const onFormSubmit = (e) => {
     e.preventDefault();
     const p1 = new PushDataService();
-    p1.assignCourseGrades(
-      inputData[0],
-      inputData[1],
-      inputData[2],
-      inputData[3],
-      inputData[2] >= 60 ? "Finished" : "Failed"
-    );
+    const helper = new gradesCalculator();
+    inputData.grade = +inputData.classWork + +inputData.final;
+    inputData.score = helper.getLetteredScore(inputData.grade).letter;
+    p1.assignCourseGrades(inputData);
     setDoneIsOpen(true);
   };
 
@@ -35,14 +47,7 @@ const GradesWindow = (props) => {
     p1.uploadXlsGradeFile(formData);
     setDoneIsOpen(true);
   };
-  const isStudent =
-    focusedInput === "Student ID"
-      ? true
-      : focusedInput === "Course Name"
-      ? false
-      : undefined;
 
-  const [gradesPageData, setGradesPageData] = useState();
   return (
     <>
       {!gradesWindowIsOpen && (
@@ -50,18 +55,23 @@ const GradesWindow = (props) => {
           <form className={styles.gradeswindow} onSubmit={onFormSubmit}>
             <select
               className={styles.fallSemester}
+              defaultValue={""}
               onChange={(e) => {
-                inputData["semester"] = e.target.value;
+                setInputData((inputData) => {
+                  return {
+                    ...inputData,
+                    semester: e.target.value,
+                  };
+                });
               }}
             >
-              <option value="" selected disabled hidden>
+              <option value="" disabled hidden>
                 Select Semester
               </option>
               <option value="Fall"> Fall Semester</option>
               <option value="Spring"> Spring Semester</option>
               <option value="Summer"> Summer Semester</option>
             </select>
-
             {doneIsOpen && (
               <Done
                 onBtnClick={() => {
@@ -71,15 +81,9 @@ const GradesWindow = (props) => {
                 cardDiscription="Grades Updated Successfully"
               />
             )}
-            <Cells
-              setFocusedInput={setFocusedInput}
-              subjects={props.subjects}
-              passInputArray={(inputArray) => {
-                inputData = inputArray;
-              }}
-            />
-            <RegisterB />
-            <h2 className={styles.submitted}>Submitted</h2>
+            <Cells subjects={props.subjects} passInputArray={setInputData} />
+            {/*             <h2 className={styles.submitted}>Submitted</h2>
+             */}
             <label htmlFor="file" className={styles.uploadACsv}>
               Upload a xls File
             </label>
@@ -93,25 +97,35 @@ const GradesWindow = (props) => {
           <Box
             onClick={async () => {
               const f1 = new FetchDataService();
-              isStudent
-                ? setGradesPageData(await f1.getStudentGradesPageData(21044))
+              inputData.isStudent
+                ? setGradesPageData(
+                    await f1.getStudentGradesPageData(inputData.studentID)
+                  )
                 : setGradesPageData(
                     await f1.getSubjectGradesPageData(
-                      "GEN0801",
-                      "Spring",
-                      "2022-2023"
+                      inputData.courseCode,
+                      inputData.semester,
+                      inputData.semesterDate
                     )
                   );
-              isStudent != undefined ? setgradesWindowIsOpen(true) : null;
+              inputData.isStudent != undefined
+                ? setgradesWindowIsOpen(true)
+                : null;
             }}
           />
         </>
       )}
       {gradesWindowIsOpen && (
         <GradesTable
-          isStudentMode={isStudent}
-          tableData={isStudent ? gradesPageData.subjectsData : gradesPageData}
-          studentData={isStudent ? gradesPageData.personalData : null}
+          isStudentMode={inputData.isStudent}
+          semester={inputData.isStudent ? undefined : inputData.semester}
+          year={inputData.isStudent ? undefined : inputData.semesterDate}
+          tableData={
+            inputData.isStudent ? gradesPageData.subjectsData : gradesPageData
+          }
+          studentData={
+            inputData.isStudent ? gradesPageData.personalData[0] : null
+          }
         />
       )}
     </>

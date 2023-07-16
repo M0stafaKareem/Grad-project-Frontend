@@ -20,18 +20,18 @@ const Done: FunctionComponent<DoneType> = ({
         <div className={style.header}>
           <div className={style.image}>
             <svg fill="none" viewBox="0 0 24 24">
-              <g stroke-width="0" id="SVGRepo_bgCarrier"></g>
+              <g strokeWidth="0" id="SVGRepo_bgCarrier"></g>
               <g
-                stroke-linejoin="round"
-                stroke-linecap="round"
+                strokeLinejoin="round"
+                strokeLinecap="round"
                 id="SVGRepo_tracerCarrier"
               ></g>
               <g id="SVGRepo_iconCarrier">
                 {" "}
                 <path
-                  stroke-linejoin="round"
-                  stroke-linecap="round"
-                  stroke-width="1.5"
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  strokeWidth="1.5"
                   stroke="#000000"
                   d="M20 7L9.00004 18L3.99994 13"
                 ></path>{" "}

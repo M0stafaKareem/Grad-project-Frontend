@@ -1,38 +1,55 @@
 import { useState } from "react";
 import styles from "./Cells.module.css";
 import InputRow from "./InputRow";
+import RegisterB from "./RegisterB";
 
 const Cells = (props) => {
   const [fullFormIsOpen, setFullFormIsOpen] = useState(false);
-  let inputArray = [];
+
   const subjectsNames = [];
   props.subjects.map((item) => {
     subjectsNames.push({ value: item.subject_code, label: item.subject_name });
   });
 
-  const onInputRowFocused = (inputRow) => {
-    props.setFocusedInput(inputRow);
-  };
-
   return (
     <div className={styles.cells}>
+      <InputRow
+        type=""
+        title="Semester Date"
+        passInputVal={(inputVal) => {
+          props.passInputArray((prevData) => {
+            return {
+              ...prevData,
+              semesterDate: inputVal,
+            };
+          });
+        }}
+      />
       <InputRow
         title="Course Name"
         type="dropdown"
         subjectsNames={subjectsNames}
-        onFocus={onInputRowFocused}
         passInputVal={(inputVal) => {
-          inputArray["Course Name"] = inputVal;
-          props.passInputArray(inputArray);
+          props.passInputArray((prevData) => {
+            return {
+              ...prevData,
+              isStudent: false,
+              courseCode: inputVal,
+            };
+          });
         }}
       />
       <InputRow
         type=""
         title="Student ID"
-        onFocus={onInputRowFocused}
         passInputVal={(inputVal) => {
-          inputArray["Student ID"] = inputVal;
-          props.passInputArray(inputArray);
+          props.passInputArray((prevData) => {
+            return {
+              ...prevData,
+              isStudent: true,
+              studentID: inputVal,
+            };
+          });
         }}
       />
       {!fullFormIsOpen && (
@@ -55,37 +72,42 @@ const Cells = (props) => {
       {fullFormIsOpen && (
         <>
           <InputRow
-            type="splitted"
+            type=""
             title="Class Work"
             passInputVal={(inputVal) => {
-              inputArray["Class Work"] = inputVal;
-              props.passInputArray(inputArray);
+              props.passInputArray((prevData) => {
+                return {
+                  ...prevData,
+                  classWork: inputVal,
+                };
+              });
             }}
           />
           <InputRow
             type=""
             title="Final"
             passInputVal={(inputVal) => {
-              inputArray["Final"] = inputVal;
-              props.passInputArray(inputArray);
+              props.passInputArray((prevData) => {
+                return {
+                  ...prevData,
+                  final: inputVal,
+                };
+              });
             }}
           />
           <InputRow
             type=""
             title="State"
             passInputVal={(inputVal) => {
-              inputArray["State"] = inputVal;
-              props.passInputArray(inputArray);
+              props.passInputArray((prevData) => {
+                return {
+                  ...prevData,
+                  examState: inputVal,
+                };
+              });
             }}
           />
-          <InputRow
-            type=""
-            title="Date"
-            passInputVal={(inputVal) => {
-              inputArray["Date"] = inputVal;
-              props.passInputArray(inputArray);
-            }}
-          />
+          <RegisterB />
         </>
       )}
     </div>

@@ -17,13 +17,11 @@
 }
 .level0,
 .registeredHours {
-  margin: 0;
   position: relative;
   font-size: inherit;
   letter-spacing: -0.02em;
   display: flex;
   align-items: flex-end;
-  justify-content: center;
   flex-shrink: 0;
 }
 .level0 {
@@ -62,6 +60,7 @@
 .subjectsbar {
   position: relative;
   border-radius: var(--br-md);
+  white-space: nowrap;
   background-color: #ffffff;
   width: 876px;
   height: 55px;

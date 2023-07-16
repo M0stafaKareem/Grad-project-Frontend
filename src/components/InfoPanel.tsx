@@ -14,13 +14,11 @@ const InfoPanel: FunctionComponent<InfoPanelType> = ({
 }) => {
   return (
     <div className={styles.user}>
-      {
-        <img
-          className={styles.maskGroupIcon}
-          alt=""
-          src={URL.createObjectURL(displayPic!)}
-        />
-      }
+      <img
+        className={styles.maskGroupIcon}
+        alt=""
+        src={URL.createObjectURL(displayPic!)}
+      />
 
       <h2 className={styles.asterSeawalker}>{userName}</h2>
       <h3 className={styles.level31}>{currentLevel}</h3>

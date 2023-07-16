@@ -21,9 +21,6 @@
   height: auto;
   border-radius: var(--br-md);
   overflow: hidden;
-  opacity: 0;
+  animation: slide-in-top 0.8s;
   z-index: 20;
-}
-.menu.animate {
-  animation: 0.65s ease 0s 1 normal forwards slide-in-top;
 }

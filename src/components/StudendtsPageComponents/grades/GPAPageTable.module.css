@@ -7,14 +7,35 @@
   overflow: hidden;
   max-height: 100%;
 }
+.secondBox,
 .semesterIi {
-  position: absolute;
+  position: relative;
   color: #00467a;
-  top: 7.86%;
-  left: 8.22%;
   font-weight: 700;
   font-size: 24px;
+  top: 20px;
+  left: 30px;
   display: inline-block;
+}
+.secondBox {
+  left: 190px;
+  animation: showSelectGradually 0.5s ease-in-out;
+}
+@keyframes showSelectGradually {
+  from {
+    opacity: 0;
+    transform: translateX(-70px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+.dropdowns {
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+  width: 170px;
 }
 .gpaPageTable {
   position: absolute;

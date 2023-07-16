@@ -45,7 +45,9 @@ const LevelBar: FunctionComponent<LevelBarType> = ({
         subject_hours: item.subject_hours,
         checkboxChecked:
           userMode === ""
-            ? item.grade! >= 60 || item.enrolment_state
+            ? item.grade! >= 60 ||
+              item.enrolment_state === "Requested" ||
+              item.enrolment_state === "Approved"
               ? true
               : false
             : item.status === "Open"
@@ -53,7 +55,9 @@ const LevelBar: FunctionComponent<LevelBarType> = ({
             : false,
         checkboxIsDisabled:
           userMode === ""
-            ? item.grade! >= 60 || item.enrolment_state
+            ? item.grade! >= 60 ||
+              item.enrolment_state === "Requested" ||
+              item.enrolment_state === "Approved"
               ? true
               : false
             : false,
@@ -92,13 +96,7 @@ const LevelBar: FunctionComponent<LevelBarType> = ({
           subjects={modifiedSubjects}
           userMode={userMode}
           Id={Id}
-        />
-      )}
-      {DropdownIsOpen && (
-        <Backdrop
-          onClick={() => {
-            changeDropdown(false);
-          }}
+          studentRequest="Requested"
         />
       )}
     </div>

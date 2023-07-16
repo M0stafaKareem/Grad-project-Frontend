@@ -1,13 +1,16 @@
-import { FunctionComponent, MouseEventHandler, useEffect } from "react";
+import { FunctionComponent, useState } from "react";
 import SubjectsHeader from "./SubjectsHeader";
 import RegisterButton from "./RegisterButton";
 import styles from "./Menu.module.css";
 import SubjectDetails from "./SubjectDetails";
 import { PushDataService } from "../../../service/pushData";
+import Backdrop from "../../Backdrop";
 
 type MenuType = {
+  modifiedStyles?: {};
   closeDropdown: Function;
   onSubmitFeedback: Function;
+  studentRequest?: string;
   userMode?: string;
   Id?: number;
   subjects?: any;
@@ -15,44 +18,18 @@ type MenuType = {
 
 const Menu: FunctionComponent<MenuType> = ({
   onSubmitFeedback,
+  modifiedStyles,
   closeDropdown,
   subjects,
+  studentRequest,
   Id,
   userMode,
 }) => {
-  useEffect(() => {
-    const scrollAnimElements = document.querySelectorAll(
-      "[data-animate-on-scroll]"
-    );
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting || entry.intersectionRatio > 0) {
-            const targetElement = entry.target;
-            targetElement.classList.add(styles.animate);
-            observer.unobserve(targetElement);
-          }
-        }
-      },
-      {
-        threshold: 0.15,
-      }
-    );
-
-    for (let i = 0; i < scrollAnimElements.length; i++) {
-      observer.observe(scrollAnimElements[i]);
-    }
-
-    return () => {
-      for (let i = 0; i < scrollAnimElements.length; i++) {
-        observer.unobserve(scrollAnimElements[i]);
-      }
-    };
-  }, []);
-
+  const [backdropIsOpen, setBackdropIsOpen] = useState(true);
   const data: any = [];
   const getCourseState = (courseState: {
     student_id?: number;
+    state?: string;
     subject_code: string;
     status?: boolean | string;
   }) => {
@@ -66,11 +43,11 @@ const Menu: FunctionComponent<MenuType> = ({
       courseState = {
         student_id: Id,
         subject_code: courseState.subject_code,
+        state: studentRequest,
       };
       data.push(courseState);
     }
   };
-
   async function regBtnHandler() {
     const p1 = new PushDataService();
     userMode === "advisors"
@@ -81,25 +58,39 @@ const Menu: FunctionComponent<MenuType> = ({
   }
 
   return (
-    <div className={styles.menu} data-animate-on-scroll>
-      <SubjectsHeader userMode={userMode} />
-      {subjects.map((item: any) => {
-        if (!item.subject_code) return;
-        else
-          return (
-            <SubjectDetails
-              key={item.subject_code}
-              subject_code={item.subject_code}
-              subject_name={item.subject_name}
-              subject_hours={item.subject_hours}
-              checkboxChecked={item.checkboxChecked}
-              checkboxIsDisabled={item.checkboxIsDisabled}
-              liftUpcourseState={getCourseState}
-            />
-          );
-      })}
-      <RegisterButton userMode={userMode} RegBtnOnClick={regBtnHandler} />
-    </div>
+    <>
+      <div className={styles.menu} style={modifiedStyles}>
+        <SubjectsHeader userMode={userMode} />
+        {subjects.map((item: any) => {
+          if (!item.subject_code) return;
+          else
+            return (
+              <SubjectDetails
+                key={item.subject_code}
+                subject_code={item.subject_code}
+                subject_name={item.subject_name}
+                subject_hours={item.subject_hours}
+                checkboxChecked={
+                  item.checkboxChecked ? item.checkboxChecked : false
+                }
+                checkboxIsDisabled={
+                  item.checkboxIsDisabled ? item.checkboxIsDisabled : false
+                }
+                liftUpcourseState={getCourseState}
+              />
+            );
+        })}
+        <RegisterButton userMode={userMode} RegBtnOnClick={regBtnHandler} />
+      </div>
+      {backdropIsOpen && (
+        <Backdrop
+          onClick={() => {
+            setBackdropIsOpen(false);
+            closeDropdown(false);
+          }}
+        />
+      )}
+    </>
   );
 };
 
