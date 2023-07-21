@@ -1,0 +1,67 @@
+.main {
+  position: absolute;
+  width: 870px;
+  height: 638px;
+  border-radius: 10px;
+  background-color: white;
+  top: 97px;
+  left: 355px;
+  font-family: Poppins;
+  text-align: left;
+  font-size: 22px;
+  color: black;
+}
+
+.table {
+  position: relative;
+  left: 17%;
+  top: 50px;
+  width: 540px;
+}
+
+.title,
+.row {
+  position: sticky;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  z-index: 2;
+  height: 40px;
+  border-radius: 10px 10px 0 0;
+  background-color: #aa7bc3;
+  padding: 0 0 0 20px;
+  font-size: 12px;
+  color: #ffffff;
+  font-family: Inter;
+}
+.row {
+  border-radius: none;
+  border-bottom: 1px solid #cccccc;
+  background-color: transparent;
+  color: #999999;
+}
+
+.GPA,
+.ID,
+.rank,
+.name {
+  display: flex;
+  flex-direction: row;
+  width: 100px;
+  height: 40px;
+  padding: 8px 16px 8px 0;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+  border-right: 1px solid #a275b9;
+}
+
+.name {
+  width: 200px;
+}
+.GPA {
+  border-radius: 10px;
+}
+.rank {
+  width: 60px;
+}

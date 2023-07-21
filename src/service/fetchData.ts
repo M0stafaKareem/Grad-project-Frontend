@@ -9,6 +9,8 @@ export class FetchDataService {
     Photo?: Blob;
     Level?: string;
     GPA?: number;
+    acceptedHours?: number;
+    passed_subjects?: number;
     subjecs: stuSubject[];
   } = {
     subjecs: [],
@@ -43,6 +45,8 @@ export class FetchDataService {
             this.studentData.Name = jsonData[0].user_name;
             this.studentData.Level = "Level ".concat(jsonData[0].student_level);
             this.studentData.GPA = jsonData[0].student_gpa;
+            this.studentData.passed_subjects = jsonData[0].passed_subjects;
+            this.studentData.acceptedHours = jsonData[0].accepted_hours;
           }
 
           //advisor case
@@ -192,6 +196,41 @@ export class FetchDataService {
     let url = Level
       ? "http://127.0.0.1:8000/api/student/grades/" + studentID + "/" + Level
       : "http://127.0.0.1:8000/api/student/grades/" + studentID;
+    return fetch(url)
+      .then((response) => response.json())
+      .then((jsonData) => {
+        return jsonData;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  public getSubjectGraphData = async (
+    subjectCode: string,
+    semester: string,
+    year: string
+  ) => {
+    let url =
+      "http://127.0.0.1:8000/api/graph/bySubject/" +
+      subjectCode +
+      "/" +
+      year +
+      "/" +
+      semester;
+    return fetch(url)
+      .then((response) => response.json())
+      .then((jsonData) => {
+        return jsonData;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  public getStudentsGraphData = async (semester: string, year: string) => {
+    let url =
+      "http://127.0.0.1:8000/api/graph/byStudents/" + year + "/" + semester;
     return fetch(url)
       .then((response) => response.json())
       .then((jsonData) => {

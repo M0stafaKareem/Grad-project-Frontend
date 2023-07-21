@@ -1,20 +1,38 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import Courses from "../grades/Courses";
 import styles from "./GPAPageTable.module.css";
-import { FetchDataService } from "../../../service/fetchData";
 
 type gradesPageType = {
-  studentID: number;
+  studentGrades: [];
 };
-const GPAPageTable: FunctionComponent<gradesPageType> = ({ studentID }) => {
+const GPAPageTable: FunctionComponent<gradesPageType> = ({ studentGrades }) => {
   const [gradesMode, setGradesMode] = useState({ first: "", second: "" });
-  const [grades, setGrades] = useState();
+  const [displayedGrades, setDisplayedGrades] = useState([]);
+  const leveledGrades: any = [];
 
-  const fetchGrades = async () => {
-    const f1 = new FetchDataService();
-    setGrades(await f1.getStudentGrades(studentID, gradesMode.second));
-    console.log(grades);
-  };
+  studentGrades.map((item) => {
+    const { subject_level } = item;
+    if (!leveledGrades[subject_level]) {
+      leveledGrades[subject_level] = [];
+    }
+    leveledGrades[subject_level].push(item);
+  });
+
+  useEffect(() => {
+    gradesMode.first === "All"
+      ? setDisplayedGrades(studentGrades)
+      : gradesMode.second === "0"
+      ? setDisplayedGrades(leveledGrades[0])
+      : gradesMode.second === "1"
+      ? setDisplayedGrades(leveledGrades[1])
+      : gradesMode.second === "2"
+      ? setDisplayedGrades(leveledGrades[2])
+      : gradesMode.second === "3"
+      ? setDisplayedGrades(leveledGrades[3])
+      : gradesMode.second === "4"
+      ? setDisplayedGrades(leveledGrades[4])
+      : null;
+  }, [gradesMode]);
 
   return (
     <div className={styles.gpaPageTable}>
@@ -40,7 +58,6 @@ const GPAPageTable: FunctionComponent<gradesPageType> = ({ studentID }) => {
             className={styles.secondBox}
             defaultValue={""}
             onChange={(e) => {
-              fetchGrades();
               setGradesMode((prev) => {
                 return { ...prev, second: e.target.value };
               });
@@ -50,19 +67,19 @@ const GPAPageTable: FunctionComponent<gradesPageType> = ({ studentID }) => {
               Select Option
             </option>
             {gradesMode.first === "Level" && (
-              <option value={0}>Level: 0 </option>
+              <option value="0">Level zero </option>
             )}
             {gradesMode.first === "Level" && (
-              <option value={1}>Level: 1 </option>
+              <option value="1">Level One </option>
             )}
             {gradesMode.first === "Level" && (
-              <option value={2}>Level: 2 </option>
+              <option value="2">Level Two </option>
             )}
             {gradesMode.first === "Level" && (
-              <option value={3}>Level: 3 </option>
+              <option value="3">Level Three </option>
             )}
             {gradesMode.first === "Level" && (
-              <option value={4}>Level: 4 </option>
+              <option value="4">Level Four </option>
             )}
             {/*             {gradesMode.first === "Semester" && (
               <option value="Fall"> Fall</option>
@@ -76,7 +93,9 @@ const GPAPageTable: FunctionComponent<gradesPageType> = ({ studentID }) => {
           </select>
         )}
       </div>
-      {(gradesMode.first === "All" || gradesMode.second) && <Courses />}
+      {(gradesMode.first === "All" || gradesMode.second) && (
+        <Courses grades={displayedGrades} gradesMode={gradesMode} />
+      )}
     </div>
   );
 };

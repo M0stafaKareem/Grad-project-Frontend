@@ -5,17 +5,29 @@ import { Progress } from "antd";
 
 type GPAcardType = {
   studentGPA?: number;
+  isFormated?: boolean;
+  modifiedStyle?: {};
+  title?: string;
+  title2?: string;
+  title2Value?: string;
 };
 
-const GPACard: FunctionComponent<GPAcardType> = ({ studentGPA = 2.4 }) => {
-  const maxRegHours = studentGPA >= 3 ? "21" : studentGPA >= 2 ? "18" : "14";
+const GPACard: FunctionComponent<GPAcardType> = ({
+  studentGPA = 3.43,
+  isFormated = true,
+
+  modifiedStyle,
+  title = "GPA",
+  title2Value = studentGPA >= 3 ? "21" : studentGPA >= 2 ? "18" : "14",
+  title2 = "Max Hours to Register",
+}) => {
   return (
-    <div className={styles.gpaCard}>
-      <h2 className={styles.text}>GPA</h2>
+    <div className={styles.gpaCard} style={modifiedStyle}>
+      <h2 className={styles.text}>{title}</h2>
       <div className={styles.GPAdiv}>
         <Progress
           type="circle"
-          format={() => `${studentGPA}`}
+          format={isFormated ? () => `${studentGPA}` : undefined}
           percent={(studentGPA / 4) * 100}
           strokeWidth={8}
           strokeColor={
@@ -26,8 +38,8 @@ const GPACard: FunctionComponent<GPAcardType> = ({ studentGPA = 2.4 }) => {
         />
       </div>
       <div className={styles.level}>
-        <p className={styles.posts}>Maximum Hours to Register</p>
-        <h3 className={styles.posts1}>{maxRegHours}</h3>
+        <p className={styles.posts}>{title2} </p>
+        <h3 className={styles.posts1}>{title2Value}</h3>
       </div>
     </div>
   );

@@ -6,7 +6,9 @@ import SearchBar1 from "../components/SearchBar1";
 import styles from "./AdvisorPage1.module.css";
 import AdvisorsAdvising from "../components/AdvisorsPageComponents/Advising/AdvisorsAdvising";
 import { useLocation } from "react-router-dom";
+import StatisticsPage from "../components/AdvisorsPageComponents/Statistics/StatisticsPage";
 import SchedulePage from "../components/AdvisorsPageComponents/Schedule/SchedulePage";
+import ApplicationsPage from "../components/AdvisorsPageComponents/Applications/ApplicationsPage";
 
 const AdvisorPage = () => {
   const [currentPage, setCurrentPage] = useState("Dashboard");
@@ -25,6 +27,10 @@ const AdvisorPage = () => {
       {currentPage === "Dashboard" && <FrameComponent />}
       {currentPage === "Advising" && <AdvisorsAdvising />}
       {currentPage === "Schedule" && <SchedulePage />}
+      {currentPage === "Applications" && <ApplicationsPage />}
+      {currentPage === "Statistics" && (
+        <StatisticsPage subjects={advisorData.subjecs.subjectStatus} />
+      )}
       {currentPage === "Grades" && (
         <GradesWindow subjects={advisorData.subjecs.subjectStatus} />
       )}

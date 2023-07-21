@@ -1,0 +1,21 @@
+.main {
+  position: relative;
+  left: 17%;
+  top: 50px;
+  width: 540px;
+  max-height: 400px;
+  overflow: scroll;
+  animation: entering 0.7s ease-in-out;
+}
+.main::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes entering {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

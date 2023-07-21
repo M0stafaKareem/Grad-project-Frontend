@@ -3,6 +3,7 @@ import StatisticsField from "./StatisticsField";
 import styles from "./Dashboard.module.css";
 
 function Dashboard(props) {
+  console.log(props.studentData);
   return (
     <div className={styles.statistics}>
       <section className={styles.frameSection}>
@@ -13,23 +14,23 @@ function Dashboard(props) {
         <div className={styles.frameDiv}>
           <StatisticsField
             stateIcon="Absence.svg"
-            stateLabel="Absence"
-            statePercent="10%"
+            stateLabel="Student ID"
+            statePercent={props.studentData.Id}
           />
           <StatisticsField
             stateIcon="PassedSubjects.svg"
             stateLabel="Passed Subjects"
-            statePercent="64%"
+            statePercent={props.studentData.passed_subjects}
           />
           <StatisticsField
             stateIcon="AcceptedHours.svg"
             stateLabel="Accepted Hours"
-            statePercent="66%"
+            statePercent={props.studentData.acceptedHours}
           />
           <StatisticsField
             stateIcon="checkcirclefill.svg"
             stateLabel="Total Registered Subjects"
-            statePercent="5%"
+            statePercent="5"
           />
         </div>
       </section>

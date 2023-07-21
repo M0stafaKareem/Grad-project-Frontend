@@ -27,7 +27,7 @@ export class PushDataService {
   };
 
   public async uploadXlsGradeFile(data: any) {
-    const url = "http://127.0.0.1:8000/api/uploadCSV";
+    const url = "http://127.0.0.1:8000/api/advisor/uploadCSV";
     await fetch(url, {
       method: "POST",
       body: data,
@@ -50,13 +50,19 @@ export class PushDataService {
 
   public async updateRegistrationStatus(
     submition: boolean,
-    dropablitiy: boolean
+    dropablitiy: boolean,
+    year: string,
+    semester: string
   ) {
     const url =
       "http://127.0.0.1:8000/api/subject/updateRegestrationStatus/" +
       submition +
       "/" +
-      dropablitiy;
+      dropablitiy +
+      "/" +
+      year +
+      "/" +
+      semester;
     await fetch(url, {
       method: "POST",
     });

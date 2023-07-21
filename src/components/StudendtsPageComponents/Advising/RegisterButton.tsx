@@ -3,14 +3,14 @@ import styles from "./RegisterButton.module.css";
 
 type RegBtnType = {
   RegBtnOnClick?: MouseEventHandler;
-  userMode?: string;
+  userMode?: "" | "advisors" | undefined;
   btnLabel?: string;
   modifiedStyle?: {};
 };
 const RegisterButton: FunctionComponent<RegBtnType> = ({
   userMode = "",
   RegBtnOnClick,
-  btnLabel = "Register",
+  btnLabel = userMode === "" ? "Register" : "Submit",
   modifiedStyle,
 }) => {
   const styling =

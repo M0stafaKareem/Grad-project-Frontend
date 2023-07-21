@@ -1,0 +1,38 @@
+.main {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+  padding: 20px;
+  border-radius: var(--br-md);
+  white-space: nowrap;
+  background-color: #ffffff;
+  width: 876px;
+  height: 55px;
+  overflow: hidden;
+  align-items: center;
+  text-align: center;
+  font-size: var(--body1-size);
+  color: var(--gray1);
+  font-family: var(--body1);
+}
+.mainParagraph {
+  font-family: var(--font-poppins);
+  width: 250px;
+  text-align: left;
+  color: var(--color-orange);
+  height: 20px;
+}
+.input {
+  outline: none;
+  text-align: center;
+  height: 30px;
+  width: 100px;
+  background-color: #f4f7fc;
+}
+.btn {
+  position: absolute;
+  left: 820px;
+  width: 40px;
+  padding: 15px;
+}

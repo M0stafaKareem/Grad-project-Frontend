@@ -1,0 +1,50 @@
+.followers {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  line-height: 20px;
+  font-weight: 700;
+  font-family: inherit;
+  mix-blend-mode: normal;
+}
+.ah {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.posts {
+  position: relative;
+  line-height: 20px;
+  opacity: 0.4;
+  mix-blend-mode: normal;
+}
+.ps {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: inherit;
+  font-family: inherit;
+}
+.ahGroup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: #000;
+}
+.ahParent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 35px;
+  text-align: left;
+  font-size: 16px;
+  color: #ff3a29;
+  font-family: "DM Sans";
+}

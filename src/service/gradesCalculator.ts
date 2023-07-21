@@ -1,7 +1,10 @@
 export class gradesCalculator {
-  public getLetteredScore(totalMarks: number, isFailed: boolean = false) {
-    const letterScore =
-      totalMarks >= 97 && !isFailed
+  public getLetteredScore(
+    totalMarks: number | null,
+    isFailed: boolean = false
+  ) {
+    const letterScore = totalMarks
+      ? totalMarks >= 97 && !isFailed
         ? { letter: "A+", points: 4.3 }
         : totalMarks >= 93 && !isFailed
         ? { letter: "A", points: 4 }
@@ -23,24 +26,30 @@ export class gradesCalculator {
         ? { letter: "D+", points: 1.3 }
         : totalMarks >= 60
         ? { letter: "D", points: 1 }
-        : { letter: "F", points: 0 };
+        : { letter: "F", points: 0 }
+      : { letter: null, points: null };
 
     return letterScore;
   }
 
-  private getCoursePoints(
-    totalMarks: number,
+  public getCoursePoints(
+    totalMarks: number | null,
     courseCreditHours: number,
     isFailed: boolean = false
   ) {
-    const points =
-      courseCreditHours * this.getLetteredScore(totalMarks, isFailed).points;
+    const points = totalMarks
+      ? courseCreditHours * this.getLetteredScore(totalMarks, isFailed).points!
+      : null;
     return points;
   }
 
   public getCGPA(
     gradesArray: [
-      { courseGrades: number; courseCreditHours: number; isFailed?: boolean }
+      {
+        courseGrades: number | null;
+        courseCreditHours: number;
+        isFailed?: boolean;
+      }
     ]
   ) {
     let totalPoints: number;
@@ -48,12 +57,14 @@ export class gradesCalculator {
     let totalHours: number;
 
     gradesArray.forEach((course) => {
-      totalHours += course.courseCreditHours;
-      totalPoints += this.getCoursePoints(
-        course.courseGrades,
-        course.courseCreditHours,
-        course.isFailed
-      );
+      if (course.courseGrades) {
+        totalHours += course.courseCreditHours;
+        totalPoints += this.getCoursePoints(
+          course.courseGrades,
+          course.courseCreditHours,
+          course.isFailed
+        )!;
+      }
 
       CGPA = totalPoints / totalHours;
       return CGPA;

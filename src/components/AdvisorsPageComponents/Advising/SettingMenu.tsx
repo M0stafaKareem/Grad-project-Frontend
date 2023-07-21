@@ -10,6 +10,8 @@ type SettingMenuType = {
   regestirationStatus: {
     submition: string;
     dropablitiy: string;
+    semester: string;
+    year: string;
   };
 };
 
@@ -22,15 +24,21 @@ const SettingMenu: FunctionComponent<SettingMenuType> = ({
     regestirationStatus.submition === "true" ? true : false;
   const dropCheckBoxInitialState =
     regestirationStatus.dropablitiy === "true" ? true : false;
-    
+
   const [regCheckbox, setRegCheckbox] = useState(regCheckBoxInitialState);
   const [dropCheckbox, setDropCheckbox] = useState(dropCheckBoxInitialState);
+  const [semester, setSemester] = useState(regestirationStatus.semester);
+  const [semesterYear, setSemesterYear] = useState(regestirationStatus.year);
 
   function doneBtnOnClick(): void {
-    pushData.updateRegistrationStatus(regCheckbox, dropCheckbox);
+    pushData.updateRegistrationStatus(
+      regCheckbox,
+      dropCheckbox,
+      semesterYear,
+      semester
+    );
     closeMenuHandler(false);
   }
-
   return (
     <>
       <Backdrop onClick={() => closeMenuHandler(false)} />
@@ -44,9 +52,22 @@ const SettingMenu: FunctionComponent<SettingMenuType> = ({
                 setRegCheckbox(!regCheckbox);
               }}
             />
-            Registration
+            Registration Status
           </div>
-          <input type="date" className={styles.controlInput} />
+          <select
+            className={styles.controlInput}
+            value={semester}
+            onChange={(e) => {
+              setSemester(e.target.value);
+            }}
+          >
+            <option value="" disabled hidden>
+              Current Semester
+            </option>
+            <option value="Fall">Fall</option>
+            <option value="Spring">Spring</option>
+            <option value="Summer">Summer</option>
+          </select>
         </div>
         <div className={styles.controlRow}>
           <div className={styles.controlLabel}>
@@ -57,9 +78,15 @@ const SettingMenu: FunctionComponent<SettingMenuType> = ({
                 setDropCheckbox(!dropCheckbox);
               }}
             />
-            Dropablitiy
+            Dropping Status
           </div>
-          <input type="date" className={styles.controlInput} />
+          <input
+            type="text"
+            onChange={(e) => setSemesterYear(e.target.value)}
+            className={styles.controlInput}
+            placeholder="Educational Year"
+            defaultValue={semesterYear}
+          />
         </div>
         <RegisterButton
           RegBtnOnClick={doneBtnOnClick}

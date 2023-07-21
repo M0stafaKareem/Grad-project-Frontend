@@ -82,8 +82,6 @@ const GradesWindow = (props) => {
               />
             )}
             <Cells subjects={props.subjects} passInputArray={setInputData} />
-            {/*             <h2 className={styles.submitted}>Submitted</h2>
-             */}
             <label htmlFor="file" className={styles.uploadACsv}>
               Upload a xls File
             </label>

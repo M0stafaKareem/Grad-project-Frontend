@@ -54,6 +54,10 @@ function Advising(props) {
       ? "18"
       : "14";
 
+  const par =
+    subjecs[1] && subjecs[1].dropablitiy === "true" ? "Drop" : "Withdraw";
+  const regIsOpen =
+    subjecs[1] && subjecs[1].submition === "true" ? true : false;
   return (
     <div className={styles.levelsDiv}>
       {doneIsOpen && (
@@ -69,36 +73,57 @@ function Advising(props) {
         registerationMax={maxRegHours}
         component={registeredHours}
       />
-      <LevelBar
-        onSubmitFeedback={setDoneIsOpen}
-        level="Level 0"
-        Id={props.studentData.Id}
-        subjects={leveledSubjects[0]}
-      />
-      <LevelBar
-        onSubmitFeedback={setDoneIsOpen}
-        level="Level 1"
-        Id={props.studentData.Id}
-        subjects={leveledSubjects[1]}
-      />
-      <LevelBar
-        level="Level 2"
-        onSubmitFeedback={setDoneIsOpen}
-        Id={props.studentData.Id}
-        subjects={leveledSubjects[2]}
-      />
-      <LevelBar
-        onSubmitFeedback={setDoneIsOpen}
-        level="Level 3"
-        Id={props.studentData.Id}
-        subjects={leveledSubjects[3]}
-      />
-      <LevelBar
-        onSubmitFeedback={setDoneIsOpen}
-        level="Level 4"
-        Id={props.studentData.Id}
-        subjects={leveledSubjects[4]}
-      />
+      {regIsOpen && (
+        <>
+          <LevelBar
+            onSubmitFeedback={setDoneIsOpen}
+            level="Level 0"
+            Id={props.studentData.Id}
+            subjects={leveledSubjects[0]}
+          />
+          <LevelBar
+            onSubmitFeedback={setDoneIsOpen}
+            level="Level 1"
+            Id={props.studentData.Id}
+            subjects={leveledSubjects[1]}
+          />
+          <LevelBar
+            level="Level 2"
+            onSubmitFeedback={setDoneIsOpen}
+            Id={props.studentData.Id}
+            subjects={leveledSubjects[2]}
+          />
+          <LevelBar
+            onSubmitFeedback={setDoneIsOpen}
+            level="Level 3"
+            Id={props.studentData.Id}
+            subjects={leveledSubjects[3]}
+          />
+          <LevelBar
+            onSubmitFeedback={setDoneIsOpen}
+            level="Level 4"
+            Id={props.studentData.Id}
+            subjects={leveledSubjects[4]}
+          />
+        </>
+      )}
+      {!regIsOpen && (
+        <div
+          style={{
+            width: "500px",
+            height: "250px",
+            fontSize: "20px",
+            fontFamily: "Poppings",
+            backgroundColor: "white",
+            borderRadius: "15px",
+            margin: "120px 0 100px 200px ",
+            padding: "100px",
+            textAlign: "center",
+          }}
+        >
+          Registration Season Has Ended, Better Luck Next Time
+        </div>
+      )}
       {editRegMenuIsOpen && (
         <Menu
           closeDropdown={setEditRegMenuIsOpen}
@@ -110,7 +135,7 @@ function Advising(props) {
         />
       )}
       <RegisterButton
-        btnLabel="Withdrawal"
+        btnLabel={par}
         modifiedStyle={{ top: "37px", marginBottom: "0" }}
         RegBtnOnClick={async () => {
           setData(

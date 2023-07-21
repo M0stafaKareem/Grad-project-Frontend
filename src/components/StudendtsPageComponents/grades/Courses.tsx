@@ -3,37 +3,51 @@ import CoursesHeader from "../grades/CoursesHeader";
 import CourseDetails from "../grades/CourseDetails";
 import SemGpa from "../grades/SemGpa";
 import styles from "./Courses.module.css";
+import { gradesCalculator } from "../../../service/gradesCalculator";
 
-const Courses: FunctionComponent = () => {
+type CoursesType = {
+  gradesMode: { first: string; second: string };
+  grades: any;
+};
+
+const Courses: FunctionComponent<CoursesType> = ({ grades, gradesMode }) => {
+  let totalPoints = 0;
+  let totalCreditHours = 0;
+  let cGPA;
+  const helper = new gradesCalculator();
+
+  const currentSem = gradesMode.second
+    ? "Level ".concat(gradesMode.second)
+    : "Overall ";
+  {
+    grades &&
+      grades.map((item: any) => {
+        if (item.grade) {
+          totalPoints += helper.getCoursePoints(
+            item.grade,
+            item.subject_hours
+          )!;
+          totalCreditHours += item.subject_hours;
+        }
+      });
+    cGPA = (totalPoints / totalCreditHours).toPrecision(3);
+  }
+
   return (
     <div className={styles.pages}>
       <CoursesHeader />
-      <CourseDetails
-        courseName="Control system design"
-        courseGrade="B+"
-        courseCredits="84"
-      />
-      <CourseDetails
-        courseName="Digital Communication"
-        courseGrade="D+"
-        courseCredits="64"
-      />
-      <CourseDetails
-        courseName="Database System"
-        courseGrade="B+"
-        courseCredits="84"
-      />
-      <CourseDetails
-        courseName="Antennas"
-        courseGrade="A+"
-        courseCredits="98"
-      />
-      <CourseDetails
-        courseName="Machine learning"
-        courseGrade="B"
-        courseCredits="80"
-      />
-      <SemGpa semGPA="2.84" />
+      {grades &&
+        grades.map((item: any) => {
+          return (
+            <CourseDetails
+              courseName={item.subject_name}
+              courseGrade={item.score}
+              courseCredits={item.grade}
+            />
+          );
+        })}
+
+      <SemGpa currentSemester={currentSem} semGPA={cGPA.toString()} />
     </div>
   );
 };

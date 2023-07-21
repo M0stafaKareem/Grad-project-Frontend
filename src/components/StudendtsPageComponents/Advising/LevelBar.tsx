@@ -6,7 +6,7 @@ import Menu from "./Menu";
 
 type LevelBarType = {
   onSubmitFeedback: () => {};
-  userMode?: string;
+  userMode?: "" | "advisors";
   level?: string;
   leftTitle?: string;
   rightTitle?: string;
@@ -33,6 +33,7 @@ const LevelBar: FunctionComponent<LevelBarType> = ({
     item.status === "Open" ? Opened++ : null;
     userMode === ""
       ? item.enrolment_state === "Requested" ||
+        item.enrolment_state === "Approved" ||
         item.enrolment_state === "Finished"
         ? registered++
         : null
@@ -47,6 +48,7 @@ const LevelBar: FunctionComponent<LevelBarType> = ({
           userMode === ""
             ? item.grade! >= 60 ||
               item.enrolment_state === "Requested" ||
+              item.enrolment_state === "Finished" ||
               item.enrolment_state === "Approved"
               ? true
               : false
@@ -57,6 +59,7 @@ const LevelBar: FunctionComponent<LevelBarType> = ({
           userMode === ""
             ? item.grade! >= 60 ||
               item.enrolment_state === "Requested" ||
+              item.enrolment_state === "Finished" ||
               item.enrolment_state === "Approved"
               ? true
               : false
@@ -77,13 +80,14 @@ const LevelBar: FunctionComponent<LevelBarType> = ({
           <h2 className={styles.level0}>{level}</h2>
           <h3 className={styles.registered}>{leftTitle}</h3>
           <h3 className={styles.h3}>
-            {userMode === ""
+            {(userMode === ""
               ? registered.toString().concat("/" + subjects?.length)
-              : Opened.toString().concat("/" + subjects?.length)}
+              : Opened.toString().concat("/" + subjects?.length)
+            ).toString()}
           </h3>
           <h3 className={styles.gpa}>{rightTitle}</h3>
           <h3 className={styles.h31}>
-            {userMode === "" ? Opened : subjects?.length! - Opened}
+            {(userMode === "" ? Opened : subjects?.length! - Opened).toString()}
           </h3>
           <img className={styles.optionsIcon} src="../options.svg" />
           <img className={styles.optionsIcon1} src="../options1.svg" />

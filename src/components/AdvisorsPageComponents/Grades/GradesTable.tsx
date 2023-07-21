@@ -43,7 +43,7 @@ const GradesTable: FunctionComponent<GradesTableType> = ({
               rowIndex={++rowCounter}
               updatingFunction={setUpdatingData}
               isStudent={isStudentMode}
-              key={item.subject_name}
+              key={item.subject_name + item.student_id}
               studentID={
                 isStudentMode ? studentData.student_id : item.student_id
               }
@@ -57,6 +57,7 @@ const GradesTable: FunctionComponent<GradesTableType> = ({
               classWork={item.classwork}
               final={item.final}
               examState={item.exam_state}
+              regState={item.state}
               grade={item.grade}
               score={item.score}
             />

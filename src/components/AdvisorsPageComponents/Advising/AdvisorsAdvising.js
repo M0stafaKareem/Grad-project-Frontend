@@ -6,10 +6,12 @@ import { useEffect, useState } from "react";
 import Done from "../../General/Done";
 import RegisterButton from "../../StudendtsPageComponents/Advising/RegisterButton";
 import SettingMenu from "./SettingMenu";
+import LoadingScreen from "../../loadingScreen/LoadingScreen";
 
 function AdvisorsAdvising() {
   const [subjecs, setSubjecs] = useState([]);
   const [doneIsOpen, setDoneIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [settingsMenuIsOpen, setSettingMenuIsOpen] = useState(false);
   const [regestiration, setRegestiration] = useState(false);
   const SubjectsService = new FetchDataService();
@@ -28,9 +30,11 @@ function AdvisorsAdvising() {
 
   const getSubjects = async () => {
     try {
+      setIsLoading(true);
       const jsonData = await SubjectsService.getAdvSubjects();
       setSubjecs(jsonData.subjectStatus);
       setRegestiration(jsonData.regestirationStatus[0]);
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -56,9 +60,9 @@ function AdvisorsAdvising() {
       openedHours += item.subject_hours;
     }
   });
-
   return (
     <div className={styles.levelsDiv}>
+      {isLoading && <LoadingScreen />}
       {settingsMenuIsOpen && (
         <SettingMenu
           regestirationStatus={regestiration}
@@ -79,46 +83,20 @@ function AdvisorsAdvising() {
         registerationMax={openedCourses}
         component={openedHours}
       />
-      <LevelBar
-        onSubmitFeedback={setDoneIsOpen}
-        subjects={leveledSubjects[0]}
-        userMode="advisors"
-        level="level 0"
-        leftTitle="Opened"
-        rightTitle="remaining"
-      />
-      <LevelBar
-        onSubmitFeedback={setDoneIsOpen}
-        subjects={leveledSubjects[1]}
-        userMode="advisors"
-        level="level 1"
-        leftTitle="Opened"
-        rightTitle="remaining"
-      />
-      <LevelBar
-        onSubmitFeedback={setDoneIsOpen}
-        subjects={leveledSubjects[2]}
-        userMode="advisors"
-        level="level 2"
-        leftTitle="Opened"
-        rightTitle="remaining"
-      />
-      <LevelBar
-        subjects={leveledSubjects[3]}
-        onSubmitFeedback={setDoneIsOpen}
-        userMode="advisors"
-        level="level 3"
-        leftTitle="Opened"
-        rightTitle="remaining"
-      />
-      <LevelBar
-        onSubmitFeedback={setDoneIsOpen}
-        subjects={leveledSubjects[4]}
-        userMode="advisors"
-        level="level 4"
-        leftTitle="Opened"
-        rightTitle="remaining"
-      />
+      {leveledSubjects[0] &&
+        Object.values(leveledSubjects).map((item) => {
+          return (
+            <LevelBar
+              onSubmitFeedback={setDoneIsOpen}
+              subjects={item}
+              userMode="advisors"
+              level={"Level " + item[0].subject_level}
+              key={item[0].subject_level}
+              leftTitle="Opened"
+              rightTitle="remaining"
+            />
+          );
+        })}
 
       <div className={styles.deadlineCheckbox}>
         <p className={styles.label}>{paragraph}</p>

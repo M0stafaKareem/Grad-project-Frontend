@@ -10,7 +10,7 @@ type TableRowType = {
   studentName?: string;
   semester?: string;
   semesterDate?: string;
-
+  regState?: string;
   grade: number;
   score: string;
   subjectName: string;
@@ -23,6 +23,7 @@ type TableRowType = {
 const TableRow: FunctionComponent<TableRowType> = ({
   isStudent,
   rowIndex,
+  regState,
   updatingFunction,
   semester,
   semesterDate,
@@ -36,6 +37,8 @@ const TableRow: FunctionComponent<TableRowType> = ({
   grade,
   score,
 }) => {
+  const rowIsDisabled =
+    regState === "Dropped" || regState === "Withdrawed" ? true : false;
   const [updatingData, setUpdatingDAta] = useState({
     semester: semester,
     semesterDate: semesterDate,
@@ -45,6 +48,7 @@ const TableRow: FunctionComponent<TableRowType> = ({
     courseCode: subjectCode,
     classWork: classWork,
     final: final,
+    state: rowIsDisabled ? regState : "Finished",
     examState: examState,
     grade: grade,
     score: score,
@@ -54,7 +58,10 @@ const TableRow: FunctionComponent<TableRowType> = ({
   useEffect(() => {
     updatingFunction((prev: any) => {
       prev[rowIndex] = updatingData;
-      prev[rowIndex].grade = +updatingData.classWork + +updatingData.final;
+      prev[rowIndex].grade =
+        updatingData.classWork && updatingData.final
+          ? +updatingData.classWork + +updatingData.final
+          : null;
       prev[rowIndex].score = helper.getLetteredScore(
         prev[rowIndex].grade
       ).letter;
@@ -66,6 +73,7 @@ const TableRow: FunctionComponent<TableRowType> = ({
     <div className={styles.tableRow}>
       {isStudent ? (
         <select
+          disabled={rowIsDisabled}
           className={styles.tableComponents}
           defaultValue={""}
           onChange={(e) => {
@@ -87,6 +95,7 @@ const TableRow: FunctionComponent<TableRowType> = ({
       ) : (
         <input
           className={styles.tableComponents}
+          disabled={rowIsDisabled}
           type="number"
           defaultValue={studentID}
           onChange={(e) => {
@@ -102,6 +111,7 @@ const TableRow: FunctionComponent<TableRowType> = ({
       <input
         className={styles.tableComponents1}
         type="text"
+        disabled={rowIsDisabled}
         defaultValue={isStudent ? semesterDate : studentName}
         onChange={(e) => {
           setUpdatingDAta((prev: any) => {
@@ -114,6 +124,7 @@ const TableRow: FunctionComponent<TableRowType> = ({
       />
       <input
         className={styles.tableComponents2}
+        disabled={rowIsDisabled}
         onChange={(e) => {
           setUpdatingDAta((prev: any) => {
             return {
@@ -127,6 +138,7 @@ const TableRow: FunctionComponent<TableRowType> = ({
       />
       <input
         className={styles.tableComponents3}
+        disabled={rowIsDisabled}
         type="number"
         max={50}
         min={0}
@@ -142,6 +154,7 @@ const TableRow: FunctionComponent<TableRowType> = ({
       />
       <input
         className={styles.tableComponents4}
+        disabled={rowIsDisabled}
         type="number"
         max={50}
         min={0}
@@ -161,11 +174,18 @@ const TableRow: FunctionComponent<TableRowType> = ({
         </h2>
       </div>
       <div className={styles.tableComponents6}>
-        <h2 className={styles.title}>{score}</h2>
+        <h2 className={styles.title}>
+          {
+            helper.getLetteredScore(
+              +updatingData.classWork + +updatingData.final
+            ).letter
+          }
+        </h2>
       </div>
       <select
         className={styles.pass}
         defaultValue={""}
+        disabled={rowIsDisabled}
         onChange={(e) => {
           setUpdatingDAta((prev: any) => {
             return {
@@ -176,14 +196,20 @@ const TableRow: FunctionComponent<TableRowType> = ({
         }}
       >
         <option value="" disabled hidden>
-          {examState}
+          {regState === "Dropped" || regState === "Withdrawed"
+            ? regState
+            : examState}
         </option>
         <option value="Passed">Passed</option>
-        <option value="Dropped">Dropped</option>
+        <option value="Dropped" hidden>
+          Dropped
+        </option>
         <option value="Failed">Failed</option>
         <option value="Abcent">Abcent</option>
         <option value="Cheated">Cheated</option>
-        <option value="Withdrawed">Withdrawed</option>
+        <option value="Withdrawed" hidden>
+          Withdrawed
+        </option>
       </select>
     </div>
   );

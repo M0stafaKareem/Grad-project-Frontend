@@ -21,9 +21,9 @@ const StudentPage1: FunctionComponent = () => {
         setCurrentState={setCurrentPage}
         userData={studentData}
       />
-      {currentPage === "Grades" && <GradesComp studentData={studentData} />}
       {currentPage === "Dashboard" && <Dashboard studentData={studentData} />}
       {currentPage === "Advising" && <Advising studentData={studentData} />}
+      {currentPage === "Grades" && <GradesComp studentData={studentData} />}
     </main>
   );
 };

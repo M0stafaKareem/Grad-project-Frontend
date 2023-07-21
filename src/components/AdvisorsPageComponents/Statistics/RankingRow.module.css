@@ -1,0 +1,42 @@
+.main {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  z-index: 1;
+  height: 40px;
+  border-radius: 10px 10px 0 0;
+  padding: 0 0 0 20px;
+  font-size: 12px;
+  color: #ffffff;
+  font-family: Inter;
+  border-radius: none;
+  border-bottom: 1px solid #cccccc;
+  background-color: transparent;
+  color: #999999;
+}
+
+.GPA,
+.ID,
+.rank,
+.name {
+  display: flex;
+  flex-direction: row;
+  width: 100px;
+  height: 40px;
+  padding: 8px 16px 8px 0;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+  border-right: 1px solid #a275b9;
+}
+
+.name {
+  width: 200px;
+}
+.GPA {
+  border: none;
+}
+.rank {
+  width: 60px;
+}

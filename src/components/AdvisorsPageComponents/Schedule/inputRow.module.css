@@ -1,0 +1,30 @@
+.frameChild {
+  width: 100px;
+  height: 28px;
+  display: flex;
+  flex-direction: row;
+  padding: 5px 0px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+}
+.frameItem {
+  font-family: Poppins;
+  font-size: 12px;
+  background-color: transparent;
+  width: 100px;
+  height: 28px;
+  display: flex;
+  padding: 5px 0px;
+  text-align: center;
+}
+
+.frameParent {
+  padding: 0px 50px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  text-align: center;
+  gap: 100px;
+}

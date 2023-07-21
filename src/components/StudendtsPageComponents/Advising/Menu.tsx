@@ -11,7 +11,7 @@ type MenuType = {
   closeDropdown: Function;
   onSubmitFeedback: Function;
   studentRequest?: string;
-  userMode?: string;
+  userMode?: "" | "advisors";
   Id?: number;
   subjects?: any;
 };

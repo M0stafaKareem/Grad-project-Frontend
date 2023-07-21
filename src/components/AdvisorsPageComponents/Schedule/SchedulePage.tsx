@@ -1,31 +1,32 @@
 import RegisterButton from "../../StudendtsPageComponents/Advising/RegisterButton";
-import RegisterationHeader from "../../StudendtsPageComponents/Advising/RegisterationHeader";
+import InputHeader from "./InputHeader";
 import styles from "./Schedule.module.css";
+import SlotSelect from "./SlotSelect";
 
 const SchedulePage = () => {
   return (
     <div className={styles.main}>
-      <RegisterationHeader
-        leftTitle="Select Max Number of Students Per Group"
-        component=""
-        rightTitle="Students"
+      <InputHeader
+        paragragh="Select max number of student per group"
+        unit={"Student"}
+        hasBtn={false}
       />
-      <RegisterationHeader
-        leftTitle="Select the number of time Slots"
-        component=""
-        rightTitle="Slots"
+      <InputHeader
+        paragragh="Select the number of time slots"
+        unit={"Slots"}
+        type="3-columns"
       />
-      <RegisterationHeader
-        leftTitle="Select Available Doctors for Each Slot"
-        component=""
-        registerationMax=""
-        rightTitle=""
+      <InputHeader
+        paragragh="Select available doctors for each slot"
+        unit="Doctors"
+        type="2-columns"
+        hasInput={true}
       />
-      <RegisterationHeader
-        leftTitle="Select Available Lecture Rooms for Each Slot"
-        component=""
-        registerationMax=""
-        rightTitle=""
+      <InputHeader
+        paragragh="Select available lecture Rooms for each Slot"
+        hasInput={false}
+        type="2-columns"
+        unit={null}
       />
       <RegisterButton userMode="advisors" btnLabel="Confirm" />
     </div>

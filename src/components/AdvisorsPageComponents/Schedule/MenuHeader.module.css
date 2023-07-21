@@ -1,0 +1,50 @@
+.timeSlot {
+  position: relative;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+.timeSlotWrapper {
+  margin: 0;
+  width: 100px;
+  display: flex;
+  flex-direction: row;
+  padding: 0px 50px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  font-size: inherit;
+  font-family: inherit;
+}
+.fromWrapper {
+  margin: 0;
+  width: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: inherit;
+  font-family: inherit;
+}
+.to {
+  position: relative;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  flex-shrink: 0;
+}
+.frameParent1 {
+  position: relative;
+  background-color: #eee5f3;
+  white-space: nowrap;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  padding: 10px 50px;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 100px;
+  color: #0c1755;
+}

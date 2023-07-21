@@ -1,0 +1,28 @@
+.photoIcon {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+}
+.name {
+  position: relative;
+  font-weight: 500;
+}
+.id {
+  position: relative;
+  font-size: 14px;
+  line-height: 20px;
+  opacity: 0.4;
+  mix-blend-mode: normal;
+}
+.photoParent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 5px;
+  text-align: left;
+  font-size: 22px;
+  color: #000;
+  font-family: "DM Sans";
+}
