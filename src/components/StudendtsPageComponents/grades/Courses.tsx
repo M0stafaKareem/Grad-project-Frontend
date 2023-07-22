@@ -6,7 +6,12 @@ import styles from "./Courses.module.css";
 import { gradesCalculator } from "../../../service/gradesCalculator";
 
 type CoursesType = {
-  gradesMode: { first: string; second: string };
+  gradesMode: {
+    first: string;
+    level: string;
+    semester: string;
+    year: string;
+  };
   grades: any;
 };
 
@@ -16,8 +21,8 @@ const Courses: FunctionComponent<CoursesType> = ({ grades, gradesMode }) => {
   let cGPA;
   const helper = new gradesCalculator();
 
-  const currentSem = gradesMode.second
-    ? "Level ".concat(gradesMode.second)
+  const currentSem = gradesMode.level
+    ? "Level ".concat(gradesMode.level)
     : "Overall ";
   {
     grades &&
@@ -40,6 +45,7 @@ const Courses: FunctionComponent<CoursesType> = ({ grades, gradesMode }) => {
         grades.map((item: any) => {
           return (
             <CourseDetails
+              key={item.subject_name}
               courseName={item.subject_name}
               courseGrade={item.score}
               courseCredits={item.grade}

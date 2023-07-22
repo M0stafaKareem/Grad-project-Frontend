@@ -3,11 +3,9 @@
   position: relative;
   letter-spacing: 0.3px;
   line-height: 23px;
-  font-family: inherit;
   display: flex;
   color: white;
   align-items: center;
-  flex-shrink: 0;
 }
 .homepageDesign {
   margin: 0;
@@ -116,7 +114,7 @@
 .courseoverview {
   display: flex;
   border-radius: 20px;
-  height: 150px;
+  height: 170px;
   background-color: #c8b0d4;
   box-shadow: 0 4px 15px rgba(34, 0, 52, 0.5);
   flex-direction: row;
@@ -129,6 +127,6 @@
 }
 .courseoverview:hover {
   background-color: #aa7bc3;
-  height: 200px;
+  height: 210px;
   padding-top: 20px;
 }

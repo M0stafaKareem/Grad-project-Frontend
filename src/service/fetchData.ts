@@ -64,20 +64,6 @@ export class FetchDataService {
     return this.privID;
   };
 
-  /* public getStudentdata = async () => {
-    let url = "http://127.0.0.1:8000/api/data/" + this.studentID;
-    await fetch(url)
-      .then((response) => response.json())
-      .then((jsonData) => {
-        this.mainData.studentName = jsonData[0].user_name;
-        this.mainData.studentLevel = jsonData[0].student_level;
-        this.mainData.studentGPA = jsonData[0].student_gpa;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }; */
-
   public getStudentImage = async (studentID: number) => {
     let url = "http://127.0.0.1:8000/api/student/Image/" + studentID;
     try {
@@ -142,17 +128,29 @@ export class FetchDataService {
       });
   };
 
-  public getStudentGradesPageData = async (studentID: number) => {
+  private studentGradesPageData: {
+    photo?: Blob;
+    data?: any;
+  } = {};
+
+  private getStudentGradesData = async (studentID: number) => {
     let url = "http://127.0.0.1:8000/api/advisor/studentData/" + studentID;
     return fetch(url)
       .then((response) => response.json())
       .then((jsonData) => {
-        return jsonData;
+        this.studentGradesPageData.data = jsonData;
       })
       .catch((error) => {
         console.error(error);
       });
   };
+
+  public async getStudentGradesPageData(studentID: number) {
+    await this.getStudentGradesData(studentID);
+    this.studentGradesPageData.photo = await this.getStudentImage(studentID);
+
+    return this.studentGradesPageData;
+  }
 
   public getSubjectGradesPageData = async (
     subjectCode: string,
@@ -240,4 +238,37 @@ export class FetchDataService {
         console.error(error);
       });
   };
+  public getAdvisorDashboardData = async () => {
+    let url = "http://127.0.0.1:8000/api/advisor/enrolment/getRequestCount";
+    return fetch(url)
+      .then((response) => response.json())
+      .then((jsonData) => {
+        return jsonData;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  public async getApplicationsData() {
+    let url = "http://127.0.0.1:8000/api/advisor/enrolment/getStudentsRequests";
+    return fetch(url)
+      .then((response) => response.json())
+      .then((jsonData) => {
+        if (Array.isArray(jsonData) && jsonData.length > 0) {
+          return Promise.all(
+            jsonData.map(async (item) => {
+              const id = item.student_id; // Assuming student_id is a property in the object
+              const photo = await this.getStudentImage(id);
+              return { ...item, studentPhoto: photo };
+            })
+          );
+        } else {
+          throw new Error("No data or invalid data format in the response");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 }

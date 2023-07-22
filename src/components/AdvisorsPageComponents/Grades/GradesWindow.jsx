@@ -1,4 +1,3 @@
-import RegisterB from "./RegisterB";
 import Cells from "./Cells";
 import styles from "./GradesWindow.module.css";
 import { PushDataService } from "../../../service/pushData";
@@ -119,11 +118,14 @@ const GradesWindow = (props) => {
           semester={inputData.isStudent ? undefined : inputData.semester}
           year={inputData.isStudent ? undefined : inputData.semesterDate}
           tableData={
-            inputData.isStudent ? gradesPageData.subjectsData : gradesPageData
+            inputData.isStudent
+              ? gradesPageData.data.subjectsData
+              : gradesPageData
           }
           studentData={
-            inputData.isStudent ? gradesPageData.personalData[0] : null
+            inputData.isStudent ? gradesPageData.data.personalData[0] : null
           }
+          studentPhoto={inputData.isStudent ? gradesPageData.photo : undefined}
         />
       )}
     </>

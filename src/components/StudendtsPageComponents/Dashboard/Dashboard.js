@@ -3,13 +3,16 @@ import StatisticsField from "./StatisticsField";
 import styles from "./Dashboard.module.css";
 
 function Dashboard(props) {
-  console.log(props.studentData);
   return (
     <div className={styles.statistics}>
       <section className={styles.frameSection}>
         <div className={styles.statistics1}>
           <b className={styles.statistics2}>Statistics</b>
-          <h3 className={styles.statsPeriod}>October - January 2023</h3>
+          <h3 className={styles.statsPeriod}>
+            {props.studentData.subjecs[0].semester +
+              " : " +
+              props.studentData.subjecs[0].year}
+          </h3>
         </div>
         <div className={styles.frameDiv}>
           <StatisticsField

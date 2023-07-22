@@ -1,5 +1,5 @@
 .tableComponents {
-  width: 60px;
+  width: 67px;
   height: 40px;
   display: flex;
   flex-direction: row;
@@ -16,9 +16,8 @@
 }
 .tableComponents1 {
   width: 196px;
-  text-align: center;
   height: 40px;
-  padding: 8px 16px;
+  padding: 8px 90px;
   gap: 4px;
 }
 .tableComponents1,
@@ -33,8 +32,7 @@
 .tableComponents2 {
   width: 199px;
   height: 40px;
-  padding: 8px 16px;
-  gap: 4px;
+  padding: 8px 80px;
 }
 .tableComponents3 {
   width: 97px;

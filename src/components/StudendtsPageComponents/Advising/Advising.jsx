@@ -108,19 +108,7 @@ function Advising(props) {
         </>
       )}
       {!regIsOpen && (
-        <div
-          style={{
-            width: "500px",
-            height: "250px",
-            fontSize: "20px",
-            fontFamily: "Poppings",
-            backgroundColor: "white",
-            borderRadius: "15px",
-            margin: "120px 0 100px 200px ",
-            padding: "100px",
-            textAlign: "center",
-          }}
-        >
+        <div className={styles.regEnded}>
           Registration Season Has Ended, Better Luck Next Time
         </div>
       )}

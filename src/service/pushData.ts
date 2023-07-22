@@ -67,4 +67,23 @@ export class PushDataService {
       method: "POST",
     });
   }
+  public async updateStudentData(
+    studentID: number,
+    studentGPA: number,
+    acceptedHours: number,
+    passedSubjects: number
+  ) {
+    const url =
+      "http://127.0.0.1:8000/api/student/updateStudentData/" +
+      studentID +
+      "/" +
+      studentGPA +
+      "/" +
+      acceptedHours +
+      "/" +
+      passedSubjects;
+    await fetch(url, {
+      method: "PUT",
+    });
+  }
 }

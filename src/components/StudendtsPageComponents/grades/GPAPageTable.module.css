@@ -11,6 +11,7 @@
 .semesterIi {
   position: relative;
   text-align: center;
+  width: 180px;
   color: #00467a;
   font-weight: 700;
   font-size: 21px;
@@ -20,23 +21,22 @@
 }
 .secondBox {
   left: 190px;
+  font-weight: 500;
+  color: #0070c6;
   animation: showSelectGradually 0.5s ease-in-out;
 }
-@keyframes showSelectGradually {
-  from {
-    opacity: 0;
-    transform: translateX(-70px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0px);
-  }
-}
+
 .dropdowns {
   display: flex;
-  gap: 10px;
+  gap: 3px;
   flex-direction: column;
   width: fit-content;
+}
+.secondDropdown {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
 }
 .gpaPageTable {
   position: absolute;
@@ -49,4 +49,14 @@
   border-radius: var(--br-sm);
   font-size: var(--font-size-2xl);
   font-family: var(--font-poppins);
+}
+@keyframes showSelectGradually {
+  from {
+    opacity: 0;
+    transform: translateX(-70px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
 }

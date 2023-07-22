@@ -3,7 +3,7 @@ import styles from "./StudentInfoCard.module.css";
 
 type StudentInfoCardType = {
   studentName?: string;
-  studentPhoto?: string;
+  studentPhoto?: Blob;
   studentID?: string;
   acceptedHours?: string;
   passedSubjects?: string;
@@ -29,7 +29,11 @@ const StudentInfoCard: FunctionComponent<StudentInfoCardType> = ({
   return (
     <div className={styles.studentCard}>
       <div className={styles.photoParent}>
-        <img className={styles.photoIcon} alt="" src={studentPhoto} />
+        <img
+          className={styles.photoIcon}
+          alt=""
+          src={URL.createObjectURL(studentPhoto!)}
+        />
         <h2 className={styles.name}>{studentName}</h2>
         <h3 className={styles.followers}>{studentID}</h3>
       </div>

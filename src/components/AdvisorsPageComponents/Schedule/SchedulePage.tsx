@@ -1,7 +1,6 @@
 import RegisterButton from "../../StudendtsPageComponents/Advising/RegisterButton";
 import InputHeader from "./InputHeader";
 import styles from "./Schedule.module.css";
-import SlotSelect from "./SlotSelect";
 
 const SchedulePage = () => {
   return (

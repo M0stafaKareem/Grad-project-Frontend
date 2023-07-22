@@ -6,12 +6,22 @@ type gradesPageType = {
   studentGrades: [];
 };
 const GPAPageTable: FunctionComponent<gradesPageType> = ({ studentGrades }) => {
-  const [gradesMode, setGradesMode] = useState({ first: "", second: "" });
+  const [gradesMode, setGradesMode] = useState({
+    first: "",
+    level: "",
+    semester: "",
+    year: "",
+  });
   const [displayedGrades, setDisplayedGrades] = useState([]);
   const leveledGrades: any = [];
-
+  const semesteredGrades: any = [];
   studentGrades.map((item) => {
     const { subject_level } = item;
+    const { year } = item;
+    const { semester } = item;
+    if (year === gradesMode.year && semester === gradesMode.semester) {
+      semesteredGrades.push(item);
+    }
     if (!leveledGrades[subject_level]) {
       leveledGrades[subject_level] = [];
     }
@@ -21,19 +31,15 @@ const GPAPageTable: FunctionComponent<gradesPageType> = ({ studentGrades }) => {
   useEffect(() => {
     gradesMode.first === "All"
       ? setDisplayedGrades(studentGrades)
-      : gradesMode.second === "0"
-      ? setDisplayedGrades(leveledGrades[0])
-      : gradesMode.second === "1"
-      ? setDisplayedGrades(leveledGrades[1])
-      : gradesMode.second === "2"
-      ? setDisplayedGrades(leveledGrades[2])
-      : gradesMode.second === "3"
-      ? setDisplayedGrades(leveledGrades[3])
-      : gradesMode.second === "4"
-      ? setDisplayedGrades(leveledGrades[4])
+      : gradesMode.first === "Level" && gradesMode.level
+      ? setDisplayedGrades(leveledGrades[+gradesMode.level])
+      : gradesMode.first === "Semester" &&
+        gradesMode.semester &&
+        gradesMode.year
+      ? setDisplayedGrades(semesteredGrades)
       : null;
   }, [gradesMode]);
-
+  console.log(displayedGrades);
   return (
     <div className={styles.gpaPageTable}>
       <div className={styles.dropdowns}>
@@ -41,7 +47,12 @@ const GPAPageTable: FunctionComponent<gradesPageType> = ({ studentGrades }) => {
           className={styles.semesterIi}
           onChange={(e) => {
             setGradesMode(() => {
-              return { first: e.target.value, second: "" };
+              return {
+                first: e.target.value,
+                level: "",
+                semester: "",
+                year: "",
+              };
             });
           }}
           defaultValue={""}
@@ -50,50 +61,79 @@ const GPAPageTable: FunctionComponent<gradesPageType> = ({ studentGrades }) => {
             Select Option
           </option>
           <option value="Level">Level</option>
-          {/* <option value="Semester">Semester</option> */}
+          <option value="Semester">Semester</option>
           <option value="All">All </option>
         </select>
-        {gradesMode.first === "Level" && (
-          <select
-            className={styles.secondBox}
-            defaultValue={""}
-            onChange={(e) => {
-              setGradesMode((prev) => {
-                return { ...prev, second: e.target.value };
-              });
-            }}
-          >
-            <option value="" disabled hidden>
-              Select Option
-            </option>
-            {gradesMode.first === "Level" && (
+        <div className={styles.secondDropdown}>
+          {gradesMode.first === "Level" && (
+            <select
+              className={styles.secondBox}
+              defaultValue={""}
+              onChange={(e) => {
+                setGradesMode((prev) => {
+                  return { ...prev, level: e.target.value };
+                });
+              }}
+            >
+              <option value="" disabled hidden>
+                Select Option
+              </option>
               <option value="0">Level zero </option>
-            )}
-            {gradesMode.first === "Level" && (
               <option value="1">Level One </option>
-            )}
-            {gradesMode.first === "Level" && (
               <option value="2">Level Two </option>
-            )}
-            {gradesMode.first === "Level" && (
               <option value="3">Level Three </option>
-            )}
-            {gradesMode.first === "Level" && (
               <option value="4">Level Four </option>
-            )}
-            {/*             {gradesMode.first === "Semester" && (
+            </select>
+          )}
+          {gradesMode.first === "Semester" && (
+            <select
+              className={styles.secondBox}
+              defaultValue={""}
+              onChange={(e) => {
+                setGradesMode((prev) => {
+                  return { ...prev, semester: e.target.value };
+                });
+              }}
+            >
+              <option value="" disabled hidden>
+                Select Option
+              </option>
               <option value="Fall"> Fall</option>
-            )}
-            {gradesMode.first === "Semester" && (
               <option value="Spring"> Spring</option>
-            )}
-            {gradesMode.first === "Semester" && (
               <option value="Summer"> Summer</option>
-            )} */}
-          </select>
-        )}
+            </select>
+          )}
+          {gradesMode.semester && (
+            <select
+              className={styles.secondBox}
+              defaultValue={""}
+              onChange={(e) => {
+                setGradesMode((prev) => {
+                  return { ...prev, year: e.target.value };
+                });
+              }}
+            >
+              <option value="" disabled hidden>
+                Select Option
+              </option>
+              {[...new Set(studentGrades.map((item: any) => item.year))].map(
+                (item: any) => {
+                  return (
+                    <option key={item} value={item}>
+                      {item}
+                    </option>
+                  );
+                }
+              )}
+            </select>
+          )}
+        </div>
       </div>
-      {(gradesMode.first === "All" || gradesMode.second) && (
+      {(gradesMode.first === "All" ||
+        (gradesMode.first === "Level" && gradesMode.level) ||
+        (gradesMode.first === "Semester" &&
+          gradesMode.semester &&
+          gradesMode.year)) && (
         <Courses grades={displayedGrades} gradesMode={gradesMode} />
       )}
     </div>

@@ -9,6 +9,7 @@ import { PushDataService } from "../../../service/pushData";
 type GradesTableType = {
   isStudentMode: boolean;
   studentData?: any;
+  studentPhoto?: Blob;
   tableData: any;
   semester?: string;
   year?: string;
@@ -16,6 +17,7 @@ type GradesTableType = {
 
 const GradesTable: FunctionComponent<GradesTableType> = ({
   isStudentMode = false,
+  studentPhoto,
   semester,
   year,
   tableData,
@@ -25,16 +27,18 @@ const GradesTable: FunctionComponent<GradesTableType> = ({
     ? ` ${styles.studentstable} + ${styles.studentMode}`
     : ` ${styles.studentstable}`;
 
-  const f1 = new PushDataService();
+  const p1 = new PushDataService();
   const [updatingData, setUpdatingData] = useState([{}]);
   let rowCounter = -1;
 
   const submitHandler = () => {
-    f1.assignCourseGrades(updatingData!);
+    p1.assignCourseGrades(updatingData!);
   };
   return (
     <>
-      {isStudentMode && <StudentCard personalData={studentData} />}
+      {isStudentMode && (
+        <StudentCard personalData={studentData} photo={studentPhoto!} />
+      )}
       <fieldset className={tableStyle}>
         <TableTitle isStudent={isStudentMode} />
         {tableData.map((item: any) => {

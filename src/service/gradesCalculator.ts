@@ -50,9 +50,11 @@ export class gradesCalculator {
         courseCreditHours: number;
         isFailed?: boolean;
       }
-    ]
+    ],
+    previousGPA: number = 0,
+    previousAcceptedHours: number = 0
   ) {
-    let totalPoints: number;
+    let totalPoints: number = previousAcceptedHours * previousGPA;
     let CGPA: number;
     let totalHours: number;
 

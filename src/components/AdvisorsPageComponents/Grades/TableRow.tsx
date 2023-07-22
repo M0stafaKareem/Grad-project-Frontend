@@ -71,71 +71,17 @@ const TableRow: FunctionComponent<TableRowType> = ({
 
   return (
     <div className={styles.tableRow}>
-      {isStudent ? (
-        <select
-          disabled={rowIsDisabled}
-          className={styles.tableComponents}
-          defaultValue={""}
-          onChange={(e) => {
-            setUpdatingDAta((prev: any) => {
-              return {
-                ...prev,
-                semester: e.target.value,
-              };
-            });
-          }}
-        >
-          <option value="" disabled hidden>
-            {semester}
-          </option>
-          <option value="Fall"> Fall</option>
-          <option value="Spring"> Spring </option>
-          <option value="Summer"> Summer </option>
-        </select>
-      ) : (
-        <input
-          className={styles.tableComponents}
-          disabled={rowIsDisabled}
-          type="number"
-          defaultValue={studentID}
-          onChange={(e) => {
-            setUpdatingDAta((prev: any) => {
-              return {
-                ...prev,
-                studentID: e.target.value,
-              };
-            });
-          }}
-        />
-      )}
-      <input
-        className={styles.tableComponents1}
-        type="text"
-        disabled={rowIsDisabled}
-        defaultValue={isStudent ? semesterDate : studentName}
-        onChange={(e) => {
-          setUpdatingDAta((prev: any) => {
-            return {
-              ...prev,
-              studentName: e.target.value,
-            };
-          });
-        }}
-      />
-      <input
-        className={styles.tableComponents2}
-        disabled={rowIsDisabled}
-        onChange={(e) => {
-          setUpdatingDAta((prev: any) => {
-            return {
-              ...prev,
-              subjectName: e.target.value,
-            };
-          });
-        }}
-        type="text"
-        defaultValue={subjectName}
-      />
+      <div className={styles.tableComponents}>
+        <h2 className={styles.title}> {isStudent ? semester : studentID} </h2>
+      </div>
+      <div className={styles.tableComponents1}>
+        <h2 className={styles.title}>
+          {isStudent ? semesterDate : studentName}
+        </h2>
+      </div>
+      <div className={styles.tableComponents2}>
+        <h2 className={styles.title}>{subjectName}</h2>
+      </div>
       <input
         className={styles.tableComponents3}
         disabled={rowIsDisabled}

@@ -1,6 +1,12 @@
 import { FunctionComponent } from "react";
 import styles from "./SubjectsInfo.module.css";
-const SubjectsInfo: FunctionComponent = () => {
+
+type SubjectsInfoType = {
+  registeredSubjects?: string;
+};
+const SubjectsInfo: FunctionComponent<SubjectsInfoType> = ({
+  registeredSubjects,
+}) => {
   return (
     <div className={styles.ahParent}>
       <div className={styles.ah}>
@@ -8,9 +14,9 @@ const SubjectsInfo: FunctionComponent = () => {
       </div>
       <div className={styles.ahGroup}>
         <h3 className={styles.ps}>
-          <div className={styles.posts}>Operating Systems</div>
+          <div className={styles.posts}>{registeredSubjects}</div>
         </h3>
-        <h3 className={styles.ps}>
+        {/*  <h3 className={styles.ps}>
           <div className={styles.posts}>Embedded Systems</div>
         </h3>
         <h3 className={styles.ps}>
@@ -21,7 +27,7 @@ const SubjectsInfo: FunctionComponent = () => {
         </h3>
         <h3 className={styles.ps}>
           <div className={styles.posts}>Discrete Math</div>
-        </h3>
+        </h3> */}
       </div>
     </div>
   );

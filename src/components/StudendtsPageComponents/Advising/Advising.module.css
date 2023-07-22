@@ -9,3 +9,14 @@
 .levelsDiv::-webkit-scrollbar {
   display: none;
 }
+.regEnded {
+  width: 500px;
+  height: 250px;
+  font-size: 20px;
+  font-family: Poppings;
+  background-color: white;
+  border-radius: 15px;
+  margin: 120px 0 100px 200px;
+  padding: 100px;
+  text-align: center;
+}

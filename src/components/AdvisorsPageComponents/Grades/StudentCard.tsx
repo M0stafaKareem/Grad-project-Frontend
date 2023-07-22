@@ -4,13 +4,17 @@ import GPACard from "./GPACard";
 import styles from "./StudentCard.module.css";
 
 type studentCardType = {
+  photo: Blob;
   personalData: any;
 };
-const StudentCard: FunctionComponent<studentCardType> = ({ personalData }) => {
+const StudentCard: FunctionComponent<studentCardType> = ({
+  personalData,
+  photo,
+}) => {
   return (
     <div className={styles.studentCardParent}>
       <StudentInfoCard
-        studentPhoto="./file.jpg"
+        studentPhoto={photo}
         studentName={personalData.user_name}
         nationalID={personalData.national_id}
         phoneNumber={personalData.telephone}
