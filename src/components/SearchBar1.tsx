@@ -2,7 +2,12 @@ import { FunctionComponent } from "react";
 import Menus from "../components/Menus";
 import styles from "./SearchBar1.module.css";
 
-const SearchBar1: FunctionComponent = () => {
+type searchBarType = {
+  icon?: string;
+};
+const SearchBar1: FunctionComponent<searchBarType> = ({
+  icon = "../vector3.svg",
+}) => {
   return (
     <div className={styles.searchBar}>
       <div className={styles.frameDiv}>
@@ -15,7 +20,7 @@ const SearchBar1: FunctionComponent = () => {
             tabIndex={-1}
           />
         </div>
-        <Menus />
+        <Menus menuIcon={icon} />
       </div>
     </div>
   );

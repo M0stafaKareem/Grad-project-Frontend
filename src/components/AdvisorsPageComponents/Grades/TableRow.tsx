@@ -38,7 +38,11 @@ const TableRow: FunctionComponent<TableRowType> = ({
   score,
 }) => {
   const rowIsDisabled =
-    regState === "Dropped" || regState === "Withdrawed" ? true : false;
+    regState === "Dropped" ||
+    regState === "Withdrawed" ||
+    regState === "Finished"
+      ? true
+      : false;
   const [updatingData, setUpdatingDAta] = useState({
     semester: semester,
     semesterDate: semesterDate,
@@ -48,7 +52,7 @@ const TableRow: FunctionComponent<TableRowType> = ({
     courseCode: subjectCode,
     classWork: classWork,
     final: final,
-    state: rowIsDisabled ? regState : "Finished",
+    state: rowIsDisabled ? regState : null,
     examState: examState,
     grade: grade,
     score: score,
@@ -65,6 +69,7 @@ const TableRow: FunctionComponent<TableRowType> = ({
       prev[rowIndex].score = helper.getLetteredScore(
         prev[rowIndex].grade
       ).letter;
+      prev[rowIndex].state = updatingData.grade ? "Finished" : null;
       return prev;
     });
   }, [updatingData]);

@@ -81,6 +81,7 @@ function AdvisorsAdvising() {
       <RegisterationHeader
         leftTitle="Opened subjects to register:"
         registerationMax={openedCourses}
+        rightTitle="Total Opened Hours"
         component={openedHours}
       />
       {leveledSubjects[0] &&

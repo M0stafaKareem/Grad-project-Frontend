@@ -13,11 +13,17 @@ const FrameComponent: FunctionComponent = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
   return (
     <div className={styles.courseoverviewParent}>
       <div className={styles.stats}>
-        <Statistics />
+        {courseData.length > 0 ? (
+          <Statistics
+            currentSemester={courseData[0]["semester"] + " Semester"}
+            semeterDate={" Educational Year : " + courseData[0]["year"]}
+          />
+        ) : (
+          <p>There are No Data at the moment</p>
+        )}
       </div>
       <div className={styles.courseoverview}>
         {courseData &&

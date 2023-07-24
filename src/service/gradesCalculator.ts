@@ -56,7 +56,7 @@ export class gradesCalculator {
   ) {
     let totalPoints: number = previousAcceptedHours * previousGPA;
     let CGPA: number;
-    let totalHours: number;
+    let totalHours: number = previousAcceptedHours;
 
     gradesArray.forEach((course) => {
       if (course.courseGrades) {

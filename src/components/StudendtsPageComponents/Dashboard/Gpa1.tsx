@@ -12,7 +12,7 @@ const Gpa1: FunctionComponent<Gpa1Type> = ({ gpaValue }) => {
     <div className={styles.stats}>
       <div className={styles.groupDiv}>
         <h3 className={styles.homepageDesign}>GPA</h3>
-        <strong className={styles.strong}>{gpaValue}</strong>
+        <strong className={styles.strong}>{gpaValue?.toFixed(2)}</strong>
       </div>
       <Progress
         className={styles.groupProgress}

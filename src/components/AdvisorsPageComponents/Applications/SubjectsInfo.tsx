@@ -10,7 +10,7 @@ const SubjectsInfo: FunctionComponent<SubjectsInfoType> = ({
   return (
     <div className={styles.ahParent}>
       <div className={styles.ah}>
-        <h2 className={styles.followers}>Registered</h2>
+        <h2 className={styles.followers}>Requests :</h2>
       </div>
       <div className={styles.ahGroup}>
         <h3 className={styles.ps}>

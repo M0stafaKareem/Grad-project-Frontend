@@ -1,12 +1,14 @@
 import { FunctionComponent, useState } from "react";
 import { advSubject, stuSubject } from "../../../service/datatype";
-import Backdrop from "../../Backdrop";
 import styles from "./LevelBar.module.css";
 import Menu from "./Menu";
 
 type LevelBarType = {
   onSubmitFeedback: () => {};
   userMode?: "" | "advisors";
+  setIsRegLimitExceded?: Function;
+  registrationMax?: number;
+  currRegisteredHours?: number;
   level?: string;
   leftTitle?: string;
   rightTitle?: string;
@@ -16,8 +18,11 @@ type LevelBarType = {
 };
 
 const LevelBar: FunctionComponent<LevelBarType> = ({
-  userMode = "",
   onSubmitFeedback,
+  setIsRegLimitExceded,
+  currRegisteredHours,
+  userMode = "",
+  registrationMax,
   level = "Level 1",
   leftTitle = "Registered",
   rightTitle = "Opened",
@@ -38,7 +43,8 @@ const LevelBar: FunctionComponent<LevelBarType> = ({
         ? registered++
         : null
       : null;
-    if (userMode === "" && item.status !== "Open") return {};
+    if (userMode === "" && (item.status !== "Open" || item.prerequisite1))
+      return {};
     else
       return {
         subject_code: item.subject_code,
@@ -95,7 +101,10 @@ const LevelBar: FunctionComponent<LevelBarType> = ({
       </button>
       {DropdownIsOpen && (
         <Menu
+          setIsRegLimitExceded={setIsRegLimitExceded}
           closeDropdown={changeDropdown}
+          currRegHours={currRegisteredHours}
+          registrationMax={registrationMax}
           onSubmitFeedback={onSubmitFeedback}
           subjects={modifiedSubjects}
           userMode={userMode}

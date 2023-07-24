@@ -15,7 +15,6 @@ type GPAcardType = {
 const GPACard: FunctionComponent<GPAcardType> = ({
   studentGPA = 3.43,
   isFormated = true,
-
   modifiedStyle,
   title = "GPA",
   title2Value = studentGPA >= 3 ? "21" : studentGPA >= 2 ? "18" : "14",
@@ -27,7 +26,7 @@ const GPACard: FunctionComponent<GPAcardType> = ({
       <div className={styles.GPAdiv}>
         <Progress
           type="circle"
-          format={isFormated ? () => `${studentGPA}` : undefined}
+          format={isFormated ? () => `${studentGPA.toFixed(2)}` : undefined}
           percent={(studentGPA / 4) * 100}
           strokeWidth={8}
           strokeColor={

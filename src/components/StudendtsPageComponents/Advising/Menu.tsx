@@ -9,6 +9,9 @@ import Backdrop from "../../Backdrop";
 type MenuType = {
   modifiedStyles?: {};
   closeDropdown: Function;
+  setIsRegLimitExceded?: Function;
+  currRegHours?: number;
+  registrationMax?: number;
   onSubmitFeedback: Function;
   studentRequest?: string;
   userMode?: "" | "advisors";
@@ -18,17 +21,20 @@ type MenuType = {
 
 const Menu: FunctionComponent<MenuType> = ({
   onSubmitFeedback,
+  setIsRegLimitExceded,
+  currRegHours,
   modifiedStyles,
+  registrationMax = 100,
   closeDropdown,
   subjects,
   studentRequest,
   Id,
   userMode,
 }) => {
-  const [backdropIsOpen, setBackdropIsOpen] = useState(true);
   const data: any = [];
   const getCourseState = (courseState: {
     student_id?: number;
+    subject_hours?: number;
     state?: string;
     subject_code: string;
     status?: boolean | string;
@@ -40,6 +46,9 @@ const Menu: FunctionComponent<MenuType> = ({
       };
       data.push(courseState);
     } else {
+      studentRequest === "Requested"
+        ? (currRegHours! += courseState.subject_hours!)
+        : null;
       courseState = {
         student_id: Id,
         subject_code: courseState.subject_code,
@@ -48,13 +57,23 @@ const Menu: FunctionComponent<MenuType> = ({
       data.push(courseState);
     }
   };
+
   async function regBtnHandler() {
     const p1 = new PushDataService();
-    userMode === "advisors"
-      ? await p1.changeCourseState({ data })
-      : await p1.registerSubjects({ data });
-    closeDropdown(false);
-    onSubmitFeedback(true);
+    if (userMode === "advisors") {
+      await p1.changeCourseState({ data });
+      closeDropdown(false);
+      onSubmitFeedback(true);
+    } else {
+      if (currRegHours! > registrationMax!) {
+        setIsRegLimitExceded!(true);
+        closeDropdown(false);
+      } else {
+        await p1.registerSubjects({ data });
+        closeDropdown(false);
+        onSubmitFeedback(true);
+      }
+    }
   }
 
   return (
@@ -82,14 +101,12 @@ const Menu: FunctionComponent<MenuType> = ({
         })}
         <RegisterButton userMode={userMode} RegBtnOnClick={regBtnHandler} />
       </div>
-      {backdropIsOpen && (
-        <Backdrop
-          onClick={() => {
-            setBackdropIsOpen(false);
-            closeDropdown(false);
-          }}
-        />
-      )}
+
+      <Backdrop
+        onClick={() => {
+          closeDropdown(false);
+        }}
+      />
     </>
   );
 };

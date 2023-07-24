@@ -16,11 +16,16 @@
 .text {
   position: relative;
   top: 11.02px;
+  height: 20px;
+  overflow: scroll;
   color: #00467a;
   font-weight: 300;
   font-size: 14px;
   line-height: 21px;
   text-align: center;
+}
+.text::-webkit-scrollbar {
+  display: none;
 }
 .cells {
   display: flex;

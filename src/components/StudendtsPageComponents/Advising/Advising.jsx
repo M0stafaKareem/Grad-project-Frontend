@@ -10,6 +10,7 @@ import Menu from "./Menu";
 function Advising(props) {
   const [subjecs, setSubjecs] = useState([]);
   const [doneIsOpen, setDoneIsOpen] = useState(false);
+  const [isRegLimitExceded, setIsRegLimitExceded] = useState(false);
   const [editRegMenuIsOpen, setEditRegMenuIsOpen] = useState(false);
   const [data, setData] = useState([]);
   const stuSubjectsService = new FetchDataService();
@@ -29,37 +30,62 @@ function Advising(props) {
   }, [doneIsOpen]);
 
   const leveledSubjects = {};
+  let registeredHours = 0;
+  let prerequisitesState = [];
 
-  subjecs.map((item) => {
-    const { subject_level } = item;
+  subjecs.map((course) => {
+    const { enrolment_state } = course;
+    const { subject_level } = course;
+    const { prerequisite1 } = course;
+    const { prerequisite2 } = course;
+
+    if (prerequisite1) {
+      let prerequisiteState = {};
+      subjecs.map((item) => {
+        const { subject_code } = item;
+        if (subject_code === prerequisite1) {
+          prerequisiteState.course = course.subject_name;
+          prerequisiteState.prerequisite1 = item.subject_name;
+          prerequisiteState.prerequisite1Grade = item.grade;
+        } else if (subject_code === prerequisite2) {
+          prerequisiteState.course = course.subject_name;
+          prerequisiteState.prerequisite2 = item.subject_name;
+          prerequisiteState.prerequisite2Grade = item.grade;
+        }
+      });
+      prerequisitesState.push(prerequisiteState);
+    }
+
+    if (enrolment_state === "Requested") {
+      registeredHours += course.subject_hours;
+    }
     if (!leveledSubjects[subject_level]) {
       leveledSubjects[subject_level] = [];
     }
 
-    leveledSubjects[subject_level].push(item);
-  });
-
-  let registeredHours = 0;
-  subjecs.map((item) => {
-    const { enrolment_state } = item;
-    if (enrolment_state === "Requested") {
-      registeredHours += item.subject_hours;
-    }
+    leveledSubjects[subject_level].push(course);
   });
 
   const maxRegHours =
-    props.studentData.GPA >= 3
-      ? "21"
-      : props.studentData.GPA >= 2
-      ? "18"
-      : "14";
+    props.studentData.GPA >= 3 ? 21 : props.studentData.GPA >= 2 ? 18 : 14;
 
   const par =
     subjecs[1] && subjecs[1].dropablitiy === "true" ? "Drop" : "Withdraw";
   const regIsOpen =
     subjecs[1] && subjecs[1].submition === "true" ? true : false;
+
   return (
     <div className={styles.levelsDiv}>
+      {isRegLimitExceded && (
+        <Done
+          onBtnClick={() => {
+            setIsRegLimitExceded(false);
+          }}
+          type="error"
+          btnLabel="Retry"
+          cardDiscription="You've Exceeded Your Registration Limit"
+        />
+      )}
       {doneIsOpen && (
         <Done
           onBtnClick={() => {
@@ -73,16 +99,22 @@ function Advising(props) {
         registerationMax={maxRegHours}
         component={registeredHours}
       />
-      {regIsOpen && (
+      {regIsOpen && registeredHours <= maxRegHours && (
         <>
           <LevelBar
+            setIsRegLimitExceded={setIsRegLimitExceded}
+            registrationMax={maxRegHours}
             onSubmitFeedback={setDoneIsOpen}
+            currRegisteredHours={registeredHours}
             level="Level 0"
             Id={props.studentData.Id}
             subjects={leveledSubjects[0]}
           />
           <LevelBar
+            registrationMax={maxRegHours}
+            setIsRegLimitExceded={setIsRegLimitExceded}
             onSubmitFeedback={setDoneIsOpen}
+            currRegisteredHours={registeredHours}
             level="Level 1"
             Id={props.studentData.Id}
             subjects={leveledSubjects[1]}
@@ -90,20 +122,29 @@ function Advising(props) {
           <LevelBar
             level="Level 2"
             onSubmitFeedback={setDoneIsOpen}
+            setIsRegLimitExceded={setIsRegLimitExceded}
+            currRegisteredHours={registeredHours}
+            registrationMax={maxRegHours}
             Id={props.studentData.Id}
             subjects={leveledSubjects[2]}
           />
           <LevelBar
             onSubmitFeedback={setDoneIsOpen}
+            currRegisteredHours={registeredHours}
+            setIsRegLimitExceded={setIsRegLimitExceded}
             level="Level 3"
             Id={props.studentData.Id}
             subjects={leveledSubjects[3]}
+            registrationMax={maxRegHours}
           />
           <LevelBar
             onSubmitFeedback={setDoneIsOpen}
+            currRegisteredHours={registeredHours}
+            setIsRegLimitExceded={setIsRegLimitExceded}
             level="Level 4"
             Id={props.studentData.Id}
             subjects={leveledSubjects[4]}
+            registrationMax={maxRegHours}
           />
         </>
       )}
@@ -119,7 +160,7 @@ function Advising(props) {
           subjects={data}
           Id={props.studentData.Id}
           modifiedStyles={{ top: "50px" }}
-          studentRequest="Drop"
+          studentRequest={par + "ed"}
         />
       )}
       <RegisterButton

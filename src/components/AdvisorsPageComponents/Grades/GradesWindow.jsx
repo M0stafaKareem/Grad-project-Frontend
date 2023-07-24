@@ -35,6 +35,7 @@ const GradesWindow = (props) => {
     inputData.score = helper.getLetteredScore(inputData.grade).letter;
     p1.assignCourseGrades(inputData);
     setDoneIsOpen(true);
+    // p1.updateStudentData( inputData.studentID , helper. )
   };
 
   const handleInputFile = (event) => {

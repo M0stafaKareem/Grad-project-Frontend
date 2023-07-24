@@ -133,12 +133,13 @@ export class FetchDataService {
     data?: any;
   } = {};
 
-  private getStudentGradesData = async (studentID: number) => {
+  public getStudentGradesData = async (studentID: number) => {
     let url = "http://127.0.0.1:8000/api/advisor/studentData/" + studentID;
     return fetch(url)
       .then((response) => response.json())
       .then((jsonData) => {
         this.studentGradesPageData.data = jsonData;
+        return jsonData;
       })
       .catch((error) => {
         console.error(error);

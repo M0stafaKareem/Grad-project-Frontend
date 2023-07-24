@@ -5,6 +5,8 @@ import styles from "./GradesTable.module.css";
 import StudentCard from "./StudentCard";
 import RegisterButton from "../../StudendtsPageComponents/Advising/RegisterButton";
 import { PushDataService } from "../../../service/pushData";
+import Done from "../../General/Done";
+import { gradesCalculator } from "../../../service/gradesCalculator";
 
 type GradesTableType = {
   isStudentMode: boolean;
@@ -28,15 +30,52 @@ const GradesTable: FunctionComponent<GradesTableType> = ({
     : ` ${styles.studentstable}`;
 
   const p1 = new PushDataService();
+  const helper = new gradesCalculator();
   const [updatingData, setUpdatingData] = useState([{}]);
+  const [doneIsOpen, setDoneIsOpen] = useState(false);
   let rowCounter = -1;
 
-  const submitHandler = () => {
-    p1.assignCourseGrades(updatingData!);
+  const submitHandler = async (isDone: boolean = true) => {
+    await p1.assignCourseGrades(updatingData!);
+    setDoneIsOpen(isDone);
+
+    let totalHrs = 0;
+    let passedSubj = 0;
+    let totalPoints = 0;
+    tableData &&
+      tableData.map((item: any) => {
+        if (item.grade) {
+          totalHrs += item.subject_hours;
+          passedSubj++;
+          totalPoints += helper.getCoursePoints(
+            item.grade,
+            item.subject_hours
+          )!;
+        }
+      });
+    isStudentMode
+      ? await p1.updateStudentData(
+          studentData.student_id,
+          +totalPoints / +totalHrs,
+          totalHrs,
+          passedSubj
+        )
+      : null;
   };
+
   return (
     <>
-      {isStudentMode && (
+      {doneIsOpen && (
+        <Done
+          onBtnClick={() => {
+            submitHandler(false);
+          }}
+          type="done"
+          btnLabel="done"
+          cardDiscription="Grades Updated Successfully"
+        />
+      )}
+      {isStudentMode && studentData && (
         <StudentCard personalData={studentData} photo={studentPhoto!} />
       )}
       <fieldset className={tableStyle}>
@@ -72,7 +111,9 @@ const GradesTable: FunctionComponent<GradesTableType> = ({
         userMode="advisors"
         modifiedStyle={{ top: "710px", left: "1135px" }}
         btnLabel="Submit"
-        RegBtnOnClick={submitHandler}
+        RegBtnOnClick={() => {
+          submitHandler(true);
+        }}
       />
     </>
   );

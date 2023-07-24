@@ -33,7 +33,7 @@ function Dashboard(props) {
           <StatisticsField
             stateIcon="checkcirclefill.svg"
             stateLabel="Total Registered Subjects"
-            statePercent="5"
+            statePercent="0"
           />
         </div>
       </section>

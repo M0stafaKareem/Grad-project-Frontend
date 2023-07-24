@@ -19,7 +19,7 @@ const StudentInfo: FunctionComponent<StudentInfoType> = ({
         src={URL.createObjectURL(photo!)}
       />
       <h2 className={styles.name}>{name}</h2>
-      <h3 className={styles.id}>{id}</h3>
+      <h3 className={styles.id}>{"ID : " + id}</h3>
     </div>
   );
 };

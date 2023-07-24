@@ -39,6 +39,7 @@ const SubjectDetails /* : FunctionComponent<SubjectDetailsType> */ = ({
             onChange={() => {
               liftUpcourseState({
                 subject_code: subject_code,
+                subject_hours: +subject_hours,
                 status: checkboxRef.current.checked,
               });
             }}
