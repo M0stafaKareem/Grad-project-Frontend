@@ -12,9 +12,46 @@ function Advising(props) {
   const [doneIsOpen, setDoneIsOpen] = useState(false);
   const [isRegLimitExceded, setIsRegLimitExceded] = useState(false);
   const [editRegMenuIsOpen, setEditRegMenuIsOpen] = useState(false);
+  const [regMenuIsOpen, setRegMenuIsOpen] = useState(false);
   const [data, setData] = useState([]);
   const stuSubjectsService = new FetchDataService();
-
+  const RecommendationData = [
+    {
+      subject_code: "CIE4807",
+      subject_hours: 3,
+      subject_name: "Network Security",
+    },
+    {
+      subject_code: "CIE4809",
+      subject_hours: 3,
+      subject_name: "Microwave",
+    },
+    {
+      subject_code: "CIE4810",
+      subject_hours: 3,
+      subject_name: "Artificial intelligence",
+    },
+    {
+      subject_code: "CIE4811",
+      subject_hours: 3,
+      subject_name: "Data minning",
+    },
+    {
+      subject_code: "CIE4812",
+      subject_hours: 3,
+      subject_name: "Machine Learning",
+    },
+    {
+      subject_code: "CIE4814",
+      subject_hours: 3,
+      subject_name: "Computer Vision",
+    },
+    {
+      subject_code: "CIE4815",
+      subject_hours: 3,
+      subject_name: "Embedded systems",
+    },
+  ];
   const getStuSubjects = async (studentId) => {
     try {
       const jsonData = await stuSubjectsService.getStuSubjects(studentId);
@@ -28,7 +65,7 @@ function Advising(props) {
   useEffect(() => {
     getStuSubjects(props.studentData.Id);
   }, [doneIsOpen]);
-
+  console.log(data);
   const leveledSubjects = {};
   let registeredHours = 0;
   let prerequisitesState = [];
@@ -163,6 +200,16 @@ function Advising(props) {
           studentRequest={par + "ed"}
         />
       )}
+      {regMenuIsOpen && (
+        <Menu
+          closeDropdown={setRegMenuIsOpen}
+          onSubmitFeedback={setDoneIsOpen}
+          subjects={RecommendationData}
+          Id={props.studentData.Id}
+          modifiedStyles={{ top: "50px" }}
+          studentRequest={"Requested"}
+        />
+      )}
       <RegisterButton
         btnLabel={par}
         modifiedStyle={{ top: "37px", marginBottom: "0" }}
@@ -177,6 +224,9 @@ function Advising(props) {
       />
       <RegisterButton
         btnLabel="Recommendations"
+        onBtnClick={() => {
+          setRegMenuIsOpen(!regMenuIsOpen);
+        }}
         modifiedStyle={{ top: "0", left: "0" }}
       />
     </div>

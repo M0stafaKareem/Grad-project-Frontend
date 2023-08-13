@@ -17,3 +17,14 @@
   color: #000;
   font-family: "DM Sans";
 }
+
+.btn {
+  position: relative;
+  left: 20px;
+  bottom: 20px;
+  width: 35px;
+  height: 35px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 400;
+}

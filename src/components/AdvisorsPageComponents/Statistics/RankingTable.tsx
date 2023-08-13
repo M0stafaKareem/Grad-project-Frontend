@@ -13,7 +13,7 @@ const RankingTable: FunctionComponent<RankingTableType> = ({ tableData }) => {
     <div className={styles.main}>
       <RankingHeader />
 
-      {tableData &&
+      {tableData.length > 0 &&
         tableData.map((item: any) => {
           return (
             <RankingRow

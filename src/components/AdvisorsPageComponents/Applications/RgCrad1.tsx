@@ -19,6 +19,12 @@ const RgCrad1: FunctionComponent<RgCradType> = ({
     <div className={styles.rgcrad}>
       <StudentInfo id={studentID} name={studentName} photo={photo} />
       <SubjectsInfo registeredSubjects={registeredSubjects} />
+      <button className={styles.btn}>
+        <img src="./vector9.svg" alt="Accept" />
+      </button>
+      <button className={styles.btn}>
+        <img src="./error-svgrepo-com.svg" alt="Decline" />
+      </button>
     </div>
   );
 };

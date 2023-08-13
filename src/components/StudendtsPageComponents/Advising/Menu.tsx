@@ -80,25 +80,26 @@ const Menu: FunctionComponent<MenuType> = ({
     <>
       <div className={styles.menu} style={modifiedStyles}>
         <SubjectsHeader userMode={userMode} />
-        {subjects.map((item: any) => {
-          if (!item.subject_code) return;
-          else
-            return (
-              <SubjectDetails
-                key={item.subject_code}
-                subject_code={item.subject_code}
-                subject_name={item.subject_name}
-                subject_hours={item.subject_hours}
-                checkboxChecked={
-                  item.checkboxChecked ? item.checkboxChecked : false
-                }
-                checkboxIsDisabled={
-                  item.checkboxIsDisabled ? item.checkboxIsDisabled : false
-                }
-                liftUpcourseState={getCourseState}
-              />
-            );
-        })}
+        {subjects &&
+          subjects.map((item: any) => {
+            if (!item.subject_code) return;
+            else
+              return (
+                <SubjectDetails
+                  key={item.subject_code}
+                  subject_code={item.subject_code}
+                  subject_name={item.subject_name}
+                  subject_hours={item.subject_hours}
+                  checkboxChecked={
+                    item.checkboxChecked ? item.checkboxChecked : false
+                  }
+                  checkboxIsDisabled={
+                    item.checkboxIsDisabled ? item.checkboxIsDisabled : false
+                  }
+                  liftUpcourseState={getCourseState}
+                />
+              );
+          })}
         <RegisterButton userMode={userMode} RegBtnOnClick={regBtnHandler} />
       </div>
 

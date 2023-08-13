@@ -14,7 +14,7 @@ const StatisticsPage: FunctionComponent<StatisticsPageType> = ({
 }) => {
   const subjectsNames: any[] = [];
   const f1 = new FetchDataService();
-  const [statsData, setStatsData] = useState();
+  const [statsData, setStatsData] = useState(null);
   const [params, setParams] = useState({
     statsMode: null,
     courseCode: null,
@@ -31,7 +31,8 @@ const StatisticsPage: FunctionComponent<StatisticsPageType> = ({
     });
 
   const getData = async () => {
-    let jsonData;
+    let jsonData = null;
+    setStatsData(null);
     if (params.semester && params.year) {
       params.statsMode === "Course"
         ? (jsonData = await f1.getSubjectGraphData(
